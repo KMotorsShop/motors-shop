@@ -6,7 +6,7 @@ Ecommerce para anúncios de automóveis que reúne anunciantes e compradores [N�
 
 + Node.js
 + React.js 
-+ Nest.js [INDEFINIDO] 
++ Nest.js
 + PostgreSQL
 + TypeORM
 + Chakra UI ou Stitches [INDEFINIDO] 
