@@ -2,6 +2,19 @@
 
 Ecommerce para anúncios de automóveis que reúne anunciantes e compradores [NÃO TERMINADO]
 
+## Tecnologias utilizadas: 
+
++ Node.js
++ React.js 
++ Nest.js
++ PostgreSQL
++ TypeORM
++ Chakra UI ou Stitches [INDEFINIDO] 
++ ContextAPI 
++ React Hook Form 
++ Yup
++ 
+[DEMAIS LIBS DE REACT E NEST INDEFINIDAS] 
 
 ## Instalação
 
@@ -30,13 +43,4 @@ $ npm run dev
 $ npm run start:dev
 ```
 
-## Tecnologias utilizadas: 
 
-+ Node.js
-+ React.js 
-+ Nest.js
-+ PostgreSQL
-+ TypeORM
-+ Chakra UI ou Stitches [INDEFINIDO] 
-+ ContextAPI 
-[DEMAIS LIBS DE REACT E NEST INDEFINIDAS] 
