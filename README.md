@@ -13,7 +13,8 @@ Ecommerce para anúncios de automóveis que reúne anunciantes e compradores [N�
 + ContextAPI 
 + React Hook Form 
 + Yup
-+ 
++ Passport (autenticação)
+
 [DEMAIS LIBS DE REACT E NEST INDEFINIDAS] 
 
 ## Instalação
