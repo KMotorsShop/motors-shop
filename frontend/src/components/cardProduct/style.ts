@@ -9,10 +9,14 @@ export const Card = styled('div', {
     flexDirection: "column",
     alignItems: "start",
     img: {
+        border: "2px solid white",
         width: "262px",
         height: "152px",
-        padding: "30px 25px",
-        backgroundColor: "#E9ECEF"
+        padding: "30px 24px",
+        backgroundColor: "#E9ECEF",
+        '&:hover':{
+            border: "2px solid #4529E6"
+        },
     },
     h1: {
         fontSize: "16px"
@@ -30,10 +34,14 @@ export const Card = styled('div', {
                 flexDirection: 'row',
                 height: "250px",
                 img: {
+                    border: "0px",
                     width: "32px",
                     height: "32px",
                     padding: "0px",
                     borderRadius: "50%",
+                    '&:hover':{
+                        border: "0px"
+                    },
                 },
                 h3: {
                     lineHeight: "10px",
@@ -43,6 +51,7 @@ export const Card = styled('div', {
                     alignItems: "center",
                     justifyContent: "center"
                 }
+                
             },
             infos: {
                 display: "flex",
