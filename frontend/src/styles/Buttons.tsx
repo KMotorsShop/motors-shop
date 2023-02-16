@@ -1,6 +1,6 @@
 import { styled } from "./stitches.config";
 
-export const Button = styled("button", {
+export const BaseButton = styled("button", {
   fontSize: "$regular",
   color: "$whiteFixed",
   padding: "12px 28px",
@@ -9,42 +9,31 @@ export const Button = styled("button", {
   borderRadius: 4,
   fontWeight: "$semiBold",
   cursor: "pointer",
-  "@mobile": {
-    fontSize: "$small",
-    padding: "12px 20px",
-  },
   "&:hover": {
     background: "$grey1",
   },
+
+  "&:disabled": {
+    color: "$whiteFixed",
+    background: "$grey5",
+    "&:hover": {
+      background: "$grey5",
+    },
+  },
+
   variants: {
+    size: {
+      medium: {
+        fontSize: "$small",
+        padding: "12px 20px",
+      },
+    },
     variant: {
       negative: {
         color: "$grey2",
         background: "$grey6",
         "&:hover": {
           background: "$grey5",
-        },
-      },
-      disable: {
-        color: "$whiteFixed",
-        background: "$grey5",
-        "&:hover": {
-          background: "$grey5",
-        },
-      },
-      indigo: {
-        color: "$whiteFixed",
-        background: "$brand1",
-        "&:hover": {
-          background: "$brand2",
-        },
-      },
-      indigoOpacity: {
-        color: "$brand1",
-        background: "$brand4",
-        "&:hover": {
-          background: "$brand4",
-          color: "$brand1",
         },
       },
       light: {
@@ -55,13 +44,109 @@ export const Button = styled("button", {
           color: "$grey2",
         },
       },
-      outlineLight: {
-        background: "transparent",
-        color: "$whiteFixed",
-        border: "2px solid $whiteFixed",
+    },
+  },
+});
+
+export const BrandButton = styled(BaseButton, {
+  color: "$whiteFixed",
+  background: "$brand1",
+
+  "&:hover": {
+    background: "$brand2",
+  },
+
+  "&:disabled": {
+    color: "$brand4",
+    background: "$brand3",
+    cursor: "default",
+    "&:hover": {
+      background: "$brand3",
+    },
+  },
+
+  variants: {
+    variant: {
+      opacity: {
+        color: "$brand1",
+        background: "$brand4",
         "&:hover": {
-          background: "$whiteFixed",
-          color: "$grey2",
+          background: "$brand4",
+          color: "$brand1",
+        },
+      },
+    },
+  },
+});
+
+export const OutlineButton = styled(BaseButton, {
+  background: "transparent",
+  color: "$whiteFixed",
+  border: "2px solid $whiteFixed",
+  "&:hover": {
+    background: "$whiteFixed",
+    border: "2px solid transparent",
+    color: "$grey2",
+  },
+  variants: {
+    variant: {
+      grey: {
+        background: "transparent",
+        color: "$grey0",
+        border: "2px solid $grey0",
+        "&:hover": {
+          background: "$grey0",
+          border: "2px solid transparent",
+          color: "$whiteFixed",
+        },
+      },
+      greyLight: {
+        background: "transparent",
+        color: "$grey0",
+        border: "2px solid $grey4",
+        "&:hover": {
+          background: "$grey1",
+          border: "2px solid transparent",
+          color: "$whiteFixed",
+        },
+      },
+      brand: {
+        background: "transparent",
+        color: "$brand1",
+        border: "2px solid $brand1",
+        "&:hover": {
+          background: "$brand4",
+          border: "2px solid $brand1",
+          color: "$brand1",
+        },
+      },
+    },
+  },
+});
+
+export const LinkButton = styled(BaseButton, {
+  background: "transparent",
+  color: "$grey0",
+  border: "2px solid transparent",
+  "&:hover": {
+    background: "$grey8",
+    border: "2px solid transparent",
+  },
+});
+
+export const FeedBackButton = styled(BaseButton, {
+  color: "$alert1",
+  background: "$alert3",
+  "&:hover": {
+    background: "$alert2",
+  },
+  variants: {
+    variant: {
+      success: {
+        color: "$success1",
+        background: "$success3",
+        "&:hover": {
+          background: "$success2",
         },
       },
     },
