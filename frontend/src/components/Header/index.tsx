@@ -1,10 +1,14 @@
 import logo from "../../assets/logo.svg";
 import { Card } from "./styles";
+import { FiMenu } from "react-icons/fi";
 
 const Header = () => {
   return (
     <Card>
       <img src={logo} alt="" />
+      {/* <button>
+        <FiMenu />
+      </button> */}
       <div>
         <ul>
           <li>Carros</li>
