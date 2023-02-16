@@ -1,0 +1,52 @@
+import { createStitches } from "@stitches/react";
+
+export const { styled, globalCss } = createStitches({
+  theme: {
+    colors: {
+      brand1: "#4529E6",
+      brand2: "#5126EA",
+      brand3: "#B0A6F0",
+      brand4: "#EDEAFD",
+      grey0: "#0B0B0D",
+      grey1: "#212529",
+      grey2: "#495057",
+      grey3: "#868E96",
+      grey4: "#ADB5BD",
+      grey5: "#CED4DA",
+      grey6: "#DEE2E6",
+      grey7: "#E9ECEF",
+      grey8: "#F8F9FA",
+      grey10: "#FDFDFD",
+      whiteFixed: "#FFFFFF",
+      alert1: "#CD2B31",
+      alert2: "#FDD8D8",
+      alert3: "#FFE5E5",
+      success1: "#18794e",
+      success2: "#CCEBD7",
+      success3: "#DDF3E4",
+      random1: "#E34D8C",
+      random2: "#C04277",
+      random3: "#7D2A4D",
+      random4: "#7000FF",
+    },
+    fontSizes: {
+      small: "0.875rem",
+      regular: "1.00rem",
+      larger1: "1.25rem",
+      larger2: "1.50rem",
+      larger3: "1.75rem",
+      larger4: "2.00rem",
+      larger5: "2.25rem",
+      larger6: "2.75rem",
+    },
+    fontWeights: {
+      regular: 400,
+      medium: 500,
+      semiBold: 600,
+      bold: 700,
+    },
+  },
+  media: {
+    mobile: "(max-width: 768px)",
+  },
+});
