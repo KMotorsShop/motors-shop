@@ -55,3 +55,10 @@ export const Heading6 = styled("h6", {
   ...baseText,
   fontSize: "$larger1",
 });
+
+export const Label = styled("label", {
+  ...baseText,
+  color: "$gray1",
+  fontWeight: "$medium",
+  fontSize: "$small",
+});
