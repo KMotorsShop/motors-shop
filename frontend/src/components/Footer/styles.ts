@@ -1,8 +1,8 @@
-import {styled} from "@stitches/react";
+import {styled} from "../../styles/stitches.config";
 
 export const SFooter = styled('footer', {
     
-    "@media screen and (max-width: 768px)": {
+    "@mobile": {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-around",
