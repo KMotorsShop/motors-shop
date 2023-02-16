@@ -1,6 +1,16 @@
 import {styled} from "@stitches/react";
 
 export const SFooter = styled('footer', {
+    
+    "@media screen and (max-width: 768px)": {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-around",
+        gap: 60,
+
+    
+    },
+    
     backgroundColor: "#0B0D0D",
     width: "100%",
     padding: 50,
@@ -26,13 +36,14 @@ export const SFooter = styled('footer', {
        height: 50,
        width: 53,
        borderRadius: 4,
+       cursor: "pointer",
 
        backgroundColor: "#212529",
-
+       color: "$whiteFixed",
+       border: "2px solid transparent",
+        
     },
 
-    "@mobile": {
-        display: "flex",
-        flexDirection: "column",
-    }
+      
 });
+
