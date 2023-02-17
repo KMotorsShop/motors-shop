@@ -1426,6 +1426,11 @@
   resolved "https://registry.npmjs.org/@zag-js/focus-visible/-/focus-visible-0.2.1.tgz"
   integrity sha512-19uTjoZGP4/Ax7kSNhhay9JA83BirKzpqLkeEAilrpdI1hE5xuq6q+tzJOsrMOOqJrm7LkmZp5lbsTQzvK2pYg==
 
+animate.css@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-4.1.1.tgz#614ec5a81131d7e4dc362a58143f7406abd68075"
+  integrity sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==
+
 ansi-styles@^3.2.1:
   version "3.2.1"
   resolved "https://registry.npmjs.org/ansi-styles/-/ansi-styles-3.2.1.tgz"

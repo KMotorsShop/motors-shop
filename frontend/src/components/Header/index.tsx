@@ -1,14 +1,22 @@
 import logo from "../../assets/logo.svg";
 import { Card } from "./styles";
 import { FiMenu } from "react-icons/fi";
+import { RiCloseLine } from "react-icons/ri";
+import { OutlineButton } from "../../styles/Buttons";
+import { useState } from "react";
+import MenuMobile from "../MenuMobile";
 
 const Header = () => {
+  const [menu, setMenu] = useState(false);
+
+  const showMenu = () => {
+    setMenu(!menu);
+  };
+
   return (
     <Card>
       <img src={logo} alt="" />
-      {/* <button>
-        <FiMenu />
-      </button> */}
+      <button onClick={showMenu}>{menu ? <RiCloseLine /> : <FiMenu />}</button>
       <div>
         <ul>
           <li>Carros</li>
@@ -23,9 +31,10 @@ const Header = () => {
         </Card>
         <Card type="logged-out">
           <a href="">Fazer Login</a>
-          <button>Cadastrar</button>
+          <OutlineButton variant="greyLight">Cadastrar</OutlineButton>
         </Card>
       </div>
+      {menu && <MenuMobile />}
     </Card>
   );
 };

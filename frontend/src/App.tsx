@@ -1,6 +1,6 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
-import "./App.css";
+// import "./App.css";
 import { CardFooter, Button, IconButton } from "@chakra-ui/react";
 
 import { Footer } from "./components/Footer";
