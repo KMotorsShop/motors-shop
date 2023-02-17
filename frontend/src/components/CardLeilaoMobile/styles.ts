@@ -6,6 +6,9 @@ export const Container = styled("div", {
   height: "435px",
   background: "linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%)",
   borderRadius: "4px 4px 0px 0px",
+  "&:hover": {
+    background: "linear-gradient(180deg, rgba(0, 0, 0, 0.71) 0%, #000000 100%)",
+  },
 });
 
 export const CardImage = styled("div", {
