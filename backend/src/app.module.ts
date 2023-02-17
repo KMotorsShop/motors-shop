@@ -5,9 +5,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm/dist';
 import { typeOrmAsyncConfig } from './config/typeorm.config';
 import { ConfigModule } from '@nestjs/config';
+import { AdsModule } from './ads/ads.module';
 import { UsersModule } from './users/users.module';
-
-
 
 @Module({
   imports: [
@@ -16,6 +15,7 @@ import { UsersModule } from './users/users.module';
       isGlobal: true,
       envFilePath: '.env',
     }),
+  AdsModule,
   UsersModule,
   ],
   controllers: [AppController],
