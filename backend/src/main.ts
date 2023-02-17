@@ -14,7 +14,7 @@ async function bootstrap() {
   const appUrl = config.get<string>('APP_URL');
   const postgresPort = config.get<number>('POSTGRES_PORT');
 
-  await app.listen(3000, () => {
+  await app.listen(process.env.PORT || 3000, () => {
     logger.log(`Database is running at ${postgresPort}`)
     logger.log(`Server Listening at ${appUrl}:${port}`);
   });
