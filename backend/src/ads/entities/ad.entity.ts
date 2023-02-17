@@ -8,21 +8,21 @@ export class Ad {
   id: string; 
 
   @Column()
-  ano: number;
+  year: number;
 
   @Column()
-  preco: number;
+  price: number;
 
   @Column()
-  nome: string;
+  name: string;
 
   @Column()
-  tipo: string;
+  type: string;
 
   @Column()
   km: number;
 
   @Column()
-  descricao: string;
+  description: string;
 
 };  
