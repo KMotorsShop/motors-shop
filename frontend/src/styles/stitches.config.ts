@@ -48,5 +48,7 @@ export const { styled, globalCss } = createStitches({
   },
   media: {
     mobile: "(max-width: 768px)",
+    mobileHeader: "(max-width: 875px)",
+    mobileHeader2: "(min-width: 875px)",
   },
 });
