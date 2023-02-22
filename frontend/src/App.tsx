@@ -1,15 +1,7 @@
-
-import { Footer } from './components/Footer'
+import { Footer } from "./components/Footer";
 
 function App() {
-
-
-  return (
-    <div className="App">
-      <Header />
-      {/* <Footer /> */}
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
