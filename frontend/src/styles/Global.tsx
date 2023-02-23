@@ -26,6 +26,11 @@ export const globalStyles = globalCss({
     boxSizing: "border-box",
     fontSize: "$regular",
   },
+
+  body: {
+    background: "$grey6",
+  },
+
   html: {
     fontFamily: "Lexend",
     scrollBehavior: "smooth",

@@ -5,11 +5,19 @@ export const Container = styled("div", {
   height: "377px",
   background: "$grey10",
   borderRadius: "4px",
+  marginBottom: "34px",
+  "@mobileProductDetailed": {
+    width: "351px",
+    height: "355px",
+  },
 
   p: {
     marginLeft: "36px",
     paddingTop: "36px",
     marginBottom: "8px",
+    "@mobileProductDetailed": {
+      marginLeft: "28px",
+    },
   },
 });
 
@@ -21,6 +29,9 @@ export const DivCars = styled("div", {
   justifyContent: "space-evenly",
   alignItems: "center",
   marginLeft: "20px",
+  "@mobileProductDetailed": {
+    width: "300px",
+  },
 });
 
 export const Car = styled("div", {
@@ -31,8 +42,15 @@ export const Car = styled("div", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  "@mobileProductDetailed": {
+    width: "90px",
+    height: "90px",
+  },
 
   img: {
     width: "94.22px",
+    "@mobileProductDetailed": {
+      width: "72.22px",
+    },
   },
 });

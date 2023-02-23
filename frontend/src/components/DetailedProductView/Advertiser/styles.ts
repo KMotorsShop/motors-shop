@@ -8,6 +8,10 @@ export const Container = styled("div", {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  "@mobileProductDetailed": {
+    width: "351px",
+    height: "397px",
+  },
 
   h1: {
     color: "$grey1",
@@ -15,6 +19,10 @@ export const Container = styled("div", {
     fontSize: "20px",
     lineHeight: "25px",
     marginBottom: "32px",
+  },
+
+  button: {
+    marginBottom: "36px",
   },
 });
 
@@ -28,12 +36,20 @@ export const LogoUser = styled("div", {
   alignItems: "center",
   marginTop: "37px",
   marginBottom: "28px",
+  "@mobileProductDetailed": {
+    width: "77px",
+    height: "77px",
+  },
 
   span: {
     color: "$whiteFixed",
     fontWeight: "500",
     fontSize: "36px",
     lineHeight: "53px",
+    "@mobileProductDetailed": {
+      fontSize: "32px",
+      lineHeight: "39px",
+    },
   },
 });
 

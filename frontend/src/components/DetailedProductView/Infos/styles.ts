@@ -5,6 +5,12 @@ export const Container = styled("div", {
   height: "240px",
   background: "$grey10",
   borderRadius: "4px",
+  marginBottom: "39px",
+  "@mobileProductDetailed": {
+    width: "351px",
+    height: "355px",
+    marginBottom: "24px",
+  },
 
   h1: {
     color: "$grey1",
@@ -14,6 +20,9 @@ export const Container = styled("div", {
     marginLeft: "44px",
     paddingTop: "44px",
     marginBottom: "41px",
+    "@mobileProductDetailed": {
+      marginLeft: "28px",
+    },
   },
 
   button: {
@@ -27,6 +36,10 @@ export const Container = styled("div", {
     borderRadius: "4px",
     cursor: "pointer",
     marginLeft: "44px",
+    marginBottom: "26px",
+    "@mobileProductDetailed": {
+      marginLeft: "28px",
+    },
 
     "&:hover": {
       background: "$brand2",
@@ -49,11 +62,18 @@ export const DivInfos = styled("div", {
   width: "657px",
   marginLeft: "44px",
   marginBottom: "24px",
+  "@mobileProductDetailed": {
+    flexDirection: "column",
+    marginLeft: "28px",
+  },
   p: {
     color: "$grey1",
     fontSize: "16px",
     lineHeight: "20px",
     fontWeight: "500",
+    "@mobileProductDetailed": {
+      marginTop: "32px",
+    },
   },
 });
 

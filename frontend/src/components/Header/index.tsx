@@ -5,6 +5,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { OutlineButton } from "../../styles/Buttons";
 import { useState } from "react";
 import MenuMobile from "../MenuMobile";
+import "animate.css";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
@@ -16,7 +17,13 @@ const Header = () => {
   return (
     <Card>
       <img src={logo} alt="" />
-      <button onClick={showMenu}>{menu ? <RiCloseLine /> : <FiMenu />}</button>
+      <button onClick={showMenu}>
+        {menu ? (
+          <RiCloseLine className="animate__animated animate__flipInX" />
+        ) : (
+          <FiMenu className="animate__animated animate__flipInX" />
+        )}
+      </button>
       <div>
         <ul>
           <li>Carros</li>

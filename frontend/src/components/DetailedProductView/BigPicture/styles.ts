@@ -8,8 +8,16 @@ export const Container = styled("div", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  marginBottom: "16px",
+  "@mobileProductDetailed": {
+    width: "351px",
+    height: "355px",
+  },
 
   img: {
     width: "441px",
+    "@mobileProductDetailed": {
+      width: "293px",
+    },
   },
 });
