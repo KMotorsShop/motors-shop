@@ -1,10 +1,10 @@
 import Header from "./components/Header";
-import ProductDetailed from "./pages/ProductDetailed";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <div className="App">
-      <ProductDetailed />
+      <Home />
     </div>
   );
 }

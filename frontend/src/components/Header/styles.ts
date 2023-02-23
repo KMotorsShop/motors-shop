@@ -58,11 +58,11 @@ export const Card = styled("header", {
   variants: {
     type: {
       logged: {
-        display: "flex",
+        // display: "flex",
         marginRight: "60px",
         marginLeft: "44px",
         borderBottom: "1px solid $grey6",
-        // display: "none",
+        display: "none",
 
         div: {
           backgroundColor: "$brand2",
@@ -93,7 +93,7 @@ export const Card = styled("header", {
       "logged-out": {
         marginLeft: "44px",
         borderBottom: "1px solid $grey6",
-        display: "none",
+        // display: "none",
 
         a: {
           color: "$grey2",
