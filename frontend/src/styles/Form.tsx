@@ -25,6 +25,11 @@ export const Input = styled("input", {
     border: "1.5px solid $brand1",
     boxShadow: "0 0 0 0",
   },
+
+  "@mobile": {
+    maxWidth: "90%",
+    minWidth: "300px",
+  },
 });
 
 export const TextArea = styled("textarea", {
@@ -52,5 +57,10 @@ export const TextArea = styled("textarea", {
     outline: "none",
     border: "1.5px solid $brand1",
     boxShadow: "0 0 0 0",
+  },
+
+  "@mobile": {
+    maxWidth: "90%",
+    minWidth: "300px",
   },
 });

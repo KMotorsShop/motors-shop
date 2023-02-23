@@ -30,8 +30,8 @@ export const ModalUpdateAd = () => {
                         <Label htmlFor="">
                             Título
                         </Label>
-                        <Input placeholder="Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200"/>
-                        
+                        <Input placeholder="Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200"
+                        className="mobile"/>
                     </div>
                     <div className="input-div small-ones">
                         <div className="small-inputs-div">
@@ -44,7 +44,7 @@ export const ModalUpdateAd = () => {
                         </div>
                         <div className="small-inputs-div">
                             <Label htmlFor="">preço</Label>
-                            <input type="text" className="small-input" placeholder="50.000,00"/>
+                            <input type="text" className="small-input price" placeholder="50.000,00"/>
                         </div>
                     </div>
                     <div className="input-div">
@@ -69,15 +69,18 @@ export const ModalUpdateAd = () => {
                 <div className="input-images">
                     <div className="image-input input-div">
                         <Label htmlFor="">Imagem da capa</Label>
-                        <Input placeholder="https://image.com"/>
+                        <Input placeholder="https://image.com"
+                        className="mobile"/>
                     </div>
                     <div className="image-input input-div">
                         <Label htmlFor="">1ª imagem da galeria</Label>
-                        <Input placeholder="https://image.com"/>
+                        <Input placeholder="https://image.com"
+                        className="mobile"/>
                     </div>
                     <div className="image-input input-div">
                         <Label htmlFor="">2ª imagem da galeria</Label>
-                        <Input placeholder="https://image.com"/>
+                        <Input placeholder="https://image.com"
+                        className="mobile"/>
                     </div>
                     <button className="add-inputs"> Adicionar campo para imagem da galeria</button>
                 </div>

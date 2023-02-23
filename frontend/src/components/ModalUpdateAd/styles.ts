@@ -1,7 +1,7 @@
-import { styled } from "@stitches/react";
+import { styled } from "../../styles/stitches.config";
 
 export const UpdateAd = styled('div', {
-    
+    marginLeft: "15px",
     maxHeight: "1252px",
     width: "520px",
     left: "540px",
@@ -12,6 +12,7 @@ export const UpdateAd = styled('div', {
     button: {
         cursor: "pointer",
     },
+
 
     ".modal-title": {
         height: "56px",
@@ -31,7 +32,8 @@ export const UpdateAd = styled('div', {
             width: "25px",
             color: "$grey4",
             fontSize: "20px",
-        }
+        },
+
     },
 
     form: {
@@ -90,19 +92,6 @@ export const UpdateAd = styled('div', {
             justifyContent: "space-around",
             gap: "10px",
             height: "300px",
-
-            textarea: {
-                height: "80px",
-                width: "466px",
-                left: "0px",
-                top: "25px",
-                borderRadius: "4px",
-                padding: "8px 16px 8px 16px",
-                border: "#E9ECEF 1px solid",
-                "&::placeholder": {
-                    fontSize: "14px"
-                },
-            },
             
 
             ".small-ones": {
@@ -156,6 +145,60 @@ export const UpdateAd = styled('div', {
             justifyContent: "space-between",
             gap: "5px",
         },
+
+    },
+
+    "@mobile": {
+        maxWidth: "346px",
+        minHeight: "1361px",
+        display: "flex",
+        flexDirection: "column",
+
+        ".modal-title": {
+            maxWidth: "100%",
+            p: {
+                minWidth: "120px",
+            },
+            button: {
+                marginLeft: "-150px",
+                alignSelf: "center",
+            },
+        },
+
+        form: {
+            minHeight: "1300px",
+            padding: "20px",
+            
+            justifyContent: "space-around",
+        },
+
+        ".add-inputs": {
+            maxWidth: "90%",
+            padding: "px",
+        },
+
+        ".input-div":{
+            maxWidth: "90%"
+        },
+
+        ".vehicle-infos": {
+            minHeight: "300px",
+            ".small-ones": {
+                display: "flex",
+                flexWrap: "wrap",
+                maxWidth: "100%",
+                minHeight: "170px",
+
+                input: {
+                    maxWidth: "140px",
+                },
+
+                ".price": { 
+                    minWidth: "300px",
+                },
+            },
+        },
+
 
     },
 
