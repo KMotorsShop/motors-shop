@@ -75,6 +75,10 @@ export const BrandButton = styled(BaseButton, {
           color: "$brand1",
         },
       },
+      normal: {
+        color: "$whiteFixed",
+        background: "$brand1",
+      }
     },
   },
 });

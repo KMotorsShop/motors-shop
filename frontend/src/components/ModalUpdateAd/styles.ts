@@ -2,7 +2,7 @@ import { styled } from "../../styles/stitches.config";
 
 export const UpdateAd = styled('div', {
     marginLeft: "15px",
-    maxHeight: "1252px",
+    minHeight: "1252px",
     width: "520px",
     left: "540px",
     top: "80px",
