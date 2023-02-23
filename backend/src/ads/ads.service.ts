@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm/dist/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateAdDto } from './dto/create-ad.dto';
 import { UpdateAdDto } from './dto/update-ad.dto';
@@ -9,8 +9,10 @@ import { Ad } from './entities/ad.entity';
 export class AdsService {
   constructor(@InjectRepository(Ad) private adRepository: Repository<Ad>) {}
 
-  create(createAdDto: CreateAdDto) {
-    return 'This action adds a new ad';
+  async create(createAdDto: CreateAdDto) {
+    const ad = this.adRepository.create(createAdDto);
+    await this.adRepository.save(ad);
+    return ad;
   }
 
   async findAll() {
