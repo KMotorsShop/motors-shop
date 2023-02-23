@@ -1,7 +1,11 @@
-import { Footer } from "./components/Footer";
+import { ModalUpdateAd } from "./components/ModalUpdateAd";
 
 function App() {
-  return <div className="App"></div>;
-}
+  return (
+    <div className="App">
+      <ModalUpdateAd/>
+    </div>
+  );
+};
 
 export default App;

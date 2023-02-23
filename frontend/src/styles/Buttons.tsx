@@ -92,8 +92,9 @@ export const OutlineButton = styled(BaseButton, {
     variant: {
       grey: {
         background: "transparent",
+        backgroundColor: "$grey6",
         color: "$grey0",
-        border: "2px solid $grey0",
+        // border: "2px solid $grey0",
         "&:hover": {
           background: "$grey0",
           border: "2px solid transparent",
@@ -111,11 +112,11 @@ export const OutlineButton = styled(BaseButton, {
         },
       },
       brand: {
-        background: "transparent",
+        background: "$brand4",
         color: "$brand1",
-        border: "2px solid $brand1",
+        // border: "2px solid $brand1",
         "&:hover": {
-          background: "$brand4",
+          background: "transparent",
           border: "2px solid $brand1",
           color: "$brand1",
         },
