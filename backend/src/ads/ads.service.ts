@@ -13,7 +13,7 @@ export class AdsService {
     return 'This action adds a new ad';
   }
 
-  findAll() {
+  async findAll() {
     return this.adRepository.find();
   }
 
