@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
@@ -11,8 +12,10 @@ async function bootstrap() {
   const config = app.get<ConfigService>(ConfigService);
   const port = config.get<number>('PORT');
   const appUrl = config.get<string>('APP_URL');
+  const postgresPort = config.get<number>('POSTGRES_PORT');
 
-  await app.listen(3000, () => {
+  await app.listen(process.env.PORT || 3000, () => {
+    logger.log(`Database is running at ${postgresPort}`)
     logger.log(`Server Listening at ${appUrl}:${port}`);
   });
 }

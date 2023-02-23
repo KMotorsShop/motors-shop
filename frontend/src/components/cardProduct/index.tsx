@@ -1,20 +1,21 @@
+import { CardProductProps } from "../../interface/interfaces"
 import { Card } from "./style"
 
-export const CardProduct = () => {
+export const CardProduct = ({name, description, km, year, price}: CardProductProps) => {
 
     return(
         <Card>
-            <img src="https://file.kelleybluebookimages.com/kbb/base/evox/CP/43648/2023-Honda-Civic-front_43648_032_1860x760_RE_cropped.png"></img>
-            <h1>Product title stays here</h1>
-            <p>Lorem sadasdasd asdasdasda asdasd  saDdasdasd dasd sadasdasd asdasdasd asdas sadasdsa asadss</p>
+            <img src="https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=960"></img>
+            <h1>{name}</h1>
+            <p>{description}</p>
             <Card type="user">
-                <img src="https://lh3.googleusercontent.com/ogw/AAEL6siLE6kvr8NrqoiCED8VSkGgp-qIvJuXEZexpLwj=s64-c-mo"></img>
-                <h3>User</h3>
+                <img src="https://lh3.googleusercontent.com/ogw/AAEL6siLE6kvr8NrqoiCED8VSkGgp-qIvJuXEZexpLwj=s32-c-mo"></img>
+                <h3>Usuário</h3>
             </Card>
             <Card type="infos">
-                <span>0 KM</span>
-                <span>2019</span>
-                <h2>R$ 00.000,00</h2>
+                <span>{km}</span>
+                <span>{year}</span>
+                <h2>R${price},00</h2>
             </Card>
         </Card>
     )
