@@ -1,6 +1,10 @@
+import { Flex } from "./Containers";
 import { styled } from "./stitches.config";
+import { Label } from "./Texts";
 
-export const Form = styled("form", {});
+export const Form = styled("form", {
+  maxWidth: 540,
+});
 
 export const Input = styled("input", {
   padding: "0px 16px",
@@ -28,6 +32,7 @@ export const Input = styled("input", {
 });
 
 export const TextArea = styled("textarea", {
+  fontFamily: "Lexend",
   padding: "16px",
   height: 40,
   resize: "none",
@@ -52,5 +57,40 @@ export const TextArea = styled("textarea", {
     outline: "none",
     border: "1.5px solid $brand1",
     boxShadow: "0 0 0 0",
+  },
+});
+
+export const InputWrapper = styled("div", {
+  display: "inline-block",
+  marginTop: "$3",
+  [`& ${Label}`]: {
+    display: "block",
+    marginBottom: "$1",
+  },
+  width: "100%",
+});
+
+export const FieldSet = styled("fieldset", {
+  border: "none",
+  "@mobile": {
+    flexWrap: "wrap",
+  },
+  marginBottom: "$3",
+  variants: {
+    type: {
+      flex: {
+        display: "flex",
+        gap: 9,
+        margin: 0,
+      },
+    },
+  },
+});
+
+export const OptionButtons = styled(Flex, {
+  gap: "$1",
+  marginTop: "$3",
+  button: {
+    width: "50%",
   },
 });

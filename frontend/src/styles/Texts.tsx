@@ -62,3 +62,17 @@ export const Label = styled("label", {
   fontWeight: "$medium",
   fontSize: "$small",
 });
+
+export const Legend = styled("legend", {
+  ...baseText,
+  color: "$gray1",
+  fontWeight: "$medium",
+  fontSize: "$small",
+});
+
+export const FormError = styled("span", {
+  ...baseText,
+  color: "$alert1",
+  fontWeight: "$medium",
+  fontSize: "$small",
+});
