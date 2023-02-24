@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { IsDefined, Max, MaxLength, Min } from 'class-validator';
 
 export class CreateAdDto {

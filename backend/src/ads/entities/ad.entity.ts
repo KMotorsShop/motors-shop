@@ -13,7 +13,7 @@ export class Ad {
   id: string;
 
   @Column()
-  year: number;
+  year: string;
 
   @Column()
   price: number;
@@ -29,6 +29,9 @@ export class Ad {
 
   @Column()
   description: string;
+
+  @Column()
+  images: string[];
 
   @Column({ default: true })
   isActive: boolean;

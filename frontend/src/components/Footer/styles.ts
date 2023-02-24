@@ -7,8 +7,6 @@ export const SFooter = styled('footer', {
         flexDirection: "column",
         justifyContent: "space-around",
         gap: 60,
-
-    
     },
     
     backgroundColor: "#0B0D0D",
