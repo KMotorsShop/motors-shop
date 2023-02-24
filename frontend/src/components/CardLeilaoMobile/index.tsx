@@ -12,7 +12,7 @@ import { BiTimeFive } from "react-icons/bi";
 
 const CardLeilaoMobile = () => {
   return (
-    <>
+    <main>
       <Container>
         <CardImage>
           <Time>
@@ -47,7 +47,7 @@ const CardLeilaoMobile = () => {
           <BsArrowRight />
         </button>
       </ContainerBottom>
-    </>
+    </main>
   );
 };
 

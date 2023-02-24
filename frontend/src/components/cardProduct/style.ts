@@ -1,27 +1,31 @@
 import { styled } from "@stitches/react";
 
 export const Card = styled('div', {
+    marginLeft: "15px",
+    marginRight: "15px",
     backgroundColor: "#FFFF",
     color: "#212529",
-    width: "312px",
-    height: "400px",
+    width: "352px",
+    height: "350px",
     display: "flex",
     flexDirection: "column",
     alignItems: "start",
     img: {
         border: "2px solid white",
-        width: "262px",
+        width: "345px",
         height: "152px",
-        padding: "30px 24px",
+        padding: "20px 40px",
         backgroundColor: "#E9ECEF",
         '&:hover':{
             border: "2px solid #4529E6"
         },
     },
     h1: {
+        marginTop: "10px",
         fontSize: "16px"
     },
     p: {
+        marginTop: "10px",
         fontSize: "14px",
         lineBreak: "auto",
         color: "#495057",
@@ -33,6 +37,7 @@ export const Card = styled('div', {
                 display:'flex',
                 flexDirection: 'row',
                 height: "250px",
+                alignItems: "center",
                 img: {
                     border: "0px",
                     width: "32px",
@@ -56,6 +61,7 @@ export const Card = styled('div', {
             infos: {
                 display: "flex",
                 flexDirection: "row",
+                alignItems: "center",
                 span: {
                     backgroundColor: "#EDEAFD",
                     color: "#4529E6",

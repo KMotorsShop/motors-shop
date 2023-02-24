@@ -7,6 +7,10 @@ export const Container = styled("div", {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
+  marginBottom: "100px",
+  "@mobile": {
+    marginBottom: "38px",
+  },
   p: {
     fontWeight: "700",
     fontSize: "44px",
@@ -51,5 +55,43 @@ export const ContainerButtons = styled("div", {
     "@mobileProductDetailed": {
       width: "90%",
     },
+  },
+});
+
+export const TextTitle = styled("p", {
+  fontWeight: "600",
+  fontSize: "24px",
+  lineHeight: "30px",
+  marginLeft: "60px",
+  marginBottom: "40px",
+  "@mobile": {
+    marginLeft: "12px",
+  },
+});
+
+export const ContainerLeilao = styled("section", {
+  marginLeft: "60px",
+  display: "flex",
+  overflowX: "scroll",
+  width: "95%",
+  height: "413px",
+  gap: "24px",
+  marginBottom: "200px",
+  "&::-webkit-scrollbar": {
+    height: "6px",
+    width: "6px",
+  },
+
+  "&::-webkit-scrollbar-thumb": {
+    background: "$brand1",
+    borderRadius: "5px",
+  },
+
+  "&::-webkit-scrollbar-corner": {
+    background: "transparent",
+  },
+  "@mobile": {
+    height: "513px",
+    marginLeft: "12px",
   },
 });

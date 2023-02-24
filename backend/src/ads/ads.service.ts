@@ -15,8 +15,8 @@ export class AdsService {
     return ad;
   }
 
-  findAll() {
-    return `This action returns all ads`;
+  async findAll() {
+    return this.adRepository.find();
   }
 
   findOne(id: number) {

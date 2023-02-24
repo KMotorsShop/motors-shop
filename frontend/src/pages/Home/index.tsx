@@ -1,6 +1,13 @@
 import Header from "../../components/Header";
-import { Container, ContainerButtons } from "./styles";
+import {
+  Container,
+  ContainerButtons,
+  ContainerLeilao,
+  TextTitle,
+} from "./styles";
 import { OutlineButton } from "../../styles/Buttons";
+
+import CardLeilaoMobile from "../../components/CardLeilaoMobile";
 
 const Home = () => {
   return (
@@ -14,6 +21,12 @@ const Home = () => {
           <OutlineButton>Motos</OutlineButton>
         </ContainerButtons>
       </Container>
+      <TextTitle>Leilão</TextTitle>
+      <ContainerLeilao>
+        <CardLeilaoMobile />
+        <CardLeilaoMobile />
+        <CardLeilaoMobile />
+      </ContainerLeilao>
     </>
   );
 };
