@@ -4,8 +4,16 @@ import BigPicture from "../../components/DetailedProductView/BigPicture";
 import Description from "../../components/DetailedProductView/Description";
 import Infos from "../../components/DetailedProductView/Infos";
 import SmallerPictures from "../../components/DetailedProductView/SmallerPictures";
+import { Footer } from "../../components/Footer";
 import Header from "../../components/Header";
-import { Container, ContainerOne, ContainerTwo } from "./styles";
+import {
+  Container,
+  ContainerOne,
+  ContainerTwo,
+  ContainerComments,
+  CardOne,
+  CardTwo,
+} from "./styles";
 
 const ProductDetailed = () => {
   useEffect(() => {}, []);
@@ -24,6 +32,11 @@ const ProductDetailed = () => {
           <Advertiser />
         </ContainerTwo>
       </Container>
+      <ContainerComments>
+        <CardOne />
+        <CardTwo />
+      </ContainerComments>
+      <Footer />
     </>
   );
 };

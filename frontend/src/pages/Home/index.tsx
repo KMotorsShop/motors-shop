@@ -8,6 +8,7 @@ import {
 import { OutlineButton } from "../../styles/Buttons";
 
 import CardLeilaoMobile from "../../components/CardLeilaoMobile";
+import { Footer } from "../../components/Footer";
 
 const Home = () => {
   return (
@@ -27,6 +28,7 @@ const Home = () => {
         <CardLeilaoMobile />
         <CardLeilaoMobile />
       </ContainerLeilao>
+      <Footer />
     </>
   );
 };
