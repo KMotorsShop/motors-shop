@@ -30,6 +30,9 @@ export class Ad {
   @Column()
   description: string;
 
+  @Column()
+  images: string[];
+
   @Column({ default: true })
   isActive: boolean;
 
