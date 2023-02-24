@@ -1,11 +1,16 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('ads')
 export class Ad {
-
   @PrimaryGeneratedColumn('uuid')
-  id: string; 
+  id: string;
 
   @Column()
   year: string;
@@ -25,4 +30,12 @@ export class Ad {
   @Column()
   description: string;
 
-};  
+  @Column({ default: true })
+  isActive: boolean;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+}

@@ -1,15 +1,22 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateAdDto } from './dto/create-ad.dto';
 import { UpdateAdDto } from './dto/update-ad.dto';
+import { Ad } from './entities/ad.entity';
 
 @Injectable()
 export class AdsService {
-  create(createAdDto: CreateAdDto) {
-    return 'This action adds a new ad';
+  constructor(@InjectRepository(Ad) private adRepository: Repository<Ad>) {}
+
+  async create(createAdDto: CreateAdDto) {
+    const ad = this.adRepository.create(createAdDto);
+    await this.adRepository.save(ad);
+    return ad;
   }
 
-  findAll() {
-    return `This action returns all ads`;
+  async findAll() {
+    return this.adRepository.find();
   }
 
   findOne(id: number) {
