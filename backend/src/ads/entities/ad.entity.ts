@@ -13,7 +13,7 @@ export class Ad {
   id: string;
 
   @Column()
-  year: string;
+  year: number;
 
   @Column()
   price: number;

@@ -11,9 +11,9 @@ export class AdsService {
   constructor(@InjectRepository(Ad) private adRepository: Repository<Ad>) {}
 
   async create(createAdDto: CreateAdDto) {
-    // const ad = this.adRepository.create(createAdDto);
-    // await this.adRepository.save(ad);
-    // return ad;
+    const ad = this.adRepository.create(createAdDto);
+    await this.adRepository.save(ad);
+    return ad;
   }
 
   async findAll() {
@@ -24,8 +24,10 @@ export class AdsService {
     return `This action returns a #${id} ad`;
   }
 
-  update(id: number, updateAdDto: UpdateAdDto) {
-    return `This action updates a #${id} ad`;
+  async update(id: number, updateAdDto: UpdateAdDto) {
+    const ad = this.adRepository.update(updateAdDto, id);
+    await this.adRepository.save(ad)
+    return ad;
   }
 
   remove(id: number) {
