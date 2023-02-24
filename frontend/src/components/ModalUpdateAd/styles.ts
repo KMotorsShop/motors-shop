@@ -13,6 +13,10 @@ export const UpdateAd = styled('div', {
         cursor: "pointer",
     },
 
+    ".feedback": {
+        color: "red",
+        fontSize: "13px",
+    },
 
     ".modal-title": {
         height: "56px",
@@ -173,7 +177,7 @@ export const UpdateAd = styled('div', {
         },
 
         ".add-inputs": {
-            maxWidth: "90%",
+            maxWidth: "99%",
             padding: "px",
         },
 
@@ -182,7 +186,7 @@ export const UpdateAd = styled('div', {
         },
 
         ".vehicle-infos": {
-            minHeight: "300px",
+            minHeight: "350px",
             ".small-ones": {
                 display: "flex",
                 flexWrap: "wrap",
