@@ -3,7 +3,7 @@ import { styled } from "./stitches.config";
 import { Label } from "./Texts";
 
 export const Form = styled("form", {
-  maxWidth: 540,
+  width: "100%",
 });
 
 export const Input = styled("input", {
@@ -28,11 +28,6 @@ export const Input = styled("input", {
     outline: "none",
     border: "1.5px solid $brand1",
     boxShadow: "0 0 0 0",
-  },
-
-  "@mobile": {
-    maxWidth: "90%",
-    minWidth: "300px",
   },
 });
 
@@ -63,25 +58,21 @@ export const TextArea = styled("textarea", {
     border: "1.5px solid $brand1",
     boxShadow: "0 0 0 0",
   },
-
-  "@mobile": {
-    maxWidth: "90%",
-    minWidth: "300px",
-  },
 });
 
 export const InputWrapper = styled("div", {
   display: "inline-block",
+  width: "100%",
   marginTop: "$3",
   [`& ${Label}`]: {
     display: "block",
     marginBottom: "$1",
   },
-  width: "100%",
 });
 
 export const FieldSet = styled("fieldset", {
   border: "none",
+  width: "100%",
   "@mobile": {
     flexWrap: "wrap",
   },
