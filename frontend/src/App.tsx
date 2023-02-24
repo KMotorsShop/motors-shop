@@ -1,4 +1,4 @@
-import FormCreateAd from "./components/FormCreateAd";
+// import FormCreateAd from "./components/FormCreateAd";
 import { Footer } from "./components/Footer";
 import * as yup from "yup";
 import { ModalUpdateAd } from "./components/ModalUpdateAd";
@@ -19,6 +19,7 @@ function App() {
       .number()
       .typeError("Quilometragem Inválida")
       .min(0, "Quilometragem inválida")
+      .max(100, "Quilometragem inválida")
       .required("Obrigatório"),
     price: yup
       .number()
@@ -27,7 +28,53 @@ function App() {
       .required("Obrigatório"),
     description: yup.string().required("Obrigatório"),
     capeImage: yup.string().url("URL inválida").required("Obrigatório"),
+    img1: yup.string().required("pelo menos duas imagens"),
+    img2: yup.string().required("pelo menos duas imagens"),
+    img3: yup.string(),
+    img4: yup.string(),
+    img5: yup.string(),
+    img6: yup.string(),
   });
+
+  function submitFunction(data: any, typeVehicle: string, isActive: boolean) {
+    const dataKeys = Object.keys(data);
+    const imgArray = [data.coverImg, data.img1, data.img2];
+
+    if(typeVehicle == null){
+        return alert("selecione o tipo do veículo!")
+    };
+
+    for (let i = 0; i < dataKeys.length; i++) {
+      switch (dataKeys[i]) {
+        case "img3":
+          imgArray.push(data.img3);
+          break;
+        case "img4":
+          imgArray.push(data.img4);
+          break;
+        case "img5":
+          imgArray.push(data.img5);
+          break;
+        case "img6":
+          imgArray.push(data.img6);
+          break;
+      };
+    };
+
+    const sendData = {
+      name: data.name,
+      year: data.year,
+      km: data.km,
+      price: data.price,
+      description: data.description,
+      type: typeVehicle,
+      isActive: isActive,
+      images: imgArray,
+    };
+
+  };
+
+
   return (
     <div className="App">
       {/* <FormCreateAd />

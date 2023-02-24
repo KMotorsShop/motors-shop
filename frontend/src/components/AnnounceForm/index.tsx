@@ -34,6 +34,9 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
   const [adType, setAdType] = useState<AnnounceTypes>("sell");
   const [vehicleType, setVehicleType] = useState<VehicleTypes>("car");
 
+  const [moreInputs, setMoreInputs] = useState(2);
+  const [inputsQtd, setInputsQtd] = useState([1, 2]);
+
   return (
     <Form onSubmit={handleSubmit(onSubmitFunction)}>
       <FieldSet>
@@ -74,7 +77,7 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
           <Label htmlFor="name">Título</Label>
           <Input {...register("name")} placeholder="Digitar Título" />
           <FormError>
-            {errors.name ? (errors.name.message as string) : null}
+            {errors.name?.message as string}
           </FormError>
         </InputWrapper>
 
@@ -88,7 +91,7 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
                 placeholder="Digitar ano"
               />
               <FormError>
-                {errors.year ? (errors.year.message as string) : null}
+                {errors.year?.message as string}
               </FormError>
             </InputWrapper>
 
@@ -96,7 +99,7 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
               <Label htmlFor="km">Quilometragem </Label>
               <Input {...register("km")} placeholder="0" />
               <FormError>
-                {errors.km ? (errors.km.message as string) : null}
+                {errors.km?.message as string}
               </FormError>
             </InputWrapper>
           </Flex>
@@ -104,7 +107,7 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
             <Label htmlFor="price">Preço</Label>
             <Input {...register("price")} placeholder="Digitar Preço" />
             <FormError>
-              {errors.price ? (errors.price.message as string) : null}
+              {errors.price?.message as string}
             </FormError>
           </InputWrapper>
         </FieldSet>
@@ -115,7 +118,7 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
             placeholder="Digitar descrição"
           />
           <FormError>
-            {errors.description ? (errors.description.message as string) : null}
+            {errors.description?.message as string}
           </FormError>
         </InputWrapper>
       </FieldSet>
@@ -160,7 +163,7 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
             placeholder="Inserir URL da imagem"
           />
           <FormError>
-            {errors.capeImage ? (errors.capeImage.message as string) : null}
+            {errors.capeImage?.message as string}
           </FormError>
         </InputWrapper>
         <InputWrapper>
@@ -170,7 +173,7 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
             placeholder="Inserir URL da imagem"
           />
           <FormError>
-            {errors.firstImage ? (errors.firstImage.message as string) : null}
+            {errors.img1?.message as string}
           </FormError>
         </InputWrapper>
         <InputWrapper>
@@ -179,13 +182,41 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
             {...register("secondImage")}
             placeholder="Inserir URL da imagem"
           />
+          <FormError>
+            {errors.img2?.message as string}
+          </FormError>
         </InputWrapper>
-        <BrandButton variant="opacity">
-          Adicionar campo para imagem da galeria
+        {moreInputs <= 6 &&
+          inputsQtd.map((input) => {
+            if (input > 2) {
+              return (
+                <InputWrapper key={input}>
+                  <Label htmlFor="">{input}ª imagem da galeria</Label>
+                  <Input
+                    placeholder="Inserir URL da imagem"
+                    {...register(`img${input}`)}
+                  />
+                </InputWrapper>
+              );
+            }
+         })}
+        <BrandButton variant="opacity"
+          onClick={() => {
+            if (moreInputs == 6) {
+              setMoreInputs(2);
+              setInputsQtd([1, 2]);
+            } else {
+              setMoreInputs(moreInputs + 1);
+              setInputsQtd([...inputsQtd, moreInputs + 1]);
+            }
+          }}
+        >
+            {moreInputs == 6
+              ? "Inserir somente duas imagens"
+              : "Adicionar campo para imagem da galeria"
+            }
         </BrandButton>
-        <FormError>
-          {errors.secondImage ? (errors.secondImage.message as string) : null}
-        </FormError>
+        
       </FieldSet>
       <Flex justify="end">
         <BaseButton type="button" variant="negative">

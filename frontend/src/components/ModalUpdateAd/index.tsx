@@ -80,7 +80,7 @@ export const ModalUpdateAd = () => {
       isActive: isActive,
       images: imgArray,
     };
-    // console.log(sendData);
+
   }
 
   return (
