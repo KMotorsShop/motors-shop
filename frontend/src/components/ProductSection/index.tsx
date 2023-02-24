@@ -62,7 +62,8 @@ export const ProductSection = ({type}: ProductSectionProps) => {
     return(
         <Section>
             <h1>{type}</h1>
-            <List >{array.map(product => {
+            <List >{
+            array.map(product => {
             if(product.type === type){
                 return(
                     <CardProduct name={product.name} description={product.description} km={product.km} price={product.price} year={product.year}></CardProduct>
