@@ -49,9 +49,24 @@ export const ContainerButtons = styled("div", {
     width: "100%",
   },
 
-  button: {
+  a: {
     width: "182px",
     height: "48px",
+    borderRadius: "4px",
+    background: "transparent",
+    color: "$whiteFixed",
+    border: "2px solid $whiteFixed",
+    fontWeight: "600",
+    fontSize: "16px",
+    textDecoration: "none",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    "&:hover": {
+      background: "$whiteFixed",
+      border: "2px solid transparent",
+      color: "$grey2",
+    },
     "@mobileProductDetailed": {
       width: "90%",
     },

@@ -1,19 +1,23 @@
+import { useContext } from "react";
+import { AdsAuthContext } from "../../../context/AdsContext";
 import { CardSpan, Container, DivInfos, Spans } from "./styles";
 
 const Infos = () => {
+  const { detailedVehicle } = useContext(AdsAuthContext);
+
   return (
     <Container>
-      <h1>Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 </h1>
+      <h1>{detailedVehicle.name} </h1>
       <DivInfos>
         <Spans>
           <CardSpan>
-            <span>2013</span>
+            <span>{detailedVehicle.year}</span>
           </CardSpan>
           <CardSpan>
-            <span>0 KM</span>
+            <span>{detailedVehicle.km}</span>
           </CardSpan>
         </Spans>
-        <p>R$ 00.000,00</p>
+        <p>R$ {detailedVehicle.price}</p>
       </DivInfos>
       <button>Comprar</button>
     </Container>

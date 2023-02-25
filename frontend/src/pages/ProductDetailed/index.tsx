@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Advertiser from "../../components/DetailedProductView/Advertiser";
 import BigPicture from "../../components/DetailedProductView/BigPicture";
 import Description from "../../components/DetailedProductView/Description";
@@ -6,6 +6,8 @@ import Infos from "../../components/DetailedProductView/Infos";
 import SmallerPictures from "../../components/DetailedProductView/SmallerPictures";
 import { Footer } from "../../components/Footer";
 import Header from "../../components/Header";
+import { AdsAuthContext } from "../../context/AdsContext";
+import api from "../../services/api";
 import {
   Container,
   ContainerOne,
@@ -16,7 +18,15 @@ import {
 } from "./styles";
 
 const ProductDetailed = () => {
-  useEffect(() => {}, []);
+  const { setDetailedVehicle, detailedVehicle } = useContext(AdsAuthContext);
+
+  useEffect(() => {
+    const idAds = localStorage.getItem("@IdVehicle");
+    api
+      .get(`ads/${idAds}`)
+      .then((res) => setDetailedVehicle(res.data))
+      .catch((err) => console.log(err));
+  }, [detailedVehicle]);
 
   return (
     <>
@@ -33,8 +43,8 @@ const ProductDetailed = () => {
         </ContainerTwo>
       </Container>
       <ContainerComments>
-        <CardOne />
-        <CardTwo />
+        {/* <CardOne />
+        <CardTwo /> */}
       </ContainerComments>
       <Footer />
     </>

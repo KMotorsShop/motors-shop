@@ -11,6 +11,7 @@ export const Card = styled("header", {
 
   img: {
     marginLeft: "60px",
+    cursor: "pointer",
   },
 
   button: {
