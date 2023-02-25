@@ -27,7 +27,7 @@ export class AdsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.adsService.findOne(+id);
+    return this.adsService.findOne(id);
   }
 
   @Patch(':id')

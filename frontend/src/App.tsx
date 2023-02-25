@@ -1,12 +1,11 @@
-import { Footer } from "./components/Footer";
-import MenuMobile from "./components/MenuMobile";
-import { ProductSection } from "./components/ProductSection";
-
+import RoutesMain from "./routes";
 
 function App() {
-  return <div className="App">
-    <ProductSection type="Carros"></ProductSection>
-  </div>;
+  return (
+    <div className="App">
+      <RoutesMain />
+    </div>
+  );
 }
 
 export default App;

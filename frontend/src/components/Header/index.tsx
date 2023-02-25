@@ -5,18 +5,31 @@ import { RiCloseLine } from "react-icons/ri";
 import { OutlineButton } from "../../styles/Buttons";
 import { useState } from "react";
 import MenuMobile from "../MenuMobile";
+import "animate.css";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [menu, setMenu] = useState(false);
 
   const showMenu = () => {
     setMenu(!menu);
   };
 
+  const goHome = () => {
+    navigate("/", { replace: true });
+  };
+
   return (
     <Card>
-      <img src={logo} alt="" />
-      <button onClick={showMenu}>{menu ? <RiCloseLine /> : <FiMenu />}</button>
+      <img src={logo} alt="" onClick={goHome} />
+      <button onClick={showMenu}>
+        {menu ? (
+          <RiCloseLine className="animate__animated animate__flipInX" />
+        ) : (
+          <FiMenu className="animate__animated animate__flipInX" />
+        )}
+      </button>
       <div>
         <ul>
           <li>Carros</li>
