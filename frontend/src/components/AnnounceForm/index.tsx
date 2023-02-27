@@ -37,8 +37,13 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
   const [moreInputs, setMoreInputs] = useState(2);
   const [inputsQtd, setInputsQtd] = useState([1, 2]);
 
+  const handleSubmitFunction = (data: any) => {
+    data = { ...data, type: adType };
+    onSubmitFunction(data);
+  };
+
   return (
-    <Form onSubmit={handleSubmit(onSubmitFunction)}>
+    <Form onSubmit={handleSubmit(handleSubmitFunction)}>
       <FieldSet>
         <Legend>Tipo de Anúncio</Legend>
         <OptionButtons>
@@ -76,9 +81,7 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
         <InputWrapper>
           <Label htmlFor="name">Título</Label>
           <Input {...register("name")} placeholder="Digitar Título" />
-          <FormError>
-            {errors.name?.message as string}
-          </FormError>
+          <FormError>{errors.name?.message as string}</FormError>
         </InputWrapper>
 
         <FieldSet type="flex">
@@ -90,25 +93,19 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
                 type="number"
                 placeholder="Digitar ano"
               />
-              <FormError>
-                {errors.year?.message as string}
-              </FormError>
+              <FormError>{errors.year?.message as string}</FormError>
             </InputWrapper>
 
             <InputWrapper>
               <Label htmlFor="km">Quilometragem </Label>
               <Input {...register("km")} placeholder="0" />
-              <FormError>
-                {errors.km?.message as string}
-              </FormError>
+              <FormError>{errors.km?.message as string}</FormError>
             </InputWrapper>
           </Flex>
           <InputWrapper>
             <Label htmlFor="price">Preço</Label>
             <Input {...register("price")} placeholder="Digitar Preço" />
-            <FormError>
-              {errors.price?.message as string}
-            </FormError>
+            <FormError>{errors.price?.message as string}</FormError>
           </InputWrapper>
         </FieldSet>
         <InputWrapper>
@@ -117,9 +114,7 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
             {...register("description")}
             placeholder="Digitar descrição"
           />
-          <FormError>
-            {errors.description?.message as string}
-          </FormError>
+          <FormError>{errors.description?.message as string}</FormError>
         </InputWrapper>
       </FieldSet>
       <FieldSet>
@@ -162,29 +157,17 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
             {...register("capeImage")}
             placeholder="Inserir URL da imagem"
           />
-          <FormError>
-            {errors.capeImage?.message as string}
-          </FormError>
+          <FormError>{errors.capeImage?.message as string}</FormError>
         </InputWrapper>
         <InputWrapper>
           <Label>1º Imagem da Galeria</Label>
-          <Input
-            {...register("firstImage")}
-            placeholder="Inserir URL da imagem"
-          />
-          <FormError>
-            {errors.img1?.message as string}
-          </FormError>
+          <Input {...register("img1")} placeholder="Inserir URL da imagem" />
+          <FormError>{errors.img1?.message as string}</FormError>
         </InputWrapper>
         <InputWrapper>
           <Label>2º Imagem da Galeria</Label>
-          <Input
-            {...register("secondImage")}
-            placeholder="Inserir URL da imagem"
-          />
-          <FormError>
-            {errors.img2?.message as string}
-          </FormError>
+          <Input {...register("img2")} placeholder="Inserir URL da imagem" />
+          <FormError>{errors.img2?.message as string}</FormError>
         </InputWrapper>
         {moreInputs <= 6 &&
           inputsQtd.map((input) => {
@@ -196,11 +179,15 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
                     placeholder="Inserir URL da imagem"
                     {...register(`img${input}`)}
                   />
+                  <FormError>
+                    {errors[`img${input}`]?.message as string}
+                  </FormError>
                 </InputWrapper>
               );
             }
-         })}
-        <BrandButton variant="opacity"
+          })}
+        <BrandButton
+          variant="opacity"
           onClick={() => {
             if (moreInputs == 6) {
               setMoreInputs(2);
@@ -211,12 +198,10 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
             }
           }}
         >
-            {moreInputs == 6
-              ? "Inserir somente duas imagens"
-              : "Adicionar campo para imagem da galeria"
-            }
+          {moreInputs == 6
+            ? "Inserir somente duas imagens"
+            : "Adicionar campo para imagem da galeria"}
         </BrandButton>
-        
       </FieldSet>
       <Flex justify="end">
         <BaseButton type="button" variant="negative">
