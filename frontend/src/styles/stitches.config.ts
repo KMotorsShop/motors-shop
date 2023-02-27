@@ -50,5 +50,7 @@ export const { styled, globalCss } = createStitches({
     mobile: "(max-width: 768px)",
     mobileHeader: "(max-width: 875px)",
     mobileHeader2: "(min-width: 875px)",
+    mobileProductDetailed: "(max-width: 1290px)",
+    desktopCardLeilao: "(min-width: 768px)",
   },
 });

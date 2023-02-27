@@ -1,14 +1,11 @@
-import { Footer } from "./components/Footer";
-import MenuMobile from "./components/MenuMobile";
-import { ProductSection } from "./components/ProductSection";
-import { AnunciantePage } from "./pages/AnunciantePage";
-import { AnunciantePersonalPage } from "./pages/AnunciantePessoalPage";
-
+import RoutesMain from "./routes";
 
 function App() {
-  return <div className="App">
-    <AnunciantePage></AnunciantePage>
-  </div>;
+  return (
+    <div className="App">
+      <RoutesMain />
+    </div>
+  );
 }
 
 export default App;

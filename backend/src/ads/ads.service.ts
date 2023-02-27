@@ -19,8 +19,9 @@ export class AdsService {
     return this.adRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ad`;
+  async findOne(id: string) {
+    const ad = await this.adRepository.findOne({ where: { id } });
+    return ad;
   }
 
   update(id: number, updateAdDto: UpdateAdDto) {
