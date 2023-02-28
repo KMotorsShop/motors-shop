@@ -32,8 +32,8 @@ const Register = () => {
           <Label htmlFor="description">Descrição</Label>
           <TextArea placeholder="Digitar descrição" />
           <p>Infomações de endereço</p>
-          <Label htmlFor="cep">CEP</Label>
-          <Input id="cep" placeholder="00000.000" />
+          <Label htmlFor="zipCode">CEP</Label>
+          <Input id="zipCode" placeholder="00000.000" />
           <DivForm>
             <InputSmall>
               <Label htmlFor="state">Estado</Label>
