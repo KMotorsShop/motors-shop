@@ -187,6 +187,7 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
             }
           })}
         <BrandButton
+          style={{ marginTop: 24 }}
           variant="opacity"
           onClick={() => {
             if (moreInputs == 6) {
