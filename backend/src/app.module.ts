@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AdsModule } from './ads/ads.module';
 import { UsersModule } from './users/users.module';
 import { typeOrmConfig } from './config/typeorm.config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { typeOrmConfig } from './config/typeorm.config';
     }),
     AdsModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
