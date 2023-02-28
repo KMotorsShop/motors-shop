@@ -30,6 +30,9 @@ export class Ad {
   @Column()
   description: string;
 
+  @Column('varchar', { nullable: true, default: null, array: true })
+  images: string[];
+
   @Column({ default: true })
   isActive: boolean;
 

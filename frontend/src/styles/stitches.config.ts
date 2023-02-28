@@ -45,6 +45,12 @@ export const { styled, globalCss } = createStitches({
       semiBold: 600,
       bold: 700,
     },
+    space: {
+      1: "0.5rem",
+      2: "1rem",
+      3: "1.5rem",
+      4: "2rem",
+    },
   },
   media: {
     mobile: "(max-width: 768px)",

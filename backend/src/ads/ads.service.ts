@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -24,8 +25,10 @@ export class AdsService {
     return ad;
   }
 
-  update(id: number, updateAdDto: UpdateAdDto) {
-    return `This action updates a #${id} ad`;
+  async update(id: number, updateAdDto: UpdateAdDto) {
+    const ad = this.adRepository.update(updateAdDto, id);
+    await this.adRepository.save(ad)
+    return ad;
   }
 
   remove(id: number) {
