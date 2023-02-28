@@ -17,12 +17,17 @@ import { useState } from "react";
 interface AnnounceFormProps {
   schema: yup.AnyObject;
   onSubmitFunction: (data: any) => void;
+  closeContainingModal: () => void;
 }
 
 type AnnounceTypes = "sell" | "auction";
 type VehicleTypes = "car" | "motorbike";
 
-const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
+const AnnounceForm = ({
+  schema,
+  onSubmitFunction,
+  closeContainingModal,
+}: AnnounceFormProps) => {
   const {
     register,
     handleSubmit,
@@ -187,6 +192,7 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
             }
           })}
         <BrandButton
+          type="button"
           style={{ marginTop: 24 }}
           variant="opacity"
           onClick={() => {
@@ -205,7 +211,11 @@ const AnnounceForm = ({ schema, onSubmitFunction }: AnnounceFormProps) => {
         </BrandButton>
       </FieldSet>
       <Flex justify="end">
-        <BaseButton type="button" variant="negative">
+        <BaseButton
+          type="reset"
+          variant="negative"
+          onClick={closeContainingModal}
+        >
           Cancelar
         </BaseButton>
         <BrandButton type="submit">Criar anúncio</BrandButton>
