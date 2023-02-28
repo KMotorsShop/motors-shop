@@ -1,4 +1,13 @@
-import { IsDefined, Max, MaxLength, Min } from 'class-validator';
+/* eslint-disable prettier/prettier */
+import {
+  IsDefined,
+  Max,
+  MaxLength,
+  Min,
+  MinLength,
+  IsArray,
+  isDefined,
+} from 'class-validator';
 
 export class CreateAdDto {
   @Min(1000)
@@ -23,4 +32,9 @@ export class CreateAdDto {
 
   @IsDefined()
   description: string;
+
+  @MinLength(3)
+  @IsArray()
+  // @isDefined()
+  images: string[];
 }
