@@ -11,9 +11,9 @@ export class AdsService {
   constructor(@InjectRepository(Ad) private adRepository: Repository<Ad>) {}
 
   async create(createAdDto: CreateAdDto) {
-    // const ad = this.adRepository.create(createAdDto);
-    // await this.adRepository.save(ad);
-    // return ad;
+    const ad = this.adRepository.create(createAdDto);
+    await this.adRepository.save(ad);
+    return ad;
   }
 
   async findAll() {

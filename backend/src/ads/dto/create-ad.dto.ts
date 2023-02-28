@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { IsDefined, Max, MaxLength, Min } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsDefined, IsUrl, Max, MaxLength, Min } from 'class-validator';
 
 export class CreateAdDto {
   @Min(1000)
@@ -24,4 +25,8 @@ export class CreateAdDto {
 
   @IsDefined()
   description: string;
+
+  @IsDefined()
+  // @IsUrl()
+  images: string[];
 }
