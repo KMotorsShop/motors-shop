@@ -35,6 +35,28 @@ export const globalStyles = globalCss({
     fontFamily: "Lexend",
     scrollBehavior: "smooth",
   },
+
+  ".modal": {
+    width: "100%",
+    maxWidth: 540,
+    background: "$whiteFixed",
+    padding: "0 $3 $3 $3",
+    top: 80,
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    position: "absolute",
+    display: "block",
+    borderRadius: 15,
+
+    overflow: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, 0)",
+  },
+
+  ".modal-overlay": {
+    backgroundColor: "rgba(0, 0, 0, .75)",
+  },
 });
 
 interface GlobalStyleProps {

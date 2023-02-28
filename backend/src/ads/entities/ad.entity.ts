@@ -30,7 +30,7 @@ export class Ad {
   @Column()
   description: string;
 
-  @Column()
+  @Column('varchar', { nullable: true, default: null, array: true })
   images: string[];
 
   @Column({ default: true })
