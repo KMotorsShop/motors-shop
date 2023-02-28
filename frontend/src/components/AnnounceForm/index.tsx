@@ -13,6 +13,7 @@ import { FormError, Label, Legend, Text } from "../../styles/Texts";
 import { BaseButton, BrandButton, OutlineButton } from "../../styles/Buttons";
 import { Flex } from "../../styles/Containers";
 import { useState } from "react";
+import { formatCurrency } from "../../tools/formatters";
 
 interface AnnounceFormProps {
   schema: yup.AnyObject;
@@ -103,13 +104,19 @@ const AnnounceForm = ({
 
             <InputWrapper>
               <Label htmlFor="km">Quilometragem </Label>
-              <Input {...register("km")} placeholder="0" />
+              <Input {...register("km")} type="number" placeholder="0" />
               <FormError>{errors.km?.message as string}</FormError>
             </InputWrapper>
           </Flex>
           <InputWrapper>
             <Label htmlFor="price">Preço</Label>
-            <Input {...register("price")} placeholder="Digitar Preço" />
+            <Input
+              {...register("price")}
+              onChange={(e) => {
+                e.target.value = formatCurrency(e.target.value);
+              }}
+              placeholder="Digitar Preço"
+            />
             <FormError>{errors.price?.message as string}</FormError>
           </InputWrapper>
         </FieldSet>
