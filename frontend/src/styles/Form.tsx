@@ -15,6 +15,14 @@ export const Input = styled("input", {
   width: "100%",
   display: "block",
 
+  "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
+    "-webkit-appearance": "none",
+    margin: 0,
+  },
+  "&[type=number]": {
+    "-moz-appearance": "textfield",
+  },
+
   "&::placeholder": {
     color: "$grey3",
   },

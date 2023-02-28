@@ -78,7 +78,7 @@ export const BrandButton = styled(BaseButton, {
       normal: {
         color: "$whiteFixed",
         background: "$brand1",
-      }
+      },
     },
   },
 });
@@ -118,7 +118,7 @@ export const OutlineButton = styled(BaseButton, {
       brand: {
         background: "$brand4",
         color: "$brand1",
-        // border: "2px solid $brand1",
+        border: "2px solid $brand1",
         "&:hover": {
           background: "transparent",
           border: "2px solid $brand1",
