@@ -27,7 +27,7 @@ export class AdsService {
 
   async update(id: number, updateAdDto: UpdateAdDto) {
     const ad = this.adRepository.update(updateAdDto, id);
-    await this.adRepository.save(ad)
+    await this.adRepository.save(ad);
     return ad;
   }
 
