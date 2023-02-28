@@ -9,6 +9,10 @@ export const Container = styled("div", {
   "&:hover": {
     background: "linear-gradient(180deg, rgba(0, 0, 0, 0.71) 0%, #000000 100%)",
   },
+  "@desktopCardLeilao": {
+    width: "735px",
+    height: "326px",
+  },
 });
 
 export const CardImage = styled("div", {
@@ -18,6 +22,10 @@ export const CardImage = styled("div", {
   paddingTop: "33px",
   paddingLeft: "22px",
   backgroundPosition: "10px 40px",
+  filter: "drop-shadow(2px 4px 6px black)",
+  "@desktopCardLeilao": {
+    backgroundPosition: "10px -244px",
+  },
   h1: {
     marginTop: "35px",
     color: "$whiteFixed",
@@ -43,6 +51,9 @@ export const ContainerBottom = styled("div", {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+  "@desktopCardLeilao": {
+    width: "735px",
+  },
   a: {
     fontSize: "16px",
     color: "$whiteFixed",
@@ -140,4 +151,8 @@ export const Price = styled("p", {
   fontSize: "16px",
   lineHeight: "20px",
   color: "$whiteFixed",
+  "@desktopCardLeilao": {
+    marginLeft: "569px",
+    marginTop: "-44px",
+  },
 });

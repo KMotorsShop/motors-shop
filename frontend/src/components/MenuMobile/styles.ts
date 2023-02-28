@@ -30,7 +30,7 @@ export const Container = styled("section", {
     justifyContent: "center",
     alignItems: "flex-start",
     paddingLeft: "18px",
-    boxShadow: "-1px 20px 20px 4px rgba(222,222,222,1)",
+    boxShadow: "rgb(222 222 222 / 28%) -1px 20px 20px",
   },
 
   a: {

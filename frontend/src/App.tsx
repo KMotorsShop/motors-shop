@@ -1,12 +1,12 @@
+import RoutesMain from "./routes";
 
-import { ModalUpdateAd } from "./components/ModalUpdateAd";
 
 function App() {
   return (
     <div className="App">
-      <ModalUpdateAd/>
+      <RoutesMain />
     </div>
   );
-};
+}
 
 export default App;
