@@ -11,7 +11,6 @@ import { UserInfos, UserLogo } from "../Comment/styles";
 
 const CreateComment = () => {
   return (
-
     <Container>
     <UserInfos>
         <UserLogo>SL</UserLogo>
@@ -25,7 +24,6 @@ const CreateComment = () => {
         <CommentButton>Recomendarei para meus amigos!</CommentButton>
     </DefaultComments>
     </Container>
-
   );
 };
 
