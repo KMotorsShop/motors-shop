@@ -10,7 +10,18 @@ export const Flex = styled("div", {
       end: {
         justifyContent: "flex-end",
       },
+      center: {
+        justifyContent: "center",
+      },
+      around: {
+        justifyContent: "space-around",
+      },
     },
+    align: {
+      center: {
+        alignItems: "center",
+      },
+    }
   },
 });
 

@@ -37,13 +37,18 @@ export const ContainerComments = styled("div", {
 });
 
 export const CardOne = styled("div", {
-  height: "557px",
+  minHeight: "557px",
   width: "751px",
-  border: "1px solid",
+  // border: "1px solid",
   marginBottom: "33px",
+  background: "$grey10",
   "@mobileProductDetailed": {
     width: "351px",
   },
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "space-around",
 });
 
 export const CardTwo = styled("div", {

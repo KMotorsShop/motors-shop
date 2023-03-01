@@ -16,6 +16,7 @@ import {
   CardOne,
   CardTwo,
 } from "./styles";
+import Comment from "../../components/Comment"
 
 const ProductDetailed = () => {
   const { setDetailedVehicle, detailedVehicle } = useContext(AdsAuthContext);
@@ -43,8 +44,13 @@ const ProductDetailed = () => {
         </ContainerTwo>
       </Container>
       <ContainerComments>
-        {/* <CardOne />
-        <CardTwo /> */}
+        <CardOne>
+          <Comment/>
+          <Comment/>
+          <Comment/>
+          {/* <Comment/> */}
+        </CardOne>
+        <CardTwo />
       </ContainerComments>
       <Footer />
     </>
