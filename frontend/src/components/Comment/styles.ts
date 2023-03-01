@@ -1,8 +1,8 @@
 import { styled } from "../../styles/stitches.config";
 
 export const Container = styled("section", { 
-    maxHeight: "212px",
-    minWidth: "283px",
+    maxHeight: "100%",
+    minWidth: "100%",
     padding: "20px",
     top: "256px",
     display: "flex",

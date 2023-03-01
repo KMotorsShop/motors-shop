@@ -5,16 +5,12 @@ import { Container, UserInfos, UserLogo, CommentTime } from "./styles";
 
 const Comment = () => {
   return (
-    <Flex >
+    <Flex>
       <Container>
         <UserInfos>
-          <UserLogo>
-            SL
-          </UserLogo>
+          <UserLogo>SL</UserLogo>
           <p>Samuel Lopes</p>
-          <CommentTime>
-            3 dias
-          </CommentTime>
+          <CommentTime>3 dias</CommentTime>
         </UserInfos>
         <Text>
           Lorem Ipsum is simply dummy text of the printing and typesetting
