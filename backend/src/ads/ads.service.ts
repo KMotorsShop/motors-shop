@@ -26,9 +26,10 @@ export class AdsService {
   }
 
   async update(id: number, updateAdDto: UpdateAdDto) {
-    const ad = this.adRepository.update(updateAdDto, id);
-    await this.adRepository.save(ad)
-    return ad;
+    // const ad = this.adRepository.update(updateAdDto, id);
+    // await this.adRepository.save(ad)
+    return ""
+    // ad;
   }
 
   remove(id: number) {

@@ -25,9 +25,10 @@ export class CommentsService {
         id: userId
       }
     }
-    const comment = this.commentRepository.create(newComment);
-    await this.commentRepository.save(comment);
-    return comment;
+    // const comment = this.commentRepository.create(newComment);
+    // await this.commentRepository.save(comment);
+    return ""
+    // comment;
   }
 
   async findAll() {
@@ -40,12 +41,14 @@ export class CommentsService {
   }
 
   async update(id: string, updateCommentDto: UpdateCommentDto) {
-    const comment = this.commentRepository.update(updateCommentDto, id);
-    await this.commentRepository.save(comment);
-    return comment;
+    // const comment = this.commentRepository.update(updateCommentDto);
+    // await this.commentRepository.save(comment);
+    return ""
+    // comment;
   }
 
   async remove(id: string) {
-    return this.commentRepository.remove(id);
+    return ""
+    // this.commentRepository.remove(id);
   }
 }

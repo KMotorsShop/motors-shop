@@ -10,8 +10,7 @@ export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
 
   @Post()
-  create(@Body() createCommentDto: CreateCommentDto,
-  @Headers() token: string) {
+  create(@Body() createCommentDto: CreateCommentDto, @Headers() token: string) {
     const userId = token
     console.log(userId)
     return this.commentsService.create(createCommentDto, userId);
@@ -24,16 +23,16 @@ export class CommentsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.commentsService.findOne(+id);
+    // return this.commentsService.findOne(+id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCommentDto: UpdateCommentDto) {
-    return this.commentsService.update(+id, updateCommentDto);
+    // return this.commentsService.update(+id, updateCommentDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.commentsService.remove(+id);
+    // return this.commentsService.remove(+id);
   }
 }
