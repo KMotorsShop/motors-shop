@@ -6,7 +6,8 @@ import ProductDetailed from "../pages/ProductDetailed";
 const RoutesMain = () => {
   return (
     <Routes>
-      <Route path="/" element={<LoginPage></LoginPage>} />
+      <Route path="/" element={<Home/>} />
+      <Route path="/login" element={<LoginPage></LoginPage>}/>
       <Route path="/anuncio" element={<ProductDetailed />} />
     </Routes>
   );
