@@ -50,5 +50,9 @@ export class CommentsService {
   async remove(id: string) {
     return ""
     // this.commentRepository.remove(id);
+
+    // const comment = this.commentRepository.update(updateCommentDto, id);
+    // await this.commentRepository.save(comment);
+    // return comment;
   }
 }

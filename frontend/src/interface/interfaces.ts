@@ -1,5 +1,19 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
+//Contexts
+
+export interface IValueUserProps {
+  onRegister: (data: IUser) => void;
+  setType: Dispatch<SetStateAction<string>>;
+  isModalSucess: boolean;
+  setIsModalSucess: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface IValueAdsProps {
+  detailedVehicle: IVehicles;
+  setDetailedVehicle: Dispatch<SetStateAction<any>>;
+}
+
 export interface ProductSectionProps {
   type: string;
 }
@@ -13,22 +27,18 @@ export interface CardProductProps {
   id: string;
 }
 
-export interface ArrayTesteProps {
-  name: string;
-  description: string;
-  km: number;
-  type: string;
-  year: number;
-  price: number;
-}
-
-export interface IValueAdsProps {
-  detailedVehicle: IVehicles;
-  setDetailedVehicle: Dispatch<SetStateAction<any>>;
-}
-
 export interface IProviderProps {
   children: ReactNode;
+}
+
+export interface AuthContextProviderData{
+  userLogin: (credentials: LoginCredentials) => Promise<void>;
+
+}
+
+export interface LoginCredentials {
+  email: string,
+  password: string
 }
 
 export interface IVehicles {
@@ -40,4 +50,33 @@ export interface IVehicles {
   description: string;
   km: number;
   isActive: boolean;
+}
+
+export interface ArrayTesteProps {
+  name: string;
+  description: string;
+  km: number;
+  type: string;
+  year: number;
+  price: number;
+}
+
+// Register
+
+export interface IUser {
+  name: string;
+  email: string;
+  cpf: number;
+  cellphone: string;
+  birthdate: string;
+  description: string;
+  password: string;
+  ConfirmedPassword: string;
+  type: string;
+  zipCode: number;
+  state: string;
+  city: string;
+  street: string;
+  number: number;
+  complement: string;
 }

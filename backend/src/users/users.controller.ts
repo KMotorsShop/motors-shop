@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-
 import {
   Controller,
   Get,
@@ -15,6 +14,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 
+@IsPublic()
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
