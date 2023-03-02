@@ -43,7 +43,9 @@ const Header = () => {
           <p>Samuel Leão</p>
         </Card>
         <Card type="logged-out">
-          <a href="">Fazer Login</a>
+          <a href="" onClick={() => navigate("/login", { replace: true })}>
+            Fazer Login
+          </a>
           <OutlineButton
             variant="greyLight"
             onClick={() => {
