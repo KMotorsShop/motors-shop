@@ -8,6 +8,7 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 import { AdsService } from './ads.service';
 import { CreateAdDto } from './dto/create-ad.dto';
 import { UpdateAdDto } from './dto/update-ad.dto';
@@ -22,6 +23,7 @@ export class AdsController {
   }
 
   @Get()
+  @IsPublic()
   findAll() {
     return this.adsService.findAll();
   }
@@ -33,7 +35,7 @@ export class AdsController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAdDto: UpdateAdDto) {
-    return this.adsService.update(+id, updateAdDto);
+    return this.adsService.update(id, updateAdDto);
   }
 
   @Delete(':id')
