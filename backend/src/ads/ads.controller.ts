@@ -29,6 +29,7 @@ export class AdsController {
   }
 
   @Get(':id')
+  @IsPublic()
   findOne(@Param('id') id: string) {
     return this.adsService.findOne(id);
   }
@@ -40,6 +41,6 @@ export class AdsController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.adsService.remove(+id);
+    return this.adsService.remove(id);
   }
 }

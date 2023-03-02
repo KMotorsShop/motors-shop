@@ -32,7 +32,11 @@ export class AdsService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} ad`;
+  async remove(id: string) {
+    const ad = await this.adRepository.findOneBy({ id });
+    if (!ad) {
+      throw new NotFoundException();
+    }
+    await this.adRepository.remove(ad);
   }
 }
