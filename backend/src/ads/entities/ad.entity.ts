@@ -44,6 +44,4 @@ export class Ad {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(type => Comment, comment => comment.ad)
-  comment: Comment[]
 }

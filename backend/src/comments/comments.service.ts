@@ -6,12 +6,26 @@ import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 import { Comment } from './entities/comment.entity';
 
+import { AdsService } from '../ads/ads.service';
+
 @Injectable()
 export class CommentsService {
-  constructor(@InjectRepository(Comment) private commentRepository: Repository<Comment>) {}
+  constructor(
+    @InjectRepository(Comment) private commentRepository: Repository<Comment>,
+    private adsService: AdsService,
+  ) {}
 
-  async create(createCommentDto: CreateCommentDto) {
-    const comment = this.commentRepository.create(createCommentDto);
+  async create(createCommentDto: CreateCommentDto, userId: string) {
+    const newComment = {
+      content: createCommentDto.content,
+      ad: {
+        id: createCommentDto.ad_id,
+      },
+      user: {
+        id: userId
+      }
+    }
+    const comment = this.commentRepository.create(newComment);
     await this.commentRepository.save(comment);
     return comment;
   }
@@ -27,11 +41,11 @@ export class CommentsService {
 
   async update(id: string, updateCommentDto: UpdateCommentDto) {
     const comment = this.commentRepository.update(updateCommentDto, id);
-    await this.commentRepository.save(comment)
+    await this.commentRepository.save(comment);
     return comment;
   }
 
   async remove(id: string) {
-    return this.commentRepository.remove(id)
+    return this.commentRepository.remove(id);
   }
 }
