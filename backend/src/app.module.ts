@@ -11,6 +11,10 @@ import { CommentsModule } from './comments/comments.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0b327f25a445027083c849426c05cfe61938c583
 
 @Module({
   imports: [
