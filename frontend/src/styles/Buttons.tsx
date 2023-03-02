@@ -98,7 +98,7 @@ export const OutlineButton = styled(BaseButton, {
         background: "transparent",
         backgroundColor: "$grey6",
         color: "$grey0",
-        // border: "2px solid $grey0",
+        border: "2px solid $grey0",
         "&:hover": {
           background: "$grey0",
           border: "2px solid transparent",
