@@ -1,3 +1,4 @@
+
 import { IsDefined, IsString, IsEmail } from 'class-validator';
 
 export class CreateUserDto {
@@ -50,4 +51,4 @@ export class CreateUserDto {
   number: number;
 }
 
-//Fazer hash da senha
+

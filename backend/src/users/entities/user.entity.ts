@@ -1,9 +1,13 @@
+
 import { Exclude } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+/* eslint-disable prettier/prettier */
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Comment } from '../../comments/entities/comment.entity';
 
 @Entity('users')
 export class User {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column()
@@ -48,4 +52,9 @@ export class User {
 
   @Column()
   complement: string;
+  password: string;
+
+  @OneToMany(type => Comment, comment => comment.user)
+  comment: Comment[]
+
 }
