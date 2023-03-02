@@ -1,4 +1,4 @@
-import { IsDefined, IsString, IsNumber, IsEmail } from 'class-validator';
+import { IsDefined, IsString, IsEmail } from 'class-validator';
 
 export class CreateUserDto {
   @IsDefined()
@@ -10,14 +10,44 @@ export class CreateUserDto {
   email: string;
 
   @IsDefined()
-  @IsNumber()
-  cpf: number;
+  cpf: string;
 
   @IsDefined()
   @IsString()
   type: string;
 
   @IsDefined()
-  @IsNumber()
   password: string;
+
+  @IsDefined()
+  @IsString()
+  description: string;
+
+  @IsDefined()
+  @IsString()
+  birthdate: string;
+
+  @IsDefined()
+  @IsString()
+  cellphone: string;
+
+  @IsDefined()
+  zipCode: number;
+
+  @IsDefined()
+  @IsString()
+  state: string;
+
+  @IsDefined()
+  @IsString()
+  city: string;
+
+  @IsDefined()
+  @IsString()
+  street: string;
+
+  @IsDefined()
+  number: number;
 }
+
+//Fazer hash da senha

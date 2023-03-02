@@ -1,12 +1,5 @@
-/* eslint-disable prettier/prettier */
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Address } from './address';
+import { Exclude } from 'class-transformer';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -20,24 +13,39 @@ export class User {
   email: string;
 
   @Column()
-  cpf: number;
+  cpf: string;
 
   @Column()
   cellphone: string;
 
   @Column()
-  birthdate: Date;
+  birthdate: string;
 
   @Column()
   description: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @Column()
   type: string;
 
-  // @OneToOne(() => Address, { eager: true })
-  // @JoinColumn()
-  // address: Address;
+  @Column()
+  zipCode: number;
+
+  @Column()
+  state: string;
+
+  @Column()
+  city: string;
+
+  @Column()
+  street: string;
+
+  @Column()
+  number: number;
+
+  @Column()
+  complement: string;
 }

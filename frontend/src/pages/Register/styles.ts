@@ -11,7 +11,7 @@ export const Container = styled("div", {
 
 export const ContainerForm = styled("form", {
   width: "411px",
-  height: "1630px",
+  // height: "1630px",
   background: "$grey10",
   borderRadius: "4px",
   "@mobile": {
@@ -41,6 +41,13 @@ export const ContainerForm = styled("form", {
   },
 
   span: {
+    marginLeft: "48px",
+    "@mobile": {
+      marginLeft: "28px",
+    },
+  },
+
+  h5: {
     fontWeight: "500",
     fontSize: "14px",
     lineHeight: "24px",
@@ -134,6 +141,7 @@ export const BrandButtonForm = styled(BaseButton, {
   width: "315px",
   marginLeft: "48px",
   marginTop: "34px",
+  marginBottom: "44px",
   "@mobile": {
     width: "287px",
     marginLeft: "28px",
