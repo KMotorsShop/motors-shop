@@ -31,6 +31,16 @@ export interface IProviderProps {
   children: ReactNode;
 }
 
+export interface AuthContextProviderData{
+  userLogin: (credentials: LoginCredentials) => Promise<void>;
+
+}
+
+export interface LoginCredentials {
+  email: string,
+  password: string
+}
+
 export interface IVehicles {
   year: number;
   name: string;
