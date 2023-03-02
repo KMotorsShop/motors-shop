@@ -44,7 +44,14 @@ const Header = () => {
         </Card>
         <Card type="logged-out">
           <a href="">Fazer Login</a>
-          <OutlineButton variant="greyLight">Cadastrar</OutlineButton>
+          <OutlineButton
+            variant="greyLight"
+            onClick={() => {
+              navigate("/register", { replace: true });
+            }}
+          >
+            Cadastrar
+          </OutlineButton>
         </Card>
       </div>
       {menu && <MenuMobile />}

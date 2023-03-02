@@ -1,20 +1,54 @@
-import {
-  IsEmail,
-  IsString,
-  Matches,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+
+import { IsDefined, IsString, IsEmail } from 'class-validator';
 
 export class CreateUserDto {
+  @IsDefined()
+  @IsString()
+  name: string;
+
+  @IsDefined()
   @IsEmail()
   email: string;
 
+  @IsDefined()
+  cpf: string;
+
+  @IsDefined()
   @IsString()
-  @MinLength(4)
-  @MaxLength(20)
-  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
-    message: 'password too weak',
-  })
+  type: string;
+
+  @IsDefined()
   password: string;
+
+  @IsDefined()
+  @IsString()
+  description: string;
+
+  @IsDefined()
+  @IsString()
+  birthdate: string;
+
+  @IsDefined()
+  @IsString()
+  cellphone: string;
+
+  @IsDefined()
+  zipCode: number;
+
+  @IsDefined()
+  @IsString()
+  state: string;
+
+  @IsDefined()
+  @IsString()
+  city: string;
+
+  @IsDefined()
+  @IsString()
+  street: string;
+
+  @IsDefined()
+  number: number;
 }
+
+
