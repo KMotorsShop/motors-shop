@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateAdDto } from './dto/create-ad.dto';
@@ -25,10 +25,11 @@ export class AdsService {
     return ad;
   }
 
-  async update(id: number, updateAdDto: UpdateAdDto) {
-    const ad = this.adRepository.update(updateAdDto, id);
-    await this.adRepository.save(ad)
-    return ad;
+  async update(id: string, updateAdDto: UpdateAdDto) {
+    const ad = await this.adRepository.update({ id }, updateAdDto);
+    if (ad.affected === 0) {
+      throw new NotFoundException();
+    }
   }
 
   remove(id: number) {
