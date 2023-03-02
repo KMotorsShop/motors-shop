@@ -5,6 +5,7 @@ import { GlobalStyles } from "./styles/Global";
 import { BrowserRouter } from "react-router-dom";
 import AdsContext from "./context/AdsContext";
 import ReactModal from "react-modal";
+import AuthProvider, { AuthContext } from "./context/AuthContext";
 
 ReactModal.setAppElement("#root");
 
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <BrowserRouter>
       <GlobalStyles>
         <AdsContext>
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
         </AdsContext>
       </GlobalStyles>
     </BrowserRouter>
