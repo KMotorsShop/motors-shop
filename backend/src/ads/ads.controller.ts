@@ -22,6 +22,7 @@ export class AdsController {
     return this.adsService.create(createAdDto);
   }
 
+  @IsPublic()
   @Get()
   @IsPublic()
   findAll() {

@@ -11,7 +11,7 @@ export const AdsAuthContext = createContext<IValueAdsProps>(
 
 const AdsContext = ({ children }: IProviderProps) => {
   const [detailedVehicle, setDetailedVehicle] = useState({} as IVehicles);
-  console.log(detailedVehicle);
+
   return (
     <AdsAuthContext.Provider value={{ detailedVehicle, setDetailedVehicle }}>
       {children}
