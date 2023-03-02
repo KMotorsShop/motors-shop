@@ -1,7 +1,4 @@
-
 import { Exclude } from 'class-transformer';
-
-/* eslint-disable prettier/prettier */
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Comment } from '../../comments/entities/comment.entity';
 
@@ -52,9 +49,7 @@ export class User {
 
   @Column()
   complement: string;
-  password: string;
 
-  @OneToMany(type => Comment, comment => comment.user)
-  comment: Comment[]
-
+  @OneToMany((type) => Comment, (comment) => comment.user)
+  comment: Comment[];
 }

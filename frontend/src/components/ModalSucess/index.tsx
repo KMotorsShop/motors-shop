@@ -4,9 +4,12 @@ import { BrandButton } from "../../styles/Buttons";
 import { useContext } from "react";
 import { AuthContext } from "../../context/userContext";
 import "animate.css";
+import { useNavigate } from "react-router-dom";
 
 const ModalSucess = () => {
   const { setIsModalSucess } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -22,7 +25,9 @@ const ModalSucess = () => {
           <span>
             Agora você poderá ver seus negócios crescendo em grande escala
           </span>
-          <BrandButton>Ir para Login</BrandButton>
+          <BrandButton onClick={() => navigate("/", { replace: true })}>
+            Ir para Login
+          </BrandButton>
         </BoxContent>
       </Box>
     </Container>

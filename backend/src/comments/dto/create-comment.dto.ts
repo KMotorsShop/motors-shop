@@ -1,14 +1,15 @@
 /* eslint-disable prettier/prettier */
 import { IsDefined } from 'class-validator';
+import { Ad } from 'src/ads/entities/ad.entity';
+import { User } from 'src/users/entities/user.entity';
 
 export class CreateCommentDto {
-    
-    @IsDefined()
-    user: string;
+  @IsDefined()
+  user: User;
 
-    @IsDefined()
-    ad: string;
+  @IsDefined()
+  ad: Ad;
 
-    @IsDefined()
-    content: string;
+  @IsDefined()
+  content: string;
 }

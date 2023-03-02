@@ -8,7 +8,9 @@ import { Comment } from './entities/comment.entity';
 
 @Injectable()
 export class CommentsService {
-  constructor(@InjectRepository(Comment) private commentRepository: Repository<Comment>) {}
+  constructor(
+    @InjectRepository(Comment) private commentRepository: Repository<Comment>,
+  ) {}
 
   async create(createCommentDto: CreateCommentDto) {
     const comment = this.commentRepository.create(createCommentDto);
@@ -26,12 +28,12 @@ export class CommentsService {
   }
 
   async update(id: string, updateCommentDto: UpdateCommentDto) {
-    const comment = this.commentRepository.update(updateCommentDto, id);
-    await this.commentRepository.save(comment)
-    return comment;
+    // const comment = this.commentRepository.update(updateCommentDto, id);
+    // await this.commentRepository.save(comment);
+    // return comment;
   }
 
-  async remove(id: string) {
-    return this.commentRepository.remove(id)
+  async remove(id: number) {
+    // return this.commentRepository.remove(id);
   }
 }
