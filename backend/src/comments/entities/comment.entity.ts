@@ -18,11 +18,9 @@ export class Comment {
   id: string;
 
   @ManyToOne(type => User, user => user.id, {eager: true})
-  @JoinColumn()
   user: User;
 
   @ManyToOne(type => Ad, ad => ad.id, {eager: true})
-  @JoinColumn()
   ad: Ad;
 
   @CreateDateColumn()

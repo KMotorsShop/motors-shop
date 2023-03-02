@@ -5,7 +5,7 @@ import { Ad } from 'src/ads/entities/ad.entity';
 
 export class CreateCommentDto {
   @IsDefined()
-  ad_id: string;
+  userId: number;
 
   @IsDefined()
   content: string;

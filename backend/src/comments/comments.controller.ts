@@ -14,20 +14,32 @@ import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 
+interface IToken {
+  host: string;
+  'user-agent': string;
+  'content-type': string;
+  authorization: string;
+  accept: string;
+  'content-length': string; 
+}
+
 @Controller('comments')
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
 
-  @Post()
-  create(@Body() createCommentDto: CreateCommentDto, @Headers() token: string) {
-    const userId = token
-    console.log(userId)
-    return this.commentsService.create(createCommentDto, userId);
+  @Post(':adId')
+  create(@Body() createCommentDto: CreateCommentDto,
+  @Param('adId') adId: string, 
+  @Headers() token: IToken) {
+    const userId = token.authorization.split(" ")[1]
+    return this.commentsService.create(createCommentDto, adId);
   }
 
-  @Get()
-  findAll() {
-    return this.commentsService.findAll();
+  @Get(':adId')
+  findAll(
+    @Param('adId') adId: string,
+  ) {
+    return this.commentsService.findAll(adId);
   }
 
   @Get(':id')
