@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // NestJS
 import {
   ExecutionContext,
@@ -36,7 +37,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     const canActivatePromise = canActivate as Promise<boolean>;
 
     return canActivatePromise.catch((error) => {
-      if (error instanceof UnauthorizedError) {
+      if (error instanceof UnauthorizedException) {
         throw new UnauthorizedException(error.message);
       }
 

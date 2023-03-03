@@ -5,7 +5,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  OneToMany
 } from 'typeorm';
+import { Comment } from 'src/comments/entities/comment.entity';
 
 @Entity('ads')
 export class Ad {
@@ -41,4 +43,9 @@ export class Ad {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  // @OneToMany(type => Comment, comment => comment.ad, {eager: true})
+  // comment: Comment;
+
+
 }

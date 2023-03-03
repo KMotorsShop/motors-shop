@@ -8,30 +8,35 @@ import ReactModal from "react-modal";
 import 'react-toastify/dist/ReactToastify.css';
 import AuthProvider, { AuthContext } from "./context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
+import UserContext from "./context/userContext";
 
-ReactModal.setAppElement("#root");
+
+
+// ReactModal.setAppElement("#root");
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <GlobalStyles>
-        <AdsContext>
-          <AuthProvider>
-            <App />
-            <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored"
-            />
+        <UserContext>
+          <AdsContext>
+            <AuthProvider>
+             <App />
+             <ToastContainer
+             position="top-right"
+             autoClose={5000}
+             hideProgressBar={false}
+             newestOnTop={false}
+             closeOnClick
+             rtl={false}
+             pauseOnFocusLoss
+             draggable
+             pauseOnHover
+             theme="colored"
+             />
           </AuthProvider>
-        </AdsContext>
+         </AdsContext>
+        </UserContext>
       </GlobalStyles>
     </BrowserRouter>
   </React.StrictMode>

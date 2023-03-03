@@ -7,9 +7,11 @@ import { ConfigModule } from '@nestjs/config';
 import { AdsModule } from './ads/ads.module';
 import { UsersModule } from './users/users.module';
 import { typeOrmConfig } from './config/typeorm.config';
+import { CommentsModule } from './comments/comments.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+
 
 @Module({
   imports: [
@@ -20,6 +22,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     }),
     AdsModule,
     UsersModule,
+    CommentsModule,
     AuthModule,
   ],
   controllers: [AppController],

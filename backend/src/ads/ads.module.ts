@@ -9,5 +9,6 @@ import { Ad } from './entities/ad.entity';
   imports: [TypeOrmModule.forFeature([Ad])],
   controllers: [AdsController],
   providers: [AdsService],
+  exports: [AdsService],
 })
 export class AdsModule {}
