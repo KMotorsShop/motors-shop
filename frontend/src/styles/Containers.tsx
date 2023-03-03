@@ -26,9 +26,9 @@ export const Flex = styled("div", {
 });
 
 export const ModalStatusMessage = styled("div", {
-  height: 150,
+  minHeight: 150,
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
-  padding: "$3 0",
+  justifyContent: "space-around",
+  padding: "$1 0",
 });

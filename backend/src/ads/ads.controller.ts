@@ -24,22 +24,24 @@ export class AdsController {
 
   @IsPublic()
   @Get()
+  @IsPublic()
   findAll() {
     return this.adsService.findAll();
   }
 
   @Get(':id')
+  @IsPublic()
   findOne(@Param('id') id: string) {
     return this.adsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAdDto: UpdateAdDto) {
-    return this.adsService.update(+id, updateAdDto);
+    return this.adsService.update(id, updateAdDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.adsService.remove(+id);
+    return this.adsService.remove(id);
   }
 }

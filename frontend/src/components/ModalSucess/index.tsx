@@ -25,7 +25,12 @@ const ModalSucess = () => {
           <span>
             Agora você poderá ver seus negócios crescendo em grande escala
           </span>
-          <BrandButton onClick={() => navigate("/", { replace: true })}>
+          <BrandButton
+            onClick={() => {
+              navigate("/login", { replace: true });
+              setIsModalSucess(false);
+            }}
+          >
             Ir para Login
           </BrandButton>
         </BoxContent>

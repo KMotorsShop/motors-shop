@@ -14,8 +14,8 @@ export const typeOrmConfig: DataSourceOptions = {
   database: process.env.POSTGRES_DB,
   // Quando der problema com as migrations descomente a 
   // próxima linha e comente a subsequente
-  // entities: [User, Ad, Comment],
-  entities: [__dirname + '/../**/*.entity.{js,ts}'],
+  entities: [User, Ad, Comment],
+  // entities: [__dirname + '/../**/*.entity.{js,ts}'],
   migrations: [__dirname + '/../migrations/*{.ts,.js}'],
   extra: {
     charset: 'utf8mb4_unicode_ci',

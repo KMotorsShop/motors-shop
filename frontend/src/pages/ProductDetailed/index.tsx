@@ -24,10 +24,19 @@ const ProductDetailed = () => {
 
   useEffect(() => {
     const idAds = localStorage.getItem("@IdVehicle");
+    const token = ""
     api
       .get(`ads/${idAds}`)
       .then((res) => setDetailedVehicle(res.data))
       .catch((err) => console.log(err));
+
+    api.defaults.headers.common.Authorization = `Bearer ${token}`
+    api
+      // .get(`comments/${idAds}`)
+      .get(`comments/065acae9-33ff-4c04-b34f-c465d9cd5460`)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+
   }, [detailedVehicle]);
 
   return (
