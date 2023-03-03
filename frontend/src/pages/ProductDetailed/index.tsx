@@ -50,12 +50,8 @@ const ProductDetailed = () => {
         await api
           // .get(`comments/${idAds}`)
           //Próxima linha só para testes, apague depois que  o idAds estiver funcionando
-          .get(`comments/065acae9-33ff-4c04-b34f-c465d9cd5460`)
-          .then((res) => {
-            const data = res.data
-            setComments([...comments,res.data])
-            console.log(comments, "fooit")
-          })
+          .get(`comments/f9ffb1ef-c954-49ea-8f15-0ef166988857`)
+          .then((res) => setComments([...comments,res.data]))
           .catch((err) => console.log(err));
       }
     }
