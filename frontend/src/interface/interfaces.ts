@@ -9,6 +9,9 @@ export interface IValueUserProps {
   setIsModalSucess: Dispatch<SetStateAction<boolean>>;
   isModalUpdate: boolean;
   setIsModalUpdate: Dispatch<SetStateAction<boolean>>;
+  isModalUpdateAddress: boolean;
+  setIsModalUpdateAddress: Dispatch<SetStateAction<boolean>>;
+  updateUser: (data: IUser) => void;
 }
 
 export interface IValueAdsProps {
@@ -80,13 +83,4 @@ export interface IUser {
   street: string;
   number: number;
   complement: string;
-}
-
-export interface IUserUpdate {
-  name: string;
-  email: string;
-  cpf: number;
-  cellphone: string;
-  birthdate: string;
-  description: string;
 }
