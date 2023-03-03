@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Advertiser from "../../components/DetailedProductView/Advertiser";
 import BigPicture from "../../components/DetailedProductView/BigPicture";
 import Description from "../../components/DetailedProductView/Description";
@@ -19,16 +19,45 @@ import {
 import Comment from "../../components/Comment";
 import CreateComment from "../../components/CreateComment";
 
+interface IUser {
+  name: string;
+}
+
+interface ICommentResponse {
+  id: string;
+  content: string;
+  createdAt: string; 
+  user: IUser;
+}
+
 const ProductDetailed = () => {
   const { setDetailedVehicle, detailedVehicle } = useContext(AdsAuthContext);
+  const [ comments, setComments ] = useState<Array<any>>([])
 
   useEffect(() => {
     const idAds = localStorage.getItem("@IdVehicle");
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoicGF1bG9AZ21haWwuY29tIiwibmFtZSI6IlBhdWxvIiwiaWF0IjoxNjc3ODUxNTQxLCJleHAiOjE2Nzc5Mzc5NDF9.Thu_o6WQsC8mJk9cpfYSPSyd5w1xAQD-t_Emlw7vNNw"
+    api.defaults.headers.common.Authorization = `Bearer ${token}`
+
     api
       .get(`ads/${idAds}`)
       .then((res) => setDetailedVehicle(res.data))
       .catch((err) => console.log(err));
-  }, [detailedVehicle]);
+
+    async function getComments() {
+      // console.log(comments[0])
+      if(comments.length == 0){
+        await api
+          // .get(`comments/${idAds}`)
+          //Próxima linha só para testes, apague depois que  o idAds estiver funcionando
+          .get(`comments/f9ffb1ef-c954-49ea-8f15-0ef166988857`)
+          .then((res) => setComments([...comments,res.data]))
+          .catch((err) => console.log(err));
+      }
+    }
+
+    getComments()
+  }, [detailedVehicle, comments]);
 
   return (
     <>
@@ -46,9 +75,18 @@ const ProductDetailed = () => {
       </Container>
       <ContainerComments>
         <CardOne>
-          <Comment/>
-          <Comment/>
-          <Comment/>
+          {
+            comments.length != 0 && 
+            comments[0].map((comment: ICommentResponse) => {
+              return <Comment 
+              key={comment.id}
+              id={comment.id}
+              content={comment.content}
+              createdAt={comment.createdAt}
+              userName={comment.user.name}/>
+            })
+          }
+          {/* <Comment/> */}
         </CardOne>
         <CardTwo>
           <CreateComment/>

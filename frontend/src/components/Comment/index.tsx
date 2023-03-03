@@ -1,21 +1,50 @@
+import { useEffect, useState } from "react";
 import { Flex } from "../../styles/Containers";
 import { Text } from "../../styles/Texts";
 
 import { Container, UserInfos, UserLogo, CommentTime } from "./styles";
 
-const Comment = () => {
+import moment from "moment";
+
+interface IContentProps {
+  id: string;
+  content: string;
+  createdAt: string;
+  userName: string;
+}
+
+const Comment = ({ id, content, createdAt, userName }: IContentProps) => {
+  const [logo, setLogo] = useState("");
+  const [ time, setTime ] = useState(null)
+
+  useEffect(() => {
+    function createLogo() {
+      const isLongUsername = userName.includes(" ");
+      if (!isLongUsername) {
+        const newLogo = userName[0] + userName[1]
+        setLogo(newLogo)
+      } else {
+        const separate = userName.split(" ")
+        const newLogo = separate[0][0]+ separate[1][0]
+        setLogo(newLogo)
+      };
+    }
+
+    const today: any = moment(createdAt).startOf('week').fromNow(); 
+    setTime(today)
+
+    createLogo();
+  }, [logo]);
+
   return (
-    <Flex>
+    <Flex id={id}>
       <Container>
         <UserInfos>
-          <UserLogo>SL</UserLogo>
-          <p>Samuel Lopes</p>
-          <CommentTime>3 dias</CommentTime>
+          <UserLogo>{logo}</UserLogo>
+          <p>{userName}</p>
+          <CommentTime>{time}</CommentTime>
         </UserInfos>
-        <Text>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's
-        </Text>
+        <Text>{content}</Text>
       </Container>
     </Flex>
   );
