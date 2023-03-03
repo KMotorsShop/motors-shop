@@ -1,4 +1,3 @@
-
 import { IsDefined, IsString, IsEmail } from 'class-validator';
 
 export class CreateUserDto {
@@ -50,5 +49,3 @@ export class CreateUserDto {
   @IsDefined()
   number: number;
 }
-
-
