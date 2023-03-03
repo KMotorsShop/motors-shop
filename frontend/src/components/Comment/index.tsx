@@ -3,18 +3,24 @@ import { Text } from "../../styles/Texts";
 
 import { Container, UserInfos, UserLogo, CommentTime } from "./styles";
 
-const Comment = () => {
+interface IContentProps {
+  id: string;
+  content: string;
+  createdAt: string; 
+  userName: string;
+}
+
+const Comment = ({id, content, createdAt, userName}: IContentProps) => {
   return (
-    <Flex>
+    <Flex id={id}>
       <Container>
         <UserInfos>
           <UserLogo>SL</UserLogo>
-          <p>Samuel Lopes</p>
-          <CommentTime>3 dias</CommentTime>
+          <p>{userName}</p>
+          <CommentTime>{createdAt}</CommentTime>
         </UserInfos>
         <Text>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's
+          {content}
         </Text>
       </Container>
     </Flex>
