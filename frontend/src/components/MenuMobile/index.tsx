@@ -1,8 +1,11 @@
 import { OutlineButton } from "../../styles/Buttons";
 import { Container } from "./styles";
 import "animate.css";
+import { useNavigate } from "react-router-dom";
 
 const MenuMobile = () => {
+  const navigate = useNavigate();
+
   return (
     <Container className="animate__animated animate__bounceInDown">
       <ul>
@@ -12,7 +15,14 @@ const MenuMobile = () => {
       </ul>
       <main>
         <a href="">Fazer Login</a>
-        <OutlineButton variant="greyLight">Cadastrar</OutlineButton>
+        <OutlineButton
+          variant="greyLight"
+          onClick={() => {
+            navigate("/register", { replace: true });
+          }}
+        >
+          Cadastrar
+        </OutlineButton>
       </main>
     </Container>
   );

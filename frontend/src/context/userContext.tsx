@@ -13,6 +13,7 @@ export const AuthContext = createContext<IValueUserProps>(
 const UserContext = ({ children }: IProviderProps) => {
   const [type, setType] = useState("");
   const [isModalSucess, setIsModalSucess] = useState(false);
+  const [isModalUpdate, setIsModalUpdate] = useState(true);
 
   const onRegister = (data: IUser) => {
     data.type = type;
@@ -28,7 +29,14 @@ const UserContext = ({ children }: IProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ onRegister, setType, isModalSucess, setIsModalSucess }}
+      value={{
+        onRegister,
+        setType,
+        isModalSucess,
+        setIsModalSucess,
+        isModalUpdate,
+        setIsModalUpdate,
+      }}
     >
       {children}
     </AuthContext.Provider>
