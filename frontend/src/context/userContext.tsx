@@ -6,7 +6,7 @@ import {
 } from "../interface/interfaces";
 import api from "../services/api";
 
-export const AuthContext = createContext<IValueUserProps>(
+export const AuthContextUser = createContext<IValueUserProps>(
   {} as IValueUserProps
 );
 
@@ -45,7 +45,7 @@ const UserContext = ({ children }: IProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider
+    <AuthContextUser.Provider
       value={{
         onRegister,
         setType,
@@ -59,7 +59,7 @@ const UserContext = ({ children }: IProviderProps) => {
       }}
     >
       {children}
-    </AuthContext.Provider>
+    </AuthContextUser.Provider>
   );
 };
 

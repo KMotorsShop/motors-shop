@@ -20,6 +20,8 @@ export const Container = styled("section", {
     paddingLeft: "18px",
     borderBottom: "2px solid $grey6",
     width: "100%",
+    listStyle: "none",
+    color: "$grey2",
   },
 
   main: {

@@ -8,7 +8,7 @@ import {
 } from "./styles";
 import { RiCloseLine } from "react-icons/ri";
 import { useContext } from "react";
-import { AuthContext } from "../../context/userContext";
+import { AuthContextUser } from "../../context/userContext";
 import {
   Form,
   Input,
@@ -22,7 +22,7 @@ import { useForm } from "react-hook-form";
 import { IUser } from "../../interface/interfaces";
 
 const UpdateUserAddress = () => {
-  const { setIsModalUpdateAddress, updateUser } = useContext(AuthContext);
+  const { setIsModalUpdateAddress, updateUser } = useContext(AuthContextUser);
 
   const { handleSubmit, register } = useForm<IUser>({});
 

@@ -6,6 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { Ad } from 'src/ads/entities/ad.entity';
@@ -16,11 +17,11 @@ export class Comment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(type => User, user => user.comment)
-  user: User
+  @ManyToOne(type => User, user => user.id, {eager: true})
+  user: User;
 
-  @ManyToOne(type => Ad, ad => ad.comment)
-  ad: Ad
+  @ManyToOne(type => Ad, ad => ad.id, {eager: true})
+  ad: Ad;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -29,5 +30,5 @@ export class Comment {
   updatedAt: Date;
 
   @Column()
-  content: string
+  content: string;
 }

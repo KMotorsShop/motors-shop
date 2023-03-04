@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Footer } from "../../components/Footer";
 import Header from "../../components/Header";
 import ModalSucess from "../../components/ModalSucess";
-import { AuthContext } from "../../context/userContext";
+import { AuthContextUser } from "../../context/userContext";
 import { IUser } from "../../interface/interfaces";
 import { BrandButton, OutlineButton } from "../../styles/Buttons";
 import {
@@ -30,7 +30,7 @@ const Register = () => {
     formState: { errors },
   } = useForm<IUser>({ resolver: yupResolver(schemaRegister) });
 
-  const { onRegister, setType, isModalSucess } = useContext(AuthContext);
+  const { onRegister, setType, isModalSucess } = useContext(AuthContextUser);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { Box, BoxButton, BoxClose, Container } from "./styles";
 import { RiCloseLine } from "react-icons/ri";
 import { useContext } from "react";
-import { AuthContext } from "../../context/userContext";
+import { AuthContextUser } from "../../context/userContext";
 import { Form, Input, InputWrapper, TextArea } from "../../styles/Form";
 import { Label } from "../../styles/Texts";
 import { BaseButton, BrandButton } from "../../styles/Buttons";
@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { IUser } from "../../interface/interfaces";
 
 const UpdateUser = () => {
-  const { setIsModalUpdate, updateUser } = useContext(AuthContext);
+  const { setIsModalUpdate, updateUser } = useContext(AuthContextUser);
 
   const { handleSubmit, register } = useForm<IUser>();
 

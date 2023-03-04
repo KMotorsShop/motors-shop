@@ -38,6 +38,8 @@ export interface IProviderProps {
 
 export interface AuthContextProviderData {
   userLogin: (credentials: LoginCredentials) => Promise<void>;
+  logged: boolean;
+  setLogged: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface LoginCredentials {

@@ -5,12 +5,12 @@ import { mockedUser } from "../../mocks/mocks";
 import { ProductSection } from "../../components/ProductSection";
 import { BrandButton, OutlineButton } from "../../styles/Buttons";
 import { useContext } from "react";
-import { AuthContext } from "../../context/userContext";
+import { AuthContextUser } from "../../context/userContext";
 import UpdateUser from "../../components/UpdateUser";
 import UpdateUserAddress from "../../components/UpdateUserAddress";
 
 export const AnunciantePersonalPage = () => {
-  const { isModalUpdate, isModalUpdateAddress } = useContext(AuthContext);
+  const { isModalUpdate, isModalUpdateAddress } = useContext(AuthContextUser);
   return (
     <>
       <Header />

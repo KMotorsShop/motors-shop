@@ -1,16 +1,29 @@
 import logo from "../../assets/logo.svg";
-import { Card } from "./styles";
+import {
+  Card,
+  DropBoxAds,
+  LiCards,
+  LiDropBoxAds,
+  CardLogged,
+  UlCards,
+  CardLoggedOut,
+} from "./styles";
 import { FiMenu } from "react-icons/fi";
 import { RiCloseLine } from "react-icons/ri";
 import { OutlineButton } from "../../styles/Buttons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import MenuMobile from "../MenuMobile";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { AuthContextUser } from "../../context/userContext";
 
 const Header = () => {
   const navigate = useNavigate();
   const [menu, setMenu] = useState(false);
+  const { logged, setLogged } = useContext(AuthContext);
+  const { setIsModalUpdate, setIsModalUpdateAddress } =
+    useContext(AuthContextUser);
 
   const showMenu = () => {
     setMenu(!menu);
@@ -31,30 +44,51 @@ const Header = () => {
         )}
       </button>
       <div>
-        <ul>
-          <li>Carros</li>
-          <li>Motos</li>
-          <li>Leilão</li>
-        </ul>
-        <Card type="logged">
-          <div>
-            <span>SL</span>
-          </div>
-          <p>Samuel Leão</p>
-        </Card>
-        <Card type="logged-out">
-          <a href="" onClick={() => navigate("/login", { replace: true })}>
-            Fazer Login
-          </a>
-          <OutlineButton
-            variant="greyLight"
-            onClick={() => {
-              navigate("/register", { replace: true });
-            }}
-          >
-            Cadastrar
-          </OutlineButton>
-        </Card>
+        <UlCards>
+          <LiCards>Carros</LiCards>
+          <LiCards>Motos</LiCards>
+          <LiCards>Leilão</LiCards>
+        </UlCards>
+        {logged ? (
+          <CardLogged>
+            <div>
+              <span>SL</span>
+            </div>
+            <p>Samuel Leão</p>
+            <DropBoxAds>
+              <LiDropBoxAds onClick={() => setIsModalUpdate(true)}>
+                Editar Perfil
+              </LiDropBoxAds>
+              <LiDropBoxAds onClick={() => setIsModalUpdateAddress(true)}>
+                Editar Endereço
+              </LiDropBoxAds>
+              <LiDropBoxAds>Meus anúncios</LiDropBoxAds>
+              <LiDropBoxAds
+                onClick={() => {
+                  setLogged(false);
+                  navigate("/", { replace: true });
+                  window.localStorage.clear();
+                }}
+              >
+                Sair
+              </LiDropBoxAds>
+            </DropBoxAds>
+          </CardLogged>
+        ) : (
+          <CardLoggedOut>
+            <a href="" onClick={() => navigate("/login", { replace: true })}>
+              Fazer Login
+            </a>
+            <OutlineButton
+              variant="greyLight"
+              onClick={() => {
+                navigate("/register", { replace: true });
+              }}
+            >
+              Cadastrar
+            </OutlineButton>
+          </CardLoggedOut>
+        )}
       </div>
       {menu && <MenuMobile />}
     </Card>
