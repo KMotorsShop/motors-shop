@@ -33,7 +33,7 @@ export interface IProviderProps {
 
 export interface AuthContextProviderData{
   userLogin: (credentials: LoginCredentials) => Promise<void>;
-
+  logged: boolean;
 }
 
 export interface LoginCredentials {
