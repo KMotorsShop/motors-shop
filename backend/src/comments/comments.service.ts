@@ -17,20 +17,20 @@ export class CommentsService {
 
   async create(
     createCommentDto: CreateCommentDto,
-    // userId: string,
+    userId: string,
     adId: string,
   ) {
     const newComment: any = {
       content: createCommentDto.content,
+      user: userId,  
       ad: adId,
-      user: createCommentDto.userId,  
     };
     const comment = this.commentRepository.create(newComment);
     await this.commentRepository.save(comment);
     return comment;
   }
 
-  async findAll(adId: any ) {
+  async findAll(adId: string ) {
     const allComments = this.commentRepository.find();
     const adComments = (await allComments).filter((comment) => {
       console.log(comment.ad.id)

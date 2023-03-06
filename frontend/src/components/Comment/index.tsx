@@ -15,7 +15,7 @@ interface IContentProps {
 
 const Comment = ({ id, content, createdAt, userName }: IContentProps) => {
   const [logo, setLogo] = useState("");
-  const [ time, setTime ] = useState(null)
+  const [ time, setTime ] = useState(null);
 
   useEffect(() => {
     function createLogo() {
@@ -23,10 +23,12 @@ const Comment = ({ id, content, createdAt, userName }: IContentProps) => {
       if (!isLongUsername) {
         const newLogo = userName[0] + userName[1]
         setLogo(newLogo)
+        return newLogo
       } else {
         const separate = userName.split(" ")
-        const newLogo = separate[0][0]+ separate[1][0]
+        const newLogo = separate[0][0] + separate[1][0]
         setLogo(newLogo)
+        return newLogo
       };
     }
 

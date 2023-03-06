@@ -9,6 +9,7 @@ import {
   Param,
   Delete,
   Headers,
+  Req,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
@@ -30,9 +31,9 @@ export class CommentsController {
   @Post(':adId')
   create(@Body() createCommentDto: CreateCommentDto,
   @Param('adId') adId: string, 
-  @Headers() token: IToken) {
-    const userId = token.authorization.split(" ")[1]
-    return this.commentsService.create(createCommentDto, adId);
+  @Req() request: AuthRequest) {
+    const userId = request.user.id
+    return this.commentsService.create(createCommentDto, userId ,adId);
   }
 
   @Get(':adId')
