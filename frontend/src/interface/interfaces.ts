@@ -7,6 +7,11 @@ export interface IValueUserProps {
   setType: Dispatch<SetStateAction<string>>;
   isModalSucess: boolean;
   setIsModalSucess: Dispatch<SetStateAction<boolean>>;
+  isModalUpdate: boolean;
+  setIsModalUpdate: Dispatch<SetStateAction<boolean>>;
+  isModalUpdateAddress: boolean;
+  setIsModalUpdateAddress: Dispatch<SetStateAction<boolean>>;
+  updateUser: (data: IUser) => void;
 }
 
 export interface IValueAdsProps {
@@ -31,14 +36,15 @@ export interface IProviderProps {
   children: ReactNode;
 }
 
-export interface AuthContextProviderData{
+export interface AuthContextProviderData {
   userLogin: (credentials: LoginCredentials) => Promise<void>;
-
+  logged: boolean;
+  setLogged: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface LoginCredentials {
-  email: string,
-  password: string
+  email: string;
+  password: string;
 }
 
 export interface IVehicles {

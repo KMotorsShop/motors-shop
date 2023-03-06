@@ -1,56 +1,57 @@
 import { styled } from "../../styles/stitches.config";
 
 export const Body = styled("div", {
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-})
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
 
 export const Login = styled("div", {
-    marginTop: "140px",
-    marginBottom: "140px",
-    width: "412px",
-    height: "542px",
-    backgroundColor: "#FDFDFD",
-    p:{
-        marginTop: "35px",
-        marginBottom: "35px",
-        marginLeft: "35px"
-    },
-    label:{
-        marginLeft: "17px",
-    },
-    input:{
-        marginTop: "10px",
-        width: "335px",
-        marginLeft: "35px",
-        marginBottom: "15px"
-    },
-    span:{
-        fontSize: "14px",
-        fontWeight: "500",
-        color: "#495057",
-        marginLeft: "221px",
+  marginTop: "140px",
+  marginBottom: "140px",
+  width: "412px",
+  height: "542px",
+  borderRadius: "4px",
+  backgroundColor: "#FDFDFD",
+  p: {
+    marginTop: "35px",
+    marginBottom: "35px",
+    marginLeft: "35px",
+  },
+  label: {
+    marginLeft: "17px",
+  },
+  input: {
+    marginTop: "10px",
+    width: "335px",
+    marginLeft: "35px",
+    marginBottom: "15px",
+  },
+  span: {
+    fontSize: "14px",
+    fontWeight: "500",
+    color: "#495057",
+    marginLeft: "221px",
 
-        "&:hover":{
-            textDecoration: "underline",
-            cursor: "pointer"
-        }
+    "&:hover": {
+      textDecoration: "underline",
+      cursor: "pointer",
     },
-    button:{
-        marginBottom: "30px",
-        marginLeft: "35px",
-        width: "335px",
-        marginTop: "30px"
-    },
-    h4:{
-        fontSize: "14px",
-        color: "#495057",
-        fontWeight: "400",
-        marginLeft: "120px",
-    }
-})
+  },
+  button: {
+    marginBottom: "30px",
+    marginLeft: "35px",
+    width: "335px",
+    marginTop: "30px",
+  },
+  h4: {
+    fontSize: "14px",
+    color: "#495057",
+    fontWeight: "400",
+    marginLeft: "120px",
+  },
+});
 
 export const DivButton = styled("button", {
   color: "#0B0D0D",
@@ -61,7 +62,7 @@ export const DivButton = styled("button", {
   fontWeight: "$semiBold",
   cursor: "pointer",
   "&:hover": {
-    backgroundColor:"#E9ECEF",
+    backgroundColor: "#E9ECEF",
   },
 
   "&:disabled": {
@@ -97,4 +98,4 @@ export const DivButton = styled("button", {
       },
     },
   },
-})
+});
