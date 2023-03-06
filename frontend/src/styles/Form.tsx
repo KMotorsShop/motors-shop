@@ -113,6 +113,16 @@ export const InputWrapperRegister = styled("div", {
   },
 });
 
+export const InputWrapperUpdate = styled("div", {
+  display: "inline-block",
+  width: "100%",
+  marginTop: "0.5rem",
+  [`& ${Label}`]: {
+    display: "block",
+    marginBottom: "$1",
+  },
+});
+
 export const FieldSet = styled("fieldset", {
   border: "none",
   width: "100%",

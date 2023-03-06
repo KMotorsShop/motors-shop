@@ -2,12 +2,12 @@ import { Box, BoxButton, BoxContent, Container } from "./styles";
 import { RiCloseLine } from "react-icons/ri";
 import { BrandButton } from "../../styles/Buttons";
 import { useContext } from "react";
-import { AuthContext } from "../../context/userContext";
+import { AuthContextUser } from "../../context/userContext";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
 
 const ModalSucess = () => {
-  const { setIsModalSucess } = useContext(AuthContext);
+  const { setIsModalSucess } = useContext(AuthContextUser);
 
   const navigate = useNavigate();
 
