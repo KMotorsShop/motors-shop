@@ -25,14 +25,13 @@ const AuthProvider = ({ children }: IProviderProps) => {
       })
       .then((res) => {
         if (res.status === 200) {
-          localStorage.setItem("TOKEN", JSON.stringify(res.data.token));
-
+          const token = res.data.token;
+          window.localStorage.setItem("@kenzie:token", token);
           setLogged(true);
-
           navigate("/dashboard", { replace: true });
 
           toast.success("Login realizado com sucesso!", {
-            position: "top-right",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -43,7 +42,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
           });
         } else {
           toast.error("Email ou senha incorretos!", {
-            position: "top-right",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -56,7 +55,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
       })
       .catch((err) => {
         toast.error("Email ou senha incorretos!", {
-          position: "top-right",
+          position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
