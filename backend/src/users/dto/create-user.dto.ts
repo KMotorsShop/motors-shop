@@ -1,4 +1,11 @@
-import { IsDefined, IsString, IsEmail } from 'class-validator';
+import {
+  IsDefined,
+  IsString,
+  IsEmail,
+  IsIn,
+  IsDateString,
+} from 'class-validator';
+import { UserRoles } from '../entities/user.entity';
 
 export class CreateUserDto {
   @IsDefined()
@@ -14,7 +21,8 @@ export class CreateUserDto {
 
   @IsDefined()
   @IsString()
-  type: string;
+  @IsIn(['seller', 'client'])
+  type: UserRoles;
 
   @IsDefined()
   password: string;
@@ -25,6 +33,7 @@ export class CreateUserDto {
 
   @IsDefined()
   @IsString()
+  @IsDateString()
   birthdate: string;
 
   @IsDefined()
