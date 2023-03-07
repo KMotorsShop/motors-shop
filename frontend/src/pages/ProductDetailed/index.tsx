@@ -36,7 +36,7 @@ const ProductDetailed = () => {
 
   useEffect(() => {
     const idAds = localStorage.getItem("@IdVehicle");
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoicGF1bG9AZ21haWwuY29tIiwibmFtZSI6IlBhdWxvIiwiaWF0IjoxNjc3ODUxNTQxLCJleHAiOjE2Nzc5Mzc5NDF9.Thu_o6WQsC8mJk9cpfYSPSyd5w1xAQD-t_Emlw7vNNw"
+    const token = localStorage.getItem("@kenzie:token");
     api.defaults.headers.common.Authorization = `Bearer ${token}`
 
     api
@@ -48,9 +48,9 @@ const ProductDetailed = () => {
       // console.log(comments[0])
       if(comments.length == 0){
         await api
-          // .get(`comments/${idAds}`)
+          .get(`comments/${idAds}`)
           //Próxima linha só para testes, apague depois que  o idAds estiver funcionando
-          .get(`comments/f9ffb1ef-c954-49ea-8f15-0ef166988857`)
+          // .get(`comments/e8f71151-10dc-4e22-aa46-5d234fbc7f32`)
           .then((res) => setComments([...comments,res.data]))
           .catch((err) => console.log(err));
       }
@@ -86,7 +86,6 @@ const ProductDetailed = () => {
               userName={comment.user.name}/>
             })
           }
-          {/* <Comment/> */}
         </CardOne>
         <CardTwo>
           <CreateComment/>
