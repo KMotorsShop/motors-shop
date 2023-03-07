@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { UserSerializer } from './serializers/user.serializer';
 
 @Injectable()
 export class UsersService {
@@ -17,26 +18,33 @@ export class UsersService {
     const password = encodePassword(createUserDto.password);
     const user = this.userRepository.create({ ...createUserDto, password });
     await this.userRepository.save(user);
-    return user;
+    return new UserSerializer(user);
   }
 
-  findAll() {
-    return this.userRepository.find();
+  async findAll() {
+    const userList = await this.userRepository.find();
+    return userList.map((user) => new UserSerializer(user));
   }
 
   async findOne(id: string) {
     const user = await this.userRepository.findOne({ where: { id } });
-    return user;
+    if (!user) {
+      throw new NotFoundException();
+    }
+    return new UserSerializer(user);
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    const user = await this.userRepository.update({ id }, updateUserDto);
-    if (user.affected === 0) {
+    const queryResponse = await this.userRepository.update(
+      { id },
+      updateUserDto,
+    );
+    if (queryResponse.affected === 0) {
       throw new NotFoundException();
     }
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} user`;
   }
 }
