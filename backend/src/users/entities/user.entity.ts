@@ -1,7 +1,11 @@
 /* eslint-disable prettier/prettier */
-import { Exclude } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Comment } from '../../comments/entities/comment.entity';
+
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+export enum UserRoles {
+  SELLER = 'seller',
+  USER = 'user',
+}
 
 @Entity('users')
 export class User {
@@ -11,7 +15,7 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -27,11 +31,14 @@ export class User {
   description: string;
 
   @Column()
-  @Exclude()
   password: string;
 
-  @Column()
-  type: string;
+  @Column({
+    type: 'enum',
+    enum: UserRoles,
+    default: UserRoles.USER,
+  })
+  type: UserRoles;
 
   @Column()
   zipCode: number;
@@ -48,9 +55,6 @@ export class User {
   @Column()
   number: number;
 
-  @Column()
-  complement: string;
-
-  // @OneToMany((type) => Comment, (comment) => comment.user)
-  // comment: Comment[];
+  @Column({ nullable: true })
+  complement?: string;
 }

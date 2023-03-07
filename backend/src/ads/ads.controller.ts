@@ -7,19 +7,27 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
+  UseInterceptors,
+  ClassSerializerInterceptor,
+  SerializeOptions,
 } from '@nestjs/common';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { User } from 'src/users/entities/user.entity';
 import { AdsService } from './ads.service';
 import { CreateAdDto } from './dto/create-ad.dto';
 import { UpdateAdDto } from './dto/update-ad.dto';
 
 @Controller('ads')
+@UseInterceptors(ClassSerializerInterceptor)
+@SerializeOptions({ excludeExtraneousValues: true })
 export class AdsController {
   constructor(private readonly adsService: AdsService) {}
 
   @Post()
-  create(@Body() createAdDto: CreateAdDto) {
-    return this.adsService.create(createAdDto);
+  create(@Body() createAdDto: CreateAdDto, @CurrentUser() user: User) {
+    return this.adsService.create(createAdDto, user.id);
   }
 
   @Get()

@@ -5,26 +5,33 @@ import { Repository } from 'typeorm';
 import { CreateAdDto } from './dto/create-ad.dto';
 import { UpdateAdDto } from './dto/update-ad.dto';
 import { Ad } from './entities/ad.entity';
+import { AdSerializer } from './serializers/ad.serializer';
 
 @Injectable()
 export class AdsService {
   constructor(@InjectRepository(Ad) private adRepository: Repository<Ad>) {}
 
-  async create(createAdDto: CreateAdDto) {
-    const ad = this.adRepository.create(createAdDto);
+  async create(createAdDto: CreateAdDto, userId: string) {
+    const ad = this.adRepository.create({
+      ...createAdDto,
+      seller: { id: userId },
+    });
     await this.adRepository.save(ad);
     return ad;
   }
 
   async findAll() {
-    return this.adRepository.find();
+    const ads = await this.adRepository.find();
+    return ads.map((ad) => new AdSerializer(ad));
   }
 
   async findOne(id: string) {
     const ad = await this.adRepository.findOne({ where: { id } });
-    return ad;
+    if (!ad) {
+      throw new NotFoundException();
+    }
+    return new AdSerializer(ad);
   }
-
 
   async update(id: string, updateAdDto: UpdateAdDto) {
     const ad = await this.adRepository.update({ id }, updateAdDto);
@@ -32,14 +39,13 @@ export class AdsService {
       throw new NotFoundException();
     }
 
- // async update(id: number, updateAdDto: UpdateAdDto) {
+    // async update(id: number, updateAdDto: UpdateAdDto) {
     // const ad = this.adRepository.update(updateAdDto, id);
     // await this.adRepository.save(ad)
-    return ""
+    return '';
     // ad;
     // await this.adRepository.save(ad);
     // return ad;
-
   }
 
   async remove(id: string) {
