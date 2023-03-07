@@ -1,5 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { encodePassword } from 'src/utils/bcrypt';
 import { Repository } from 'typeorm';
@@ -15,6 +19,13 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
+    const emailAlreadyExists = await this.userRepository.findOne({
+      where: { email: createUserDto.email },
+    });
+
+    if (emailAlreadyExists) {
+      throw new ConflictException("Email already exists");
+    }
     const password = encodePassword(createUserDto.password);
     const user = this.userRepository.create({ ...createUserDto, password });
     await this.userRepository.save(user);
