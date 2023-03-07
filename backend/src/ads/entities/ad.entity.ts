@@ -5,9 +5,16 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  OneToMany
+  OneToMany,
+  ManyToOne,
 } from 'typeorm';
 import { Comment } from 'src/comments/entities/comment.entity';
+import { User } from 'src/users/entities/user.entity';
+
+export enum AdTypes {
+  SELL = 'sell',
+  AUCTION = 'auction',
+}
 
 @Entity('ads')
 export class Ad {
@@ -23,8 +30,12 @@ export class Ad {
   @Column()
   name: string;
 
-  @Column()
-  type: string;
+  @Column({
+    type: 'enum',
+    enum: AdTypes,
+    default: AdTypes.SELL,
+  })
+  type: AdTypes;
 
   @Column()
   km: number;
@@ -44,8 +55,9 @@ export class Ad {
   @UpdateDateColumn()
   updatedAt: Date;
 
+  @ManyToOne(() => User, (user) => user.id, { eager: true })
+  seller: User;
+
   // @OneToMany(type => Comment, comment => comment.ad, {eager: true})
   // comment: Comment;
-
-
 }

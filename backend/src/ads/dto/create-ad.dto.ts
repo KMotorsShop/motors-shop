@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { IsDefined, Max, MaxLength, Min } from 'class-validator';
+import { IsDefined, IsIn, Max, MaxLength, Min } from 'class-validator';
+import { AdTypes } from '../entities/ad.entity';
 
 export class CreateAdDto {
   @Min(1000)
@@ -16,7 +17,8 @@ export class CreateAdDto {
   name: string;
 
   @IsDefined()
-  type: string;
+  @IsIn([AdTypes.SELL, AdTypes.AUCTION])
+  type: AdTypes;
 
   @IsDefined()
   @Min(0)
