@@ -8,8 +8,13 @@ import {
 import CardLeilaoMobile from "../../components/CardLeilaoMobile";
 import { Footer } from "../../components/Footer";
 import { ProductSection } from "../../components/ProductSection";
+import { useContext } from "react";
+import { AuthContextUser } from "../../context/userContext";
+import UpdateUser from "../../components/UpdateUser";
+import UpdateUserAddress from "../../components/UpdateUserAddress";
 
 const Home = () => {
+  const { isModalUpdate, isModalUpdateAddress } = useContext(AuthContextUser);
   return (
     <>
       <Header />
@@ -30,6 +35,8 @@ const Home = () => {
       <ProductSection type="Carros" />
       <ProductSection type="Motos" />
       <Footer />
+      {isModalUpdate && <UpdateUser />}
+      {isModalUpdateAddress && <UpdateUserAddress />}
     </>
   );
 };

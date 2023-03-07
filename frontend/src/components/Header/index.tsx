@@ -42,20 +42,6 @@ const Header = () => {
     }
   }, [userName]);
 
-  function createLogo() {
-    const isLongUsername = userName.includes(" ");
-    if (!isLongUsername) {
-      const newLogo = userName[0] + userName[1];
-
-      return newLogo;
-    } else {
-      const separate = userName.split(" ");
-      const newLogo = separate[0][0] + separate[1][0];
-
-      return newLogo;
-    }
-  }
-
   return (
     <Card id="header">
       <img src={logo} alt="" onClick={() => navigate("/", { replace: true })} />
