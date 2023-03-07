@@ -21,7 +21,7 @@ const Home = () => {
           <a href="#motos">Motos</a>
         </ContainerButtons>
       </Container>
-      <TextTitle>Leilão</TextTitle>
+      <TextTitle id="leilao">Leilão</TextTitle>
       <ContainerLeilao>
         <CardLeilaoMobile />
         <CardLeilaoMobile />

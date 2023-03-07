@@ -88,6 +88,10 @@ export const UlCards = styled("ul", {
   alignItems: "center",
   borderRight: "2px solid $grey6",
   height: "80px",
+
+  a: {
+    textDecoration: "none",
+  },
 });
 
 export const LiCards = styled("li", {

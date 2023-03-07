@@ -1,10 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   IProviderProps,
   IUser,
   IValueUserProps,
 } from "../interface/interfaces";
 import api from "../services/api";
+import { toast } from "react-toastify";
 
 export const AuthContextUser = createContext<IValueUserProps>(
   {} as IValueUserProps
@@ -15,6 +16,15 @@ const UserContext = ({ children }: IProviderProps) => {
   const [isModalSucess, setIsModalSucess] = useState(false);
   const [isModalUpdate, setIsModalUpdate] = useState(false);
   const [isModalUpdateAddress, setIsModalUpdateAddress] = useState(false);
+  const [userName, setUserName] = useState<string>("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("@kenzie:token");
+    api.defaults.headers.authorization = `Bearer ${token}`;
+    api.get("users/profile").then((res) => {
+      setUserName(res.data.name);
+    });
+  }, [isModalUpdate]);
 
   const onRegister = (data: IUser) => {
     data.type = type;
@@ -36,10 +46,12 @@ const UserContext = ({ children }: IProviderProps) => {
 
     try {
       api.defaults.headers.authorization = `Bearer ${token}`;
-      await api.patch(
-        "users/9709123d-21dc-4ca8-b7da-7950fd4f9dad",
-        removingEmpty
-      );
+      const { data } = await api.get("users/profile");
+      const id = data.id;
+      await api.patch(`users/${id}`, removingEmpty);
+      toast.success("Atualizado com Sucesso!");
+      setIsModalUpdate(false);
+      setIsModalUpdateAddress(false);
     } catch (error) {
       console.log(error);
     }
@@ -57,6 +69,8 @@ const UserContext = ({ children }: IProviderProps) => {
         isModalUpdateAddress,
         setIsModalUpdateAddress,
         updateUser,
+        userName,
+        setUserName,
       }}
     >
       {children}
