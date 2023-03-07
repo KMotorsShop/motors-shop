@@ -8,7 +8,7 @@ Está é uma aplicação para compras e anúncios de carros ou motos, nela o usu
 
 ## ⚙️ Features
 
-- [] Login
+- [x] Login
 - [x] Cadastro
 - [x] Pagina Inicial (Home)
 - [x] Pagina do Veículo

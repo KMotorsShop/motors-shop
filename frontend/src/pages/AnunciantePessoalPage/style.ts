@@ -6,7 +6,7 @@ export const BodyHeader = styled("div", {
   height: "257px",
   backgroundColor: "#4529E6",
   zIndex: "0",
-  marginBottom: "233px",
+  marginBottom: "300px",
 });
 
 export const Body = styled("div", {
@@ -59,7 +59,7 @@ export const Infos = styled("div", {
 });
 
 export const Anuncios = styled("div", {
-  maxWidth: "1331px",
+  maxWidth: "1519px",
   top: "250px",
   // position: "relative",
 });

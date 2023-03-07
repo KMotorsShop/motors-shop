@@ -17,7 +17,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
   const navigate = useNavigate();
 
   const [logged, setLogged] = useState(false);
-  const { setUserName, setUser } = useContext(AuthContextUser);
+  const { setUserName, setUser, user } = useContext(AuthContextUser);
 
   const userLogin = async (credentials: LoginCredentials): Promise<void> => {
     const response = api
@@ -30,6 +30,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
           const token = res.data.token;
           window.localStorage.setItem("@kenzie:token", token);
           setLogged(true);
+
           navigate("/dashboard", { replace: true });
 
           api.defaults.headers.authorization = `Bearer ${token}`;

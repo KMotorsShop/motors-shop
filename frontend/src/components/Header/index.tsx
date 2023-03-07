@@ -7,6 +7,7 @@ import {
   CardLogged,
   UlCards,
   CardLoggedOut,
+  DropBoxAdsBuyer,
 } from "./styles";
 import { FiMenu } from "react-icons/fi";
 import { RiCloseLine } from "react-icons/ri";
@@ -28,8 +29,8 @@ const Header = () => {
     userName,
     setNameLogo,
     nameLogo,
+    user,
   } = useContext(AuthContextUser);
-  // const [nameLogo, setNameLogo] = useState("");
 
   const showMenu = () => {
     setMenu(!menu);
@@ -79,28 +80,49 @@ const Header = () => {
               <span>{nameLogo}</span>
             </div>
             <p>{nomeCerto}</p>
-            <DropBoxAds>
-              <LiDropBoxAds onClick={() => setIsModalUpdate(true)}>
-                Editar Perfil
-              </LiDropBoxAds>
-              <LiDropBoxAds onClick={() => setIsModalUpdateAddress(true)}>
-                Editar Endereço
-              </LiDropBoxAds>
-              <LiDropBoxAds
-                onClick={() => navigate("/dashboard", { replace: true })}
-              >
-                Meus anúncios
-              </LiDropBoxAds>
-              <LiDropBoxAds
-                onClick={() => {
-                  setLogged(false);
-                  navigate("/", { replace: true });
-                  window.localStorage.clear();
-                }}
-              >
-                Sair
-              </LiDropBoxAds>
-            </DropBoxAds>
+            {user.type === "Anunciante" ? (
+              <DropBoxAds>
+                <LiDropBoxAds onClick={() => setIsModalUpdate(true)}>
+                  Editar Perfil
+                </LiDropBoxAds>
+                <LiDropBoxAds onClick={() => setIsModalUpdateAddress(true)}>
+                  Editar Endereço
+                </LiDropBoxAds>
+                <LiDropBoxAds
+                  onClick={() => navigate("/dashboard", { replace: true })}
+                >
+                  Meus anúncios
+                </LiDropBoxAds>
+                <LiDropBoxAds
+                  onClick={() => {
+                    setLogged(false);
+                    navigate("/", { replace: true });
+                    window.localStorage.clear();
+                  }}
+                >
+                  Sair
+                </LiDropBoxAds>
+              </DropBoxAds>
+            ) : (
+              <DropBoxAdsBuyer>
+                <LiDropBoxAds onClick={() => setIsModalUpdate(true)}>
+                  Editar Perfil
+                </LiDropBoxAds>
+                <LiDropBoxAds onClick={() => setIsModalUpdateAddress(true)}>
+                  Editar Endereço
+                </LiDropBoxAds>
+
+                <LiDropBoxAds
+                  onClick={() => {
+                    setLogged(false);
+                    navigate("/", { replace: true });
+                    window.localStorage.clear();
+                  }}
+                >
+                  Sair
+                </LiDropBoxAds>
+              </DropBoxAdsBuyer>
+            )}
           </CardLogged>
         ) : (
           <CardLoggedOut>
