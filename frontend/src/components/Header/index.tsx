@@ -22,9 +22,14 @@ const Header = () => {
   const navigate = useNavigate();
   const [menu, setMenu] = useState(false);
   const { logged, setLogged } = useContext(AuthContext);
-  const { setIsModalUpdate, setIsModalUpdateAddress, userName } =
-    useContext(AuthContextUser);
-  const [nameLogo, setNameLogo] = useState("");
+  const {
+    setIsModalUpdate,
+    setIsModalUpdateAddress,
+    userName,
+    setNameLogo,
+    nameLogo,
+  } = useContext(AuthContextUser);
+  // const [nameLogo, setNameLogo] = useState("");
 
   const showMenu = () => {
     setMenu(!menu);
@@ -41,6 +46,9 @@ const Header = () => {
       setNameLogo(newLogo);
     }
   }, [userName]);
+
+  const arrayNome = userName.split(" ");
+  const nomeCerto = `${arrayNome[0]} ${arrayNome[1]}`;
 
   return (
     <Card id="header">
@@ -70,7 +78,7 @@ const Header = () => {
             <div>
               <span>{nameLogo}</span>
             </div>
-            <p>{userName}</p>
+            <p>{nomeCerto}</p>
             <DropBoxAds>
               <LiDropBoxAds onClick={() => setIsModalUpdate(true)}>
                 Editar Perfil

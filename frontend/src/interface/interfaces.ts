@@ -14,6 +14,10 @@ export interface IValueUserProps {
   updateUser: (data: IUser) => void;
   userName: string;
   setUserName: Dispatch<SetStateAction<string>>;
+  user: IUser;
+  setUser: Dispatch<SetStateAction<IUser>>;
+  nameLogo: string;
+  setNameLogo: Dispatch<SetStateAction<string>>;
 }
 
 export interface IValueAdsProps {

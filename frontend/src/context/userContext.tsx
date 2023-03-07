@@ -17,12 +17,16 @@ const UserContext = ({ children }: IProviderProps) => {
   const [isModalUpdate, setIsModalUpdate] = useState(false);
   const [isModalUpdateAddress, setIsModalUpdateAddress] = useState(false);
   const [userName, setUserName] = useState<string>("");
+  const [user, setUser] = useState<IUser>({} as IUser);
+  //
+  const [nameLogo, setNameLogo] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("@kenzie:token");
     api.defaults.headers.authorization = `Bearer ${token}`;
     api.get("users/profile").then((res) => {
       setUserName(res.data.name);
+      setUser(res.data);
     });
   }, [isModalUpdate]);
 
@@ -71,6 +75,10 @@ const UserContext = ({ children }: IProviderProps) => {
         updateUser,
         userName,
         setUserName,
+        user,
+        setUser,
+        nameLogo,
+        setNameLogo,
       }}
     >
       {children}

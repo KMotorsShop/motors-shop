@@ -17,7 +17,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
   const navigate = useNavigate();
 
   const [logged, setLogged] = useState(false);
-  const { setUserName } = useContext(AuthContextUser);
+  const { setUserName, setUser } = useContext(AuthContextUser);
 
   const userLogin = async (credentials: LoginCredentials): Promise<void> => {
     const response = api
@@ -35,6 +35,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
           api.defaults.headers.authorization = `Bearer ${token}`;
           api.get("users/profile").then((res) => {
             setUserName(res.data.name);
+            setUser(res.data);
           });
 
           toast.success("Login realizado com sucesso!");
