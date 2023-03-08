@@ -32,6 +32,9 @@ export interface ProductSectionProps {
 }
 
 export interface CardProductProps {
+  isActive: boolean;
+  seller: IUser;
+  images: string[];
   name: string;
   description: string;
   km: number;
@@ -64,6 +67,8 @@ export interface IVehicles {
   description: string;
   km: number;
   isActive: boolean;
+  images: string[];
+  seller: IUser;
 }
 
 export interface ArrayTesteProps {
