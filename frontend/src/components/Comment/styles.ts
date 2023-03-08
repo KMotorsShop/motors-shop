@@ -29,9 +29,32 @@ export const CommentTime = styled("span", {
 export const UserInfos = styled("div", {
     display: "flex",
     alignItems: "center",
-    gap: "10px",
+    justifyContent: "space-between",
     p: {
         fontSize: "14px",
         fontWeight: "bold",
-    },
+    }
 });
+
+export const UserInfosCreate = styled(UserInfos, {
+    justifyContent: "flex-start",
+});
+
+export const LoggedInfos = styled("div", {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    gap: "10px",
+})
+
+export const CommentButtons = styled("div", {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+
+    svg: {
+        cursor: "pointer",
+        width: "20px",
+        height: "20px"
+    }
+})  

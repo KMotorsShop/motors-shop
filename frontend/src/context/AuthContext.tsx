@@ -28,6 +28,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
       .then((res) => {
         if (res.status === 200) {
           const token = res.data.token;
+          
           window.localStorage.setItem("@kenzie:token", token);
           setLogged(true);
 

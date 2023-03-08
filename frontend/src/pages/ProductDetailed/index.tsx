@@ -18,9 +18,11 @@ import {
 } from "./styles";
 import Comment from "../../components/Comment";
 import CreateComment from "../../components/CreateComment";
+import { AuthContextUser } from "../../context/userContext";
 
 interface IUser {
   name: string;
+  id: string;
 }
 
 interface ICommentResponse {
@@ -34,11 +36,14 @@ const ProductDetailed = () => {
   const { setDetailedVehicle, detailedVehicle } = useContext(AdsAuthContext);
   const [ comments, setComments ] = useState<Array<any>>([])
 
+  const {
+    user
+  } = useContext(AuthContextUser);
+
   useEffect(() => {
     const idAds = localStorage.getItem("@IdVehicle");
     const token = localStorage.getItem("@kenzie:token");
     // api.defaults.headers.common.Authorization = `Bearer ${token}`
-
     api
       .get(`ads/${idAds}`)
       .then((res) => setDetailedVehicle(res.data))
@@ -81,7 +86,8 @@ const ProductDetailed = () => {
               id={comment.id}
               content={comment.content}
               createdAt={comment.createdAt}
-              userName={comment.user.name}/>
+              userName={comment.user.name}
+              isLoggedOwner={user!.id != comment.user.id ? false : true}/>
             })
           }
         </CardOne>
