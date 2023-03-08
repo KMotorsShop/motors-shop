@@ -16,7 +16,7 @@ export const CardProduct = ({
   const productDetailed = (event: any) => {
     const idAds = event.target.id;
     window.localStorage.setItem("@IdVehicle", idAds);
-    navigate("/anuncio", { replace: true });
+    navigate(`/${idAds}`, { replace: true });
   };
 
   return (

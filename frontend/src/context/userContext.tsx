@@ -6,6 +6,8 @@ import {
 } from "../interface/interfaces";
 import api from "../services/api";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 
 export const AuthContextUser = createContext<IValueUserProps>(
   {} as IValueUserProps
@@ -17,18 +19,40 @@ const UserContext = ({ children }: IProviderProps) => {
   const [isModalUpdate, setIsModalUpdate] = useState(false);
   const [isModalUpdateAddress, setIsModalUpdateAddress] = useState(false);
   const [userName, setUserName] = useState<string>("");
-  const [user, setUser] = useState<IUser>({} as IUser);
-  //
+  const [user, setUser] = useState<IUser | null>(null);
   const [nameLogo, setNameLogo] = useState("");
+  const navigate = useNavigate();
+
+  const { setLogged } = useContext(AuthContext);
 
   useEffect(() => {
     const token = localStorage.getItem("@kenzie:token");
-    api.defaults.headers.authorization = `Bearer ${token}`;
-    api.get("users/profile").then((res) => {
-      setUserName(res.data.name);
-      setUser(res.data);
-    });
+
+    if (token) {
+      const userAutoLogin = async () => {
+        try {
+          api.defaults.headers.authorization = `Bearer ${token}`;
+          await api.get("users/profile").then((res) => {
+            setUserName(res.data.name);
+            setUser(res.data);
+          });
+          // setLogged(true);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      userAutoLogin();
+    }
   }, [isModalUpdate]);
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("@kenzie:token");
+  //   api.defaults.headers.authorization = `Bearer ${token}`;
+  //   api.get("users/profile").then((res) => {
+  //     setUserName(res.data.name);
+  //     setUser(res.data);
+  //   });
+  // }, [isModalUpdate]);
 
   const onRegister = (data: IUser) => {
     data.type = type;
