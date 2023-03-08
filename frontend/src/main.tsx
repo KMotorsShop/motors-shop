@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import UserContext from "./context/userContext";
 import AuthProvider from "./context/AuthContext";
+import ReactModal from "react-modal";
 
 ReactModal.setAppElement("#root");
 
