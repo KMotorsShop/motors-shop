@@ -24,16 +24,16 @@ export const Container = styled("section", {
     color: "$grey2",
   },
 
-  main: {
-    height: "184px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "44px",
-    justifyContent: "center",
-    alignItems: "flex-start",
-    paddingLeft: "18px",
-    boxShadow: "rgb(222 222 222 / 28%) -1px 20px 20px",
-  },
+  // main: {
+  //   height: "184px",
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   gap: "44px",
+  //   justifyContent: "center",
+  //   alignItems: "flex-start",
+  //   paddingLeft: "18px",
+  //   boxShadow: "rgb(222 222 222 / 28%) -1px 20px 20px",
+  // },
 
   a: {
     textDecoration: "none",
@@ -46,4 +46,33 @@ export const Container = styled("section", {
     justifyContent: "center",
     border: "1px solid $grey6",
   },
+});
+
+export const MainLogged = styled("main", {
+  height: "262px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "44px",
+  justifyContent: "center",
+  alignItems: "flex-start",
+  boxShadow: "rgb(222 222 222 / 28%) -1px 20px 20px",
+
+  ul: {
+    borderBottom: "none",
+  },
+
+  li: {
+    cursor: "pointer",
+  },
+});
+
+export const Main = styled("main", {
+  height: "184px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "44px",
+  justifyContent: "center",
+  alignItems: "flex-start",
+  paddingLeft: "18px",
+  boxShadow: "rgb(222 222 222 / 28%) -1px 20px 20px",
 });

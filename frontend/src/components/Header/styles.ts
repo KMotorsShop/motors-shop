@@ -76,10 +76,27 @@ export const DropBoxAds = styled("section", {
   listStyle: "none",
 });
 
+export const DropBoxAdsBuyer = styled("section", {
+  width: "200px",
+  height: "150px",
+  borderRadius: "4px",
+  boxShadow: "0px 4px 40px -10px rgba(0, 0, 0, 0.25)",
+  background: "#F8F9FA",
+  display: "none",
+  position: "absolute",
+  top: "70px",
+  right: "-38px",
+  zIndex: "4",
+  listStyle: "none",
+});
+
 export const LiDropBoxAds = styled("li", {
   marginLeft: "22px",
   color: "$grey2",
   cursor: "pointer",
+  "&:hover": {
+    color: "$brand1",
+  },
 });
 
 export const UlCards = styled("ul", {
@@ -88,6 +105,10 @@ export const UlCards = styled("ul", {
   alignItems: "center",
   borderRight: "2px solid $grey6",
   height: "80px",
+
+  a: {
+    textDecoration: "none",
+  },
 });
 
 export const LiCards = styled("li", {

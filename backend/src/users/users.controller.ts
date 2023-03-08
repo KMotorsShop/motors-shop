@@ -7,15 +7,14 @@ import {
   Patch,
   Param,
   Delete,
-  UseInterceptors,
-  ClassSerializerInterceptor,
-  SerializeOptions,
+  Req,
 } from '@nestjs/common';
 
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { AuthRequest } from 'src/auth/models/AuthRequest';
 
 @Controller('users')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -34,10 +33,10 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  @IsPublic()
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
+  @Get('/profile')
+  findOne(@Req() request: AuthRequest) {
+    return this.usersService.findOne(request.user.id);
+
   }
 
   @Patch(':id')
