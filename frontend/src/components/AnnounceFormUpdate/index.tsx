@@ -24,7 +24,7 @@ interface AnnounceFormUpdateProps {
 }
 
 type AnnounceTypes = "sell" | "auction";
-type VehicleTypes = "car" | "motorbike";
+type VehicleTypes = "Carro" | "Moto";
 
 const AnnounceFormUpdate = ({
   id,
@@ -35,7 +35,7 @@ const AnnounceFormUpdate = ({
   const [originalData, setOriginalData] = useState<any>({});
   const [isPublished, setPublished] = useState<boolean>(false);
   const [adType, setAdType] = useState<AnnounceTypes>("sell");
-  const [vehicleType, setVehicleType] = useState<VehicleTypes>("car");
+  const [vehicleType, setVehicleType] = useState<VehicleTypes>("Carro");
 
   const [moreInputs, setMoreInputs] = useState(2);
   const [inputsQtd, setInputsQtd] = useState<number[]>([]);
@@ -80,7 +80,7 @@ const AnnounceFormUpdate = ({
   }, []);
 
   const handleSubmitFunction = (data: any) => {
-    data = { ...data, type: adType, isActive: isPublished };
+    data = { ...data, type: vehicleType, isActive: isPublished };
     onSubmitFunction(data);
   };
 
@@ -168,14 +168,17 @@ const AnnounceFormUpdate = ({
       <FieldSet>
         <Legend>Tipo de veículo</Legend>
         <OptionButtons>
-          {vehicleType === "car" ? (
+          {vehicleType === "Carro" ? (
             <>
-              <BrandButton type="button" onClick={() => setVehicleType("car")}>
+              <BrandButton
+                type="button"
+                onClick={() => setVehicleType("Carro")}
+              >
                 Carro
               </BrandButton>
               <OutlineButton
                 type="button"
-                onClick={() => setVehicleType("motorbike")}
+                onClick={() => setVehicleType("Moto")}
                 variant="greyLight"
               >
                 Moto
@@ -185,15 +188,12 @@ const AnnounceFormUpdate = ({
             <>
               <OutlineButton
                 type="button"
-                onClick={() => setVehicleType("car")}
+                onClick={() => setVehicleType("Carro")}
                 variant="greyLight"
               >
                 Carro
               </OutlineButton>
-              <BrandButton
-                type="button"
-                onClick={() => setVehicleType("motorbike")}
-              >
+              <BrandButton type="button" onClick={() => setVehicleType("Moto")}>
                 Moto
               </BrandButton>
             </>

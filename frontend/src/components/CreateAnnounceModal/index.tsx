@@ -8,6 +8,7 @@ import { BrandButton, OutlineButton } from "../../styles/Buttons";
 import { ModalStatusMessage } from "../../styles/Containers";
 import { Heading7, Text } from "../../styles/Texts";
 import { fullParseInt } from "../../tools/formatters";
+import { announceSchema } from "../../validator/announceFormSchema";
 
 const CreateAnnounceModal = () => {
   const [modalIsOpen, setModalOpen] = useState<boolean>(false);
@@ -26,43 +27,6 @@ const CreateAnnounceModal = () => {
       setTitle("Criar anúncio");
     }
   }, [announceWasCreated]);
-
-  const today = new Date(Date.now());
-
-  const createAnnounceSchema = yup.object().shape({
-    name: yup.string().required("Campo obrigatório"),
-    year: yup
-      .number()
-      .typeError("Ano inválido")
-      .min(1885, "Ano inválido")
-      .max(today.getFullYear(), "Ano inválido")
-      .required("Campo obrigatório"),
-    km: yup
-      .number()
-      .typeError("Quilometragem Inválida")
-      .required("Campo obrigatório"),
-    price: yup
-      .string()
-      .typeError("Preço inválido")
-      .required("Campo Obrigatório"),
-    description: yup.string().required("Campo obrigatório"),
-    capeImage: yup
-      .string()
-      .url("Insira uma URL válida")
-      .required("Imagem de capa Obrigatória"),
-    img1: yup
-      .string()
-      .url("Insira uma URL válida")
-      .required("Obrigatório pelo menos duas imagens"),
-    img2: yup
-      .string()
-      .url("Insira uma URL válida")
-      .required("Obrigatório pelo menos duas imagens"),
-    img3: yup.string(),
-    img4: yup.string(),
-    img5: yup.string(),
-    img6: yup.string(),
-  });
 
   const onSubmitFunction = (data: any) => {
     const images = [
@@ -110,7 +74,7 @@ const CreateAnnounceModal = () => {
           </ModalStatusMessage>
         ) : (
           <AnnounceForm
-            schema={createAnnounceSchema}
+            schema={announceSchema}
             onSubmitFunction={onSubmitFunction}
             closeContainingModal={closeModal}
           />
