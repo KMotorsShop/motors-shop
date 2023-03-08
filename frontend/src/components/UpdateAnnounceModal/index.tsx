@@ -108,7 +108,7 @@ const UpdateAnnounceModal = ({ id }: UpdateAnnounceModalProps) => {
 
   return (
     <div>
-      <OutlineButton variant="grey" onClick={openModal}>
+      <OutlineButton variant="grey" size="medium" onClick={openModal}>
         Editar Anúncio
       </OutlineButton>
       <BasicModal
