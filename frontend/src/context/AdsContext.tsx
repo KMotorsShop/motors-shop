@@ -11,9 +11,12 @@ export const AdsAuthContext = createContext<IValueAdsProps>(
 
 const AdsContext = ({ children }: IProviderProps) => {
   const [detailedVehicle, setDetailedVehicle] = useState({} as IVehicles);
+  const [vehicles, setVehicles] = useState<IVehicles[]>([]);
 
   return (
-    <AdsAuthContext.Provider value={{ detailedVehicle, setDetailedVehicle }}>
+    <AdsAuthContext.Provider
+      value={{ detailedVehicle, setDetailedVehicle, vehicles, setVehicles }}
+    >
       {children}
     </AdsAuthContext.Provider>
   );

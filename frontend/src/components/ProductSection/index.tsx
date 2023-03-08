@@ -7,12 +7,13 @@ import {
 
 import { Section } from "./style";
 import { CardProduct } from "../cardProduct";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../services/api";
 import { ErrorOption } from "react-hook-form";
+import { AdsAuthContext } from "../../context/AdsContext";
 
 export const ProductSection = ({ type }: ProductSectionProps) => {
-  const [vehicles, setVehicles] = useState<IVehicles[]>([]);
+  const { vehicles, setVehicles } = useContext(AdsAuthContext);
 
   useEffect(() => {
     api

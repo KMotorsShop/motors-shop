@@ -23,6 +23,8 @@ export interface IValueUserProps {
 export interface IValueAdsProps {
   detailedVehicle: IVehicles;
   setDetailedVehicle: Dispatch<SetStateAction<any>>;
+  vehicles: IVehicles[];
+  setVehicles: Dispatch<SetStateAction<IVehicles[]>>;
 }
 
 export interface ProductSectionProps {

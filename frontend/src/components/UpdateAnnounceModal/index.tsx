@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../services/api";
 import * as yup from "yup";
 import AnnounceFormUpdate from "../AnnounceFormUpdate";
@@ -12,12 +12,14 @@ import { fullParseInt } from "../../tools/formatters";
 import { Flex, ModalStatusMessage } from "../../styles/Containers";
 import { Heading7, Text } from "../../styles/Texts";
 import DeleteAnnounceModal from "../DeleteAnnounceModal";
+import { AdsAuthContext } from "../../context/AdsContext";
 
 interface UpdateAnnounceModalProps {
   id: string;
 }
 
 const UpdateAnnounceModal = ({ id }: UpdateAnnounceModalProps) => {
+  const { vehicles, setVehicles } = useContext(AdsAuthContext);
   const today = new Date(Date.now());
 
   const updateAnnounceSchema = yup.object().shape({
@@ -66,7 +68,7 @@ const UpdateAnnounceModal = ({ id }: UpdateAnnounceModalProps) => {
       data.img6,
     ].filter((img) => img != undefined);
 
-    const sendData = {
+    const sendData: any = {
       name: data.name,
       year: data.year,
       km: data.km,
@@ -77,7 +79,10 @@ const UpdateAnnounceModal = ({ id }: UpdateAnnounceModalProps) => {
       images,
     };
 
-    api.patch(`/ads/${id}`, sendData).then((res) => setAnnounceUpdated(true));
+    api.patch(`/ads/${id}`, sendData).then((res) => {
+      setAnnounceUpdated(true);
+      setVehicles([sendData, ...vehicles]);
+    });
   };
 
   const [modalIsOpen, setModalOpen] = useState<boolean>(false);

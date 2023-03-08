@@ -2,13 +2,14 @@ import AnnounceForm from "../AnnounceForm";
 import * as yup from "yup";
 import api from "../../services/api";
 import ReactModal from "react-modal";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BasicModal from "../BasicModal";
 import { BrandButton, OutlineButton } from "../../styles/Buttons";
 import { ModalStatusMessage } from "../../styles/Containers";
 import { Heading7, Text } from "../../styles/Texts";
 import { fullParseInt } from "../../tools/formatters";
 import { announceSchema } from "../../validator/announceFormSchema";
+import { AdsAuthContext } from "../../context/AdsContext";
 
 const CreateAnnounceModal = () => {
   const [modalIsOpen, setModalOpen] = useState<boolean>(false);
@@ -19,6 +20,7 @@ const CreateAnnounceModal = () => {
     setModalOpen(false);
     setAnnounceCreated(false);
   };
+  const { vehicles, setVehicles } = useContext(AdsAuthContext);
 
   useEffect(() => {
     if (announceWasCreated) {
@@ -39,7 +41,7 @@ const CreateAnnounceModal = () => {
       data.img6,
     ].filter((img) => img != undefined);
 
-    const sendData = {
+    const sendData: any = {
       name: data.name,
       year: data.year,
       km: data.km,
@@ -51,6 +53,7 @@ const CreateAnnounceModal = () => {
 
     api.post("/ads", sendData).then((res) => {
       res.status === 201 ? setAnnounceCreated(true) : null;
+      setVehicles([sendData, ...vehicles]);
     });
   };
 
