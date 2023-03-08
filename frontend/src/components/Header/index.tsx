@@ -32,7 +32,6 @@ const Header = () => {
     user,
     setUser,
   } = useContext(AuthContextUser);
-  console.log(user);
   const showMenu = () => {
     setMenu(!menu);
   };
