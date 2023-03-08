@@ -12,8 +12,8 @@ import { Comment } from 'src/comments/entities/comment.entity';
 import { User } from 'src/users/entities/user.entity';
 
 export enum AdTypes {
-  SELL = 'sell',
-  AUCTION = 'auction',
+  CARRO = 'Carro',
+  MOTO = 'Moto',
 }
 
 @Entity('ads')
@@ -33,7 +33,6 @@ export class Ad {
   @Column({
     type: 'enum',
     enum: AdTypes,
-    default: AdTypes.SELL,
   })
   type: AdTypes;
 

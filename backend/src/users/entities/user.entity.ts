@@ -3,8 +3,8 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum UserRoles {
-  SELLER = 'seller',
-  USER = 'user',
+  ANUNCIANTE = 'Anunciante',
+  COMPRADOR = 'Comprador',
 }
 
 @Entity('users')
@@ -36,7 +36,6 @@ export class User {
   @Column({
     type: 'enum',
     enum: UserRoles,
-    default: UserRoles.USER,
   })
   type: UserRoles;
 

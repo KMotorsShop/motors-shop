@@ -51,8 +51,8 @@ export const AnunciantePersonalPage = () => {
       </ContainerLeilao>
       <Body>
         <Anuncios>
-          <ProductSection type="Carros"></ProductSection>
-          <ProductSection type="Motos"></ProductSection>
+          <ProductSection type="Carro"></ProductSection>
+          <ProductSection type="Moto"></ProductSection>
         </Anuncios>
       </Body>
       <Footer />

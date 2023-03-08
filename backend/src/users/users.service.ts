@@ -24,7 +24,7 @@ export class UsersService {
     });
 
     if (emailAlreadyExists) {
-      throw new ConflictException("Email already exists");
+      throw new ConflictException('Email already exists');
     }
     const password = encodePassword(createUserDto.password);
     const user = this.userRepository.create({ ...createUserDto, password });
