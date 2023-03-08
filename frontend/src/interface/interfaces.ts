@@ -14,8 +14,8 @@ export interface IValueUserProps {
   updateUser: (data: IUser) => void;
   userName: string;
   setUserName: Dispatch<SetStateAction<string>>;
-  user: IUser;
-  setUser: Dispatch<SetStateAction<IUser>>;
+  user: IUser | null;
+  setUser: Dispatch<SetStateAction<IUser | null>>;
   nameLogo: string;
   setNameLogo: Dispatch<SetStateAction<string>>;
 }
