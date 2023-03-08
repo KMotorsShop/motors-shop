@@ -1,26 +1,61 @@
-import { Injectable } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { encodePassword } from 'src/utils/bcrypt';
+import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
+import { UserSerializer } from './serializers/user.serializer';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(
+    @InjectRepository(User) private userRepository: Repository<User>,
+  ) {}
+
+  async create(createUserDto: CreateUserDto) {
+    const emailAlreadyExists = await this.userRepository.findOne({
+      where: { email: createUserDto.email },
+    });
+
+    if (emailAlreadyExists) {
+      throw new ConflictException("Email already exists");
+    }
+    const password = encodePassword(createUserDto.password);
+    const user = this.userRepository.create({ ...createUserDto, password });
+    await this.userRepository.save(user);
+    return new UserSerializer(user);
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll() {
+    const userList = await this.userRepository.find();
+    return userList.map((user) => new UserSerializer(user));
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new NotFoundException();
+    }
+    return new UserSerializer(user);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const queryResponse = await this.userRepository.update(
+      { id },
+      updateUserDto,
+    );
+    if (queryResponse.affected === 0) {
+      throw new NotFoundException();
+    }
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} user`;
   }
 }

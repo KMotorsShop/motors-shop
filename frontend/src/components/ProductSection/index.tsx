@@ -26,9 +26,9 @@ export const ProductSection = ({ type }: ProductSectionProps) => {
   }, []);
 
   return (
-    <Section>
-      <h1 id="carros">{type}</h1>
-      <List id="motos">
+    <Section id="carros">
+      <h1 id="motos">{type}</h1>
+      <List>
         {vehicles.map((product, index) => {
           if (product.type === type) {
             return (
