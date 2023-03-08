@@ -18,7 +18,6 @@ const CreateComment = () => {
 
   useEffect(() => {
     const userToken = localStorage.getItem("@kenzie:token")
-    console.log(logged)
     if(!!userToken){
       setLogged(true)
     } else {

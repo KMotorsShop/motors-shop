@@ -45,12 +45,9 @@ const ProductDetailed = () => {
       .catch((err) => console.log(err));
 
     async function getComments() {
-      // console.log(comments[0])
       if(comments.length == 0){
         await api
           .get(`comments/${idAds}`)
-          //Próxima linha só para testes, apague depois que  o idAds estiver funcionando
-          // .get(`comments/e8f71151-10dc-4e22-aa46-5d234fbc7f32`)
           .then((res) => setComments([...comments,res.data]))
           .catch((err) => console.log(err));
       }

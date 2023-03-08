@@ -31,15 +31,6 @@ export class AdsService {
     if (ad.affected === 0) {
       throw new NotFoundException();
     }
-
- // async update(id: number, updateAdDto: UpdateAdDto) {
-    // const ad = this.adRepository.update(updateAdDto, id);
-    // await this.adRepository.save(ad)
-    return ""
-    // ad;
-    // await this.adRepository.save(ad);
-    // return ad;
-
   }
 
   async remove(id: string) {
