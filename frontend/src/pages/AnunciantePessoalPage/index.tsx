@@ -11,16 +11,28 @@ import Header from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { ProductSection } from "../../components/ProductSection";
 import { OutlineButton } from "../../styles/Buttons";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContextUser } from "../../context/userContext";
 import UpdateUser from "../../components/UpdateUser";
 import UpdateUserAddress from "../../components/UpdateUserAddress";
 import { ContainerLeilao, TextTitle } from "../Home/styles";
 import CardLeilaoMobile from "../../components/CardLeilaoMobile";
+import api from "../../services/api";
+import { IUser } from "../../interface/interfaces";
 
 export const AnunciantePersonalPage = () => {
   const { isModalUpdate, isModalUpdateAddress, user, nameLogo } =
     useContext(AuthContextUser);
+  const [dadosUser, setDadosUser] = useState({} as IUser);
+
+  useEffect(() => {
+    const token = localStorage.getItem("@kenzie:token");
+    api.defaults.headers.authorization = `Bearer ${token}`;
+    api.get("users/profile").then((res) => {
+      setDadosUser(res.data);
+    });
+  }, [isModalUpdate]);
+
   return (
     <>
       <Header />
@@ -30,11 +42,11 @@ export const AnunciantePersonalPage = () => {
             <h2>{nameLogo}</h2>
           </LogoUser>
           <Infos>
-            <h1>{user.name}</h1>
-            <span>{user.type}</span>
+            <h1>{dadosUser.name}</h1>
+            <span>{dadosUser.type}</span>
           </Infos>
-          <p>{user.description}</p>
-          {user.type === "Anunciante" ? (
+          <p>{dadosUser.description}</p>
+          {dadosUser.type === "Anunciante" ? (
             <ButtonDiv>
               <OutlineButton variant="brand">Criar anuncio</OutlineButton>
             </ButtonDiv>

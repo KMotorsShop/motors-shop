@@ -8,8 +8,7 @@ import { AuthContextUser } from "../../context/userContext";
 
 const MenuMobile = () => {
   const navigate = useNavigate();
-  const { logged, setLogged } = useContext(AuthContext);
-  const { setIsModalUpdate, setIsModalUpdateAddress } =
+  const { setIsModalUpdate, setIsModalUpdateAddress, user, setUser } =
     useContext(AuthContextUser);
 
   return (
@@ -19,7 +18,7 @@ const MenuMobile = () => {
         <li>Motos</li>
         <li>Leilão</li>
       </ul>
-      {logged ? (
+      {user ? (
         <MainLogged>
           <ul>
             <li onClick={() => setIsModalUpdate(true)}>Editar Perfil</li>
@@ -31,9 +30,9 @@ const MenuMobile = () => {
             </li>
             <li
               onClick={() => {
-                setLogged(false);
+                setUser(null);
                 navigate("/", { replace: true });
-                window.localStorage.clear();
+                window.localStorage.removeItem("@kenzie:token");
               }}
             >
               Sair
