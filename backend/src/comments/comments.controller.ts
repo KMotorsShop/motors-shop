@@ -11,6 +11,7 @@ import {
   Headers,
   Req,
 } from '@nestjs/common';
+import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
@@ -36,6 +37,7 @@ export class CommentsController {
     return this.commentsService.create(createCommentDto, userId ,adId);
   }
 
+  @IsPublic()
   @Get(':adId')
   findAll(
     @Param('adId') adId: string,
@@ -43,6 +45,7 @@ export class CommentsController {
     return this.commentsService.findAll(adId);
   }
 
+  @IsPublic()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.commentsService.findOne(id);
