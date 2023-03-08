@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { Injectable, NotFoundException } from '@nestjs/common';
-
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, Repository } from 'typeorm';
 import { CreateCommentDto } from './dto/create-comment.dto';
@@ -23,15 +22,15 @@ export class CommentsService {
   ) {
     const newComment: any = {
       content: createCommentDto.content,
+      user: userId,  
       ad: adId,
-      user: createCommentDto.userId,  
     };
     const comment = this.commentRepository.create(newComment);
     await this.commentRepository.save(comment);
     return comment;
   }
 
-  async findAll(adId: any ) {
+  async findAll(adId: string ) {
     const allComments = this.commentRepository.find();
     const adComments = (await allComments).filter((comment) => {
       console.log(comment.ad.id)
@@ -47,14 +46,16 @@ export class CommentsService {
 
   async update(id: string, updateCommentDto: UpdateCommentDto) {
     const comment = await this.commentRepository.update(id, updateCommentDto);
-    // await this.commentRepository.save(comment);
-    return '';
-    // comment;
+    if (comment.affected === 0) {
+      throw new NotFoundException();
+    }
   }
 
   async remove(id: string) {
-    // this.commentRepository.remove(id);
-    return '';
-
+    const comment = await this.commentRepository.findOneBy({ id });
+    if (!comment) {
+      throw new NotFoundException();
+    }
+    await this.commentRepository.remove(comment);
   }
 }

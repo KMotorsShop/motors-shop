@@ -14,24 +14,26 @@ import api from "../../services/api";
 
 const CreateComment = () => {
   const [commentValue, setCommentValue] = useState("");
+  const [ logged, setLogged ] = useState(false)
 
   useEffect(() => {
-
-  }, [commentValue])
+    const userToken = localStorage.getItem("@kenzie:token")
+    if(!!userToken){
+      setLogged(true)
+    } else {
+      setLogged(false)
+    }
+  }, [commentValue, logged])
 
   async function sendComment() {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiYWxleEBnbWFpbC5jb20iLCJuYW1lIjoiQWxleGFuZHJlIiwiaWF0IjoxNjc3ODU3NDI4LCJleHAiOjE2Nzc5NDM4Mjh9.-sdzg93Vgs4oB7RdHSkAGjOHlyIaRDZAD-BZb6GPFjE"
+    const token = localStorage.getItem("@kenzie:token");
+    const idAds = localStorage.getItem("@IdVehicle");
     api.defaults.headers.common.Authorization = `Bearer ${token}`
-    // Lembrar de tirar o id do usuário no corpo da req
-    // mudar essa regra no backend
-    // pegar o id do usuário de forma dinâmica
     const data = {
-      userId: "4",
       content: commentValue
     }
     api
-      // Lembrar de trocar o id do anuncio de forma dinâmica
-      .post(`comments/e8f71151-10dc-4e22-aa46-5d234fbc7f32`, data)
+      .post(`comments/${idAds}`, data)
       .then((res) => {
         console.log(res.data)
         window.location.reload();
@@ -52,7 +54,8 @@ const CreateComment = () => {
       } 
        onChange={(e) => setCommentValue(e.target.value)} />
       <MakeAComment
-      onClick={() => sendComment()}> 
+      onClick={() => sendComment()}
+      disabled={!logged && true}> 
         Comentar 
       </MakeAComment>
       <DefaultComments>
@@ -65,7 +68,8 @@ const CreateComment = () => {
           Incrível
         </CommentButton>
         <CommentButton
-        onClick={() => setCommentValue("Recomendarei para meus amigos!")}>
+        onClick={() => setCommentValue("Recomendarei para meus amigos!")}
+        >
           Recomendarei para meus amigos!
         </CommentButton>
       </DefaultComments>
