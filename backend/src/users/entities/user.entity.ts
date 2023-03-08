@@ -35,6 +35,7 @@ export class User {
 
   @Column({
     type: 'enum',
+    default: UserRoles.COMPRADOR,
     enum: UserRoles,
   })
   type: UserRoles;
