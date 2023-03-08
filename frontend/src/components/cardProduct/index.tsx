@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { CardProductProps } from "../../interface/interfaces";
+import { formatCurrency } from "../../tools/formatters";
 import { Card } from "./style";
 
 export const CardProduct = ({
@@ -34,7 +35,7 @@ export const CardProduct = ({
       <Card type="infos">
         <span>{km}</span>
         <span>{year}</span>
-        <h2>R${price},00</h2>
+        <h2>{formatCurrency(`${price}`)}</h2>
       </Card>
     </Card>
   );
