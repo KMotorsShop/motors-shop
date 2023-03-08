@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { redirect, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
@@ -9,6 +9,7 @@ import {
   LoginCredentials,
 } from "../interface/interfaces";
 import api from "../services/api";
+import { AuthContextUser } from "./userContext";
 
 export const AuthContext = createContext({} as AuthContextProviderData);
 
@@ -16,6 +17,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
   const navigate = useNavigate();
 
   const [logged, setLogged] = useState(false);
+  const { setUserName, setUser, user } = useContext(AuthContextUser);
 
   const userLogin = async (credentials: LoginCredentials): Promise<void> => {
     const response = api
@@ -28,42 +30,22 @@ const AuthProvider = ({ children }: IProviderProps) => {
           const token = res.data.token;
           window.localStorage.setItem("@kenzie:token", token);
           setLogged(true);
+
           navigate("/dashboard", { replace: true });
 
-          toast.success("Login realizado com sucesso!", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
+          api.defaults.headers.authorization = `Bearer ${token}`;
+          api.get("users/profile").then((res) => {
+            setUserName(res.data.name);
+            setUser(res.data);
           });
+
+          toast.success("Login realizado com sucesso!");
         } else {
-          toast.error("Email ou senha incorretos!", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
+          toast.error("Email ou senha incorretos!");
         }
       })
       .catch((err) => {
-        toast.error("Email ou senha incorretos!", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        toast.error("Email ou senha incorretos!");
       });
   };
 

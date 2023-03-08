@@ -11,7 +11,6 @@ export const Container = styled("div", {
   display: "flex",
   justifyContent: "center",
   alignItems: "start",
-  overflow: "overlay",
 
   p: {
     marginLeft: "24px",
@@ -60,7 +59,6 @@ export const Box = styled("div", {
   borderRadius: "8px",
   background: "$whiteFixed",
   marginTop: "80px",
-  overflow: "auto",
   marginBottom: "100px",
   "@mobile": {
     width: "347px",

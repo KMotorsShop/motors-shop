@@ -7,14 +7,18 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { AuthRequest } from 'src/auth/models/AuthRequest';
 
 @Controller('users')
+@UseInterceptors(ClassSerializerInterceptor)
+@SerializeOptions({ excludeExtraneousValues: true })
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -29,9 +33,10 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
+  @Get('/profile')
+  findOne(@Req() request: AuthRequest) {
+    return this.usersService.findOne(request.user.id);
+
   }
 
   @Patch(':id')
@@ -41,6 +46,6 @@ export class UsersController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+    return this.usersService.remove(id);
   }
 }
