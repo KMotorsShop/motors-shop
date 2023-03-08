@@ -31,7 +31,7 @@ const AuthProvider = ({ children }: IProviderProps) => {
           window.localStorage.setItem("@kenzie:token", token);
           setLogged(true);
 
-          navigate("/dashboard", { replace: true });
+          navigate("/", { replace: true });
 
           api.defaults.headers.authorization = `Bearer ${token}`;
           api.get("users/profile").then((res) => {

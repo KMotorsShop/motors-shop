@@ -9,7 +9,9 @@ import {
   Param,
   Delete,
   Headers,
+  Req,
 } from '@nestjs/common';
+import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
@@ -30,11 +32,12 @@ export class CommentsController {
   @Post(':adId')
   create(@Body() createCommentDto: CreateCommentDto,
   @Param('adId') adId: string, 
-  @Headers() token: IToken) {
-    const userId = token.authorization.split(" ")[1]
-    return this.commentsService.create(createCommentDto, adId);
+  @Req() request: AuthRequest) {
+    const userId = request.user.id
+    return this.commentsService.create(createCommentDto, userId ,adId);
   }
 
+  @IsPublic()
   @Get(':adId')
   findAll(
     @Param('adId') adId: string,
@@ -42,18 +45,19 @@ export class CommentsController {
     return this.commentsService.findAll(adId);
   }
 
+  @IsPublic()
   @Get(':id')
   findOne(@Param('id') id: string) {
-    // return this.commentsService.findOne(+id);
+    return this.commentsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCommentDto: UpdateCommentDto) {
-    // return this.commentsService.update(+id, updateCommentDto);
+    return this.commentsService.update(id, updateCommentDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    // return this.commentsService.remove(+id);
+    return this.commentsService.remove(id);
   }
 }

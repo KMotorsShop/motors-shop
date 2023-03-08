@@ -30,8 +30,8 @@ const Header = () => {
     setNameLogo,
     nameLogo,
     user,
+    setUser,
   } = useContext(AuthContextUser);
-
   const showMenu = () => {
     setMenu(!menu);
   };
@@ -75,7 +75,7 @@ const Header = () => {
             <LiCards>Leilão</LiCards>
           </a>
         </UlCards>
-        {logged ? (
+        {user ? (
           <CardLogged>
             <div>
               <span>{nameLogo}</span>
@@ -96,9 +96,9 @@ const Header = () => {
                 </LiDropBoxAds>
                 <LiDropBoxAds
                   onClick={() => {
-                    setLogged(false);
+                    setUser(null);
                     navigate("/", { replace: true });
-                    window.localStorage.clear();
+                    window.localStorage.removeItem("@kenzie:token");
                   }}
                 >
                   Sair
@@ -115,9 +115,9 @@ const Header = () => {
 
                 <LiDropBoxAds
                   onClick={() => {
-                    setLogged(false);
+                    setUser(null);
                     navigate("/", { replace: true });
-                    window.localStorage.clear();
+                    window.localStorage.removeItem("@kenzie:token");
                   }}
                 >
                   Sair

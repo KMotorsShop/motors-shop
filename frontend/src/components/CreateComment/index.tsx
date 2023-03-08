@@ -1,37 +1,69 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Flex } from "../../styles/Containers";
 import { TextArea } from "../../styles/Form";
+import { useNavigate } from "react-router-dom";
+import { AuthContextUser } from "../../context/userContext";
 
 import {
   Container,
   DefaultComments,
   CommentButton,
   MakeAComment,
+  GoLogin,
 } from "./styles";
 import { UserInfos, UserLogo } from "../Comment/styles";
 
 import api from "../../services/api";
 
 const CreateComment = () => {
-  const [commentValue, setCommentValue] = useState("");
+  const [ commentValue, setCommentValue ] = useState("");
+  const [ logged, setLogged ] = useState(false);
+
+  const navigate = useNavigate();
+  
+  const {
+    userName,
+    setNameLogo,
+    nameLogo,
+  } = useContext(AuthContextUser);
 
   useEffect(() => {
+    const userToken = localStorage.getItem("@kenzie:token")
+    if(!!userToken){
+      setLogged(true)
+    } else {
+      setLogged(false)
+    }
 
-  }, [commentValue])
+    function createLogo() {
+      const isLongUsername = userName.includes(" ");
+      if (!isLongUsername) {
+        const newLogo = userName[0] + userName[1]
+        setNameLogo(newLogo)
+        return newLogo
+      } else {
+        const separate = userName.split(" ")
+        const newLogo = separate[0][0] + separate[1][0]
+        setNameLogo(newLogo)
+        return newLogo
+      };
+    }
+
+    if(logged){
+      createLogo()
+    }
+
+  }, [commentValue, logged, userName, nameLogo])
 
   async function sendComment() {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiYWxleEBnbWFpbC5jb20iLCJuYW1lIjoiQWxleGFuZHJlIiwiaWF0IjoxNjc3ODU3NDI4LCJleHAiOjE2Nzc5NDM4Mjh9.-sdzg93Vgs4oB7RdHSkAGjOHlyIaRDZAD-BZb6GPFjE"
+    const token = localStorage.getItem("@kenzie:token");
+    const idAds = localStorage.getItem("@IdVehicle");
     api.defaults.headers.common.Authorization = `Bearer ${token}`
-    // Lembrar de tirar o id do usuário no corpo da req
-    // mudar essa regra no backend
-    // pegar o id do usuário de forma dinâmica
     const data = {
-      userId: "4",
       content: commentValue
     }
     api
-      // Lembrar de trocar o id do anuncio de forma dinâmica
-      .post(`comments/e8f71151-10dc-4e22-aa46-5d234fbc7f32`, data)
+      .post(`comments/${idAds}`, data)
       .then((res) => {
         console.log(res.data)
         window.location.reload();
@@ -42,8 +74,15 @@ const CreateComment = () => {
   return (
     <Container>
       <UserInfos>
-        <UserLogo>SL</UserLogo>
-        <p>Samuel Lopes</p>
+        {
+          logged ? 
+          <>
+            <UserLogo>{nameLogo}</UserLogo>
+            <p>{userName}</p>
+          </> : 
+          <p>Faça Login para comentar!</p>
+        }
+
       </UserInfos>
       <TextArea placeholder={
         commentValue != "" ?
@@ -51,10 +90,21 @@ const CreateComment = () => {
         "Carro muito confortável, foi uma ótima experiência de compra..."
       } 
        onChange={(e) => setCommentValue(e.target.value)} />
-      <MakeAComment
-      onClick={() => sendComment()}> 
-        Comentar 
-      </MakeAComment>
+      { 
+        logged ? 
+        <MakeAComment
+        onClick={() => sendComment()}
+        > 
+          Comentar 
+        </MakeAComment> 
+        : 
+        <GoLogin
+        onClick={() => navigate('/login')}
+        > 
+          Comentar
+        </GoLogin>
+      }
+
       <DefaultComments>
         <CommentButton 
         onClick={() => setCommentValue("Gostei muito!")}>
@@ -65,7 +115,8 @@ const CreateComment = () => {
           Incrível
         </CommentButton>
         <CommentButton
-        onClick={() => setCommentValue("Recomendarei para meus amigos!")}>
+        onClick={() => setCommentValue("Recomendarei para meus amigos!")}
+        >
           Recomendarei para meus amigos!
         </CommentButton>
       </DefaultComments>
