@@ -8,6 +8,7 @@ import api from "../services/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
+import { AdsAuthContext } from "./AdsContext";
 
 export const AuthContextUser = createContext<IValueUserProps>(
   {} as IValueUserProps
@@ -23,8 +24,6 @@ const UserContext = ({ children }: IProviderProps) => {
   const [nameLogo, setNameLogo] = useState("");
   const navigate = useNavigate();
 
-  const { setLogged } = useContext(AuthContext);
-
   useEffect(() => {
     const token = localStorage.getItem("@kenzie:token");
 
@@ -36,7 +35,6 @@ const UserContext = ({ children }: IProviderProps) => {
             setUserName(res.data.name);
             setUser(res.data);
           });
-          // setLogged(true);
         } catch (error) {
           console.log(error);
         }
@@ -44,15 +42,6 @@ const UserContext = ({ children }: IProviderProps) => {
       userAutoLogin();
     }
   }, [isModalUpdate]);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("@kenzie:token");
-  //   api.defaults.headers.authorization = `Bearer ${token}`;
-  //   api.get("users/profile").then((res) => {
-  //     setUserName(res.data.name);
-  //     setUser(res.data);
-  //   });
-  // }, [isModalUpdate]);
 
   const onRegister = (data: IUser) => {
     data.type = type;

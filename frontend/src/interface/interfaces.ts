@@ -62,6 +62,7 @@ export interface IVehicles {
   description: string;
   km: number;
   isActive: boolean;
+  seller: IUser;
 }
 
 export interface ArrayTesteProps {
