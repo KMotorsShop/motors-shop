@@ -1,20 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Flex } from "../../styles/Containers";
 import { TextArea } from "../../styles/Form";
+import { useNavigate } from "react-router-dom";
+import { AuthContextUser } from "../../context/userContext";
 
 import {
   Container,
   DefaultComments,
   CommentButton,
   MakeAComment,
+  GoLogin,
 } from "./styles";
 import { UserInfos, UserLogo } from "../Comment/styles";
 
 import api from "../../services/api";
 
 const CreateComment = () => {
-  const [commentValue, setCommentValue] = useState("");
-  const [ logged, setLogged ] = useState(false)
+  const [ commentValue, setCommentValue ] = useState("");
+  const [ logged, setLogged ] = useState(false);
+
+  const navigate = useNavigate();
+  
+  const {
+    userName,
+    setNameLogo,
+    nameLogo,
+  } = useContext(AuthContextUser);
 
   useEffect(() => {
     const userToken = localStorage.getItem("@kenzie:token")
@@ -23,7 +34,26 @@ const CreateComment = () => {
     } else {
       setLogged(false)
     }
-  }, [commentValue, logged])
+
+    function createLogo() {
+      const isLongUsername = userName.includes(" ");
+      if (!isLongUsername) {
+        const newLogo = userName[0] + userName[1]
+        setNameLogo(newLogo)
+        return newLogo
+      } else {
+        const separate = userName.split(" ")
+        const newLogo = separate[0][0] + separate[1][0]
+        setNameLogo(newLogo)
+        return newLogo
+      };
+    }
+
+    if(logged){
+      createLogo()
+    }
+
+  }, [commentValue, logged, userName, nameLogo])
 
   async function sendComment() {
     const token = localStorage.getItem("@kenzie:token");
@@ -44,8 +74,15 @@ const CreateComment = () => {
   return (
     <Container>
       <UserInfos>
-        <UserLogo>SL</UserLogo>
-        <p>Samuel Lopes</p>
+        {
+          logged ? 
+          <>
+            <UserLogo>{nameLogo}</UserLogo>
+            <p>{userName}</p>
+          </> : 
+          <p>Faça Login para comentar!</p>
+        }
+
       </UserInfos>
       <TextArea placeholder={
         commentValue != "" ?
@@ -53,11 +90,21 @@ const CreateComment = () => {
         "Carro muito confortável, foi uma ótima experiência de compra..."
       } 
        onChange={(e) => setCommentValue(e.target.value)} />
-      <MakeAComment
-      onClick={() => sendComment()}
-      disabled={!logged && true}> 
-        Comentar 
-      </MakeAComment>
+      { 
+        logged ? 
+        <MakeAComment
+        onClick={() => sendComment()}
+        > 
+          Comentar 
+        </MakeAComment> 
+        : 
+        <GoLogin
+        onClick={() => navigate('/login')}
+        > 
+          Comentar
+        </GoLogin>
+      }
+
       <DefaultComments>
         <CommentButton 
         onClick={() => setCommentValue("Gostei muito!")}>

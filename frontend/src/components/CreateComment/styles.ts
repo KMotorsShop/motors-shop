@@ -47,3 +47,8 @@ export const MakeAComment = styled(BrandButton, {
         marginTop: "-110px",
     }
 });
+
+export const GoLogin = styled(MakeAComment, {
+    color: "white",
+    background: "#CED4DA",
+});

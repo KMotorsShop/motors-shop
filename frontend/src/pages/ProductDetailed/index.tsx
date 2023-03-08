@@ -37,7 +37,7 @@ const ProductDetailed = () => {
   useEffect(() => {
     const idAds = localStorage.getItem("@IdVehicle");
     const token = localStorage.getItem("@kenzie:token");
-    api.defaults.headers.common.Authorization = `Bearer ${token}`
+    // api.defaults.headers.common.Authorization = `Bearer ${token}`
 
     api
       .get(`ads/${idAds}`)
@@ -48,11 +48,12 @@ const ProductDetailed = () => {
       if(comments.length == 0){
         await api
           .get(`comments/${idAds}`)
-          .then((res) => setComments([...comments,res.data]))
+          .then((res) => {
+            setComments([...comments,res.data])
+          })
           .catch((err) => console.log(err));
       }
     }
-
     getComments()
   }, [detailedVehicle, comments]);
 
