@@ -14,6 +14,7 @@ import {
 } from '@nestjs/common';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { AuthRequest } from 'src/auth/models/AuthRequest';
 import { User } from 'src/users/entities/user.entity';
 import { AdsService } from './ads.service';
 import { CreateAdDto } from './dto/create-ad.dto';
@@ -30,8 +31,8 @@ export class AdsController {
     return this.adsService.create(createAdDto, user.id);
   }
 
-  @Get()
   @IsPublic()
+  @Get()
   findAll() {
     return this.adsService.findAll();
   }

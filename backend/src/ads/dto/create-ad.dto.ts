@@ -17,7 +17,7 @@ export class CreateAdDto {
   name: string;
 
   @IsDefined()
-  @IsIn([AdTypes.SELL, AdTypes.AUCTION])
+  @IsIn([AdTypes.CARRO, AdTypes.MOTO])
   type: AdTypes;
 
   @IsDefined()

@@ -21,7 +21,7 @@ export class CreateUserDto {
 
   @IsDefined()
   @IsString()
-  @IsIn(['seller', 'client'])
+  @IsIn(['Anunciante', 'Comprador'])
   type: UserRoles;
 
   @IsDefined()
@@ -33,7 +33,7 @@ export class CreateUserDto {
 
   @IsDefined()
   @IsString()
-  @IsDateString()
+  // @IsDateString()
   birthdate: string;
 
   @IsDefined()

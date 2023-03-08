@@ -49,7 +49,8 @@ const Header = () => {
   }, [userName]);
 
   const arrayNome = userName.split(" ");
-  const nomeCerto = `${arrayNome[0]} ${arrayNome[1]}`;
+  const nameOne = `${arrayNome[0]}`;
+  const nameTwo = `${arrayNome[0]} ${arrayNome[1]}`;
 
   return (
     <Card id="header">
@@ -79,7 +80,7 @@ const Header = () => {
             <div>
               <span>{nameLogo}</span>
             </div>
-            <p>{nomeCerto}</p>
+            <p>{arrayNome.length < 2 ? nameOne : nameTwo}</p>
             {user.type === "Anunciante" ? (
               <DropBoxAds>
                 <LiDropBoxAds onClick={() => setIsModalUpdate(true)}>

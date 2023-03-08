@@ -32,8 +32,8 @@ const Home = () => {
         <CardLeilaoMobile />
         <CardLeilaoMobile />
       </ContainerLeilao>
-      <ProductSection type="Carros" />
-      <ProductSection type="Motos" />
+      <ProductSection type="Carro" />
+      <ProductSection type="Moto" />
       <Footer />
       {isModalUpdate && <UpdateUser />}
       {isModalUpdateAddress && <UpdateUserAddress />}

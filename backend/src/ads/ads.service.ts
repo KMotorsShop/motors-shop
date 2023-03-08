@@ -17,7 +17,7 @@ export class AdsService {
       seller: { id: userId },
     });
     await this.adRepository.save(ad);
-    return ad;
+    return new AdSerializer(ad);
   }
 
   async findAll() {
