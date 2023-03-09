@@ -20,6 +20,7 @@ export const CardProduct = ({
   images,
   isActive,
   seller,
+  viewAsSeller,
 }: CardProductProps) => {
   const navigate = useNavigate();
 
@@ -66,6 +67,14 @@ export const CardProduct = ({
         <span>{year}</span>
         <h2>{formatCurrency(`${price}`)}</h2>
       </Card>
+      {viewAsSeller ? (
+        <Flex>
+          <UpdateAnnounceModal id={id} />
+          <OutlineButton size="medium" variant="grey">
+            Ver como comprador
+          </OutlineButton>
+        </Flex>
+      ) : null}
     </Card>
   );
 };
