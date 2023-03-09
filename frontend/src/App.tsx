@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { AdsAuthContext } from "./context/AdsContext";
+import RoutesMain from "./routes";
+import api from "./services/api";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {
+    setDetailedVehicle,
+    setDetailProduct,
+    detailProduct,
+    detailProductImg,
+    setDetailProductImg,
+    setSigla,
+  } = useContext(AdsAuthContext);
+  const idAds = localStorage.getItem("@IdVehicle");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    api
+      .get(`ads/${idAds}`)
+      .then((res) => {
+        setDetailedVehicle(res.data);
+        setDetailProduct(res.data.seller);
+        setDetailProductImg(res.data.images);
+        setSigla(res.data.seller.name[0]);
+      })
+      .catch((err) => console.log(err));
+  }, [navigate]);
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <RoutesMain />
     </div>
-  )
+  );
 }
-
-export default App
+export default App;
