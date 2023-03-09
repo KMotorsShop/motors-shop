@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Advertiser from "../../components/DetailedProductView/Advertiser";
 import BigPicture from "../../components/DetailedProductView/BigPicture";
 import Description from "../../components/DetailedProductView/Description";
@@ -15,9 +15,13 @@ import {
   ContainerComments,
   CardOne,
   CardTwo,
+  DetailViewBackgroundTop,
+  CardComments,
 } from "./styles";
 import Comment from "../../components/Comment";
 import CreateComment from "../../components/CreateComment";
+import NoDataMessage from "../../components/NoDataMessage";
+import { useParams } from "react-router-dom";
 
 interface IUser {
   name: string;
@@ -32,20 +36,23 @@ interface ICommentResponse {
 }
 
 const ProductDetailed = () => {
-  const { detailedVehicle, comments, setComments } = useContext(AdsAuthContext);
+  const { anuncio } = useParams();
+
+  const { detailedVehicle } = useContext(AdsAuthContext);
+  const [comments, setComments] = useState<ICommentResponse[]>([]);
 
   useEffect(() => {
-    const idAds = localStorage.getItem("@IdVehicle");
-
     async function getComments() {
       if (comments.length == 0) {
         await api
-          .get(`comments/${idAds}`)
+          .get(`comments/${anuncio}`)
           .then((res) => {
-            setComments([...comments, res.data]);
+            setComments([...comments, ...res.data]);
           })
           .catch((err) => console.log(err));
       }
+
+      return 
     }
     getComments();
   }, [detailedVehicle, comments]);
@@ -54,6 +61,7 @@ const ProductDetailed = () => {
     <>
       <Header />
       <Container>
+        <DetailViewBackgroundTop />
         <ContainerOne>
           <BigPicture />
           <Infos />
@@ -65,9 +73,9 @@ const ProductDetailed = () => {
         </ContainerTwo>
       </Container>
       <ContainerComments>
-        <CardOne>
-          {comments.length != 0 &&
-            comments[0].map((comment: ICommentResponse) => {
+        <CardComments>
+          {comments.length != 0 ? (
+            comments.map((comment: ICommentResponse) => {
               return (
                 <Comment
                   key={comment.id}
@@ -78,8 +86,11 @@ const ProductDetailed = () => {
                   idLoggedOwner={comment.user.id}
                 />
               );
-            })}
-        </CardOne>
+            })
+          ) : (
+            <NoDataMessage message="Ainda não há comentários sobre este produto. Seja o primeiro a comentar!" />
+          )}
+        </CardComments>
         <CardTwo>
           <CreateComment />
         </CardTwo>
