@@ -1,19 +1,15 @@
+import api from "../../services/api";
 import { List } from "./style";
+import { Section } from "./style";
+import { useContext, useEffect, useState } from "react";
 import { IUser, ProductSectionProps } from "../../interface/interfaces";
 
-import { Section } from "./style";
 import { CardProduct } from "../cardProduct";
-import { useContext, useEffect, useState } from "react";
-import api from "../../services/api";
 import { ErrorOption } from "react-hook-form";
 import { AdsAuthContext } from "../../context/AdsContext";
 
-export const ProductSectionPersonal = ({
-  type,
-  inDashboard,
-}: ProductSectionProps) => {
-  const { vehicles, setVehicles, adWasUpdated, announceWasCreated } =
-    useContext(AdsAuthContext);
+export const ProductSectionPersonal = ({ type }: ProductSectionProps) => {
+  const { adWasUpdated, announceWasCreated } = useContext(AdsAuthContext);
   const [vehiclesPersonal, setVehiclesPersonal] = useState<IUser[]>([]);
   useEffect(() => {
     api
@@ -32,13 +28,7 @@ export const ProductSectionPersonal = ({
       <List>
         {vehiclesPersonal.map((product, index) => {
           if (product.type === type) {
-            return (
-              <CardProduct
-                key={index}
-                {...product}
-                viewAsSeller={inDashboard}
-              />
-            );
+            return <CardProduct key={index} {...product} viewAsSeller={true} />;
           }
         })}
       </List>
