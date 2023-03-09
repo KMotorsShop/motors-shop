@@ -48,6 +48,17 @@ export class UsersService {
     return new UserSerializer(user);
   }
 
+  async findOneUserAds(id: string) {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: { ads: true },
+    });
+    if (!user) {
+      throw new NotFoundException();
+    }
+    return new UserSerializer(user);
+  }
+
   async update(id: string, updateUserDto: UpdateUserDto) {
     const queryResponse = await this.userRepository.update(
       { id },

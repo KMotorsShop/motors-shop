@@ -35,6 +35,7 @@ export const LoginPage = () => {
               <Label>Senha</Label>
             </label>
             <Input
+              type="password"
               placeholder="Digitar senha"
               {...register("password")}
             ></Input>
