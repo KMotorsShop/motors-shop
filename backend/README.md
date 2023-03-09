@@ -209,7 +209,7 @@ Exemplo: *http://localhost:3000/me*
 {
   "id": "0dd5cdea-ec64-43bf-a7b3-a9382a82088c",
   "email": "alex@email.com",
-  "name": "Alexandre
+  "name": "Alexandre"
 }
 ```
 
