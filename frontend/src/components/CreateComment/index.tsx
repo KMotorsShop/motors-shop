@@ -11,7 +11,7 @@ import {
   MakeAComment,
   GoLogin,
 } from "./styles";
-import { UserInfos, UserLogo } from "../Comment/styles";
+import { UserInfos, UserInfosCreate, UserLogo } from "../Comment/styles";
 
 import api from "../../services/api";
 
@@ -67,13 +67,14 @@ const CreateComment = () => {
       .then((res) => {
         console.log(res.data)
         window.location.reload();
+        window.location.reload();
       })
       .catch((err) => console.log(err));
   }
 
   return (
     <Container>
-      <UserInfos>
+      <UserInfosCreate>
         {
           logged ? 
           <>
@@ -83,7 +84,7 @@ const CreateComment = () => {
           <p>Faça Login para comentar!</p>
         }
 
-      </UserInfos>
+      </UserInfosCreate>
       <TextArea placeholder={
         commentValue != "" ?
         commentValue : 
