@@ -31,10 +31,17 @@ export interface IValueAdsProps {
   setDetailProduct: Dispatch<SetStateAction<IUserProduct>>;
   detailProductImg: string[];
   setDetailProductImg: Dispatch<SetStateAction<string[]>>;
+  adWasUpdated: boolean;
+  setAdUpdated: Dispatch<SetStateAction<boolean>>;
+  announceWasCreated: boolean;
+  setAnnounceCreated: Dispatch<SetStateAction<boolean>>;
+  sigla: string;
+  setSigla: Dispatch<SetStateAction<string>>;
 }
 
 export interface ProductSectionProps {
   type: string;
+  inDashboard?: boolean;
 }
 
 export interface CardProductProps {
@@ -47,6 +54,7 @@ export interface CardProductProps {
   year: number;
   price: number;
   id: string;
+  viewAsSeller?: boolean;
 }
 
 export interface IProviderProps {

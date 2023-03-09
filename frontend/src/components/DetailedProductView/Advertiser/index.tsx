@@ -4,12 +4,17 @@ import { BaseButton } from "../../../styles/Buttons";
 import { Container, DivText, LogoUser } from "./styles";
 
 const Advertiser = () => {
-  const { detailedVehicle, detailProduct } = useContext(AdsAuthContext);
+  const { detailProduct, sigla } = useContext(AdsAuthContext);
+
+  // const sigla = detailProduct.name.split(" ");
 
   return (
     <Container>
       <LogoUser>
-        <span>SL</span>
+        <span>
+          {/* {sigla.length < 2 ? `${sigla[0][0]}` : `${sigla[0][0]}${sigla[1][0]}`} */}
+          {sigla}
+        </span>
       </LogoUser>
       <h1>{detailProduct.name}</h1>
       <DivText>

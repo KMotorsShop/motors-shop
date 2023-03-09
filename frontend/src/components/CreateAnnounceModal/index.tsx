@@ -12,15 +12,16 @@ import { announceSchema } from "../../validator/announceFormSchema";
 import { AdsAuthContext } from "../../context/AdsContext";
 
 const CreateAnnounceModal = () => {
+  const { vehicles, setVehicles, announceWasCreated, setAnnounceCreated } =
+    useContext(AdsAuthContext);
   const [modalIsOpen, setModalOpen] = useState<boolean>(false);
-  const [announceWasCreated, setAnnounceCreated] = useState(false);
+
   const [title, setTitle] = useState<string>("");
   const openModal = () => setModalOpen(true);
   const closeModal = () => {
     setModalOpen(false);
     setAnnounceCreated(false);
   };
-  const { vehicles, setVehicles } = useContext(AdsAuthContext);
 
   useEffect(() => {
     if (announceWasCreated) {

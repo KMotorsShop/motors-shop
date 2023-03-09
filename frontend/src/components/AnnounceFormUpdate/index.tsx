@@ -66,7 +66,7 @@ const AnnounceFormUpdate = ({
     api.get(`/ads/${id}`).then((res) => {
       res.data.price = formatCurrency(String(res.data.price));
       setOriginalData(res.data);
-      setAdType(res.data.type);
+      setVehicleType(res.data.type);
       setPublished(res.data.isActive);
 
       const imageCount = res.data.images.length;

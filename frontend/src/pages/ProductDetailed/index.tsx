@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Advertiser from "../../components/DetailedProductView/Advertiser";
 import BigPicture from "../../components/DetailedProductView/BigPicture";
 import Description from "../../components/DetailedProductView/Description";
@@ -21,6 +21,7 @@ import CreateComment from "../../components/CreateComment";
 
 interface IUser {
   name: string;
+  id: string;
 }
 
 interface ICommentResponse {
@@ -31,18 +32,10 @@ interface ICommentResponse {
 }
 
 const ProductDetailed = () => {
-  const { setDetailedVehicle, detailedVehicle } = useContext(AdsAuthContext);
-  const [comments, setComments] = useState<Array<any>>([]);
+  const { detailedVehicle, comments, setComments } = useContext(AdsAuthContext);
 
   useEffect(() => {
     const idAds = localStorage.getItem("@IdVehicle");
-    // const token = localStorage.getItem("@kenzie:token");
-    // api.defaults.headers.common.Authorization = `Bearer ${token}`
-
-    // api
-    //   .get(`ads/${idAds}`)
-    //   .then((res) => setDetailedVehicle(res.data))
-    //   .catch((err) => console.log(err));
 
     async function getComments() {
       if (comments.length == 0) {
@@ -82,6 +75,7 @@ const ProductDetailed = () => {
                   content={comment.content}
                   createdAt={comment.createdAt}
                   userName={comment.user.name}
+                  idLoggedOwner={comment.user.id}
                 />
               );
             })}

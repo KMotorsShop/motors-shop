@@ -11,6 +11,7 @@ function App() {
     detailProduct,
     detailProductImg,
     setDetailProductImg,
+    setSigla,
   } = useContext(AdsAuthContext);
   const idAds = localStorage.getItem("@IdVehicle");
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ function App() {
         setDetailedVehicle(res.data);
         setDetailProduct(res.data.seller);
         setDetailProductImg(res.data.images);
+        setSigla(res.data.seller.name[0]);
       })
       .catch((err) => console.log(err));
   }, [navigate]);

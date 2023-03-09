@@ -22,6 +22,7 @@ const AdsContext = ({ children }: IProviderProps) => {
     {} as IUserProduct
   );
   const [detailProductImg, setDetailProductImg] = useState<string[]>([]);
+  const [sigla, setSigla] = useState("");
 
   useEffect(() => {
     const idAds = localStorage.getItem("@IdVehicle");
@@ -40,6 +41,8 @@ const AdsContext = ({ children }: IProviderProps) => {
       autoLoginAds();
     }
   }, []);
+  const [adWasUpdated, setAdUpdated] = useState<boolean>(false);
+  const [announceWasCreated, setAnnounceCreated] = useState(false);
 
   return (
     <AdsAuthContext.Provider
@@ -54,6 +57,12 @@ const AdsContext = ({ children }: IProviderProps) => {
         setDetailProduct,
         detailProductImg,
         setDetailProductImg,
+        adWasUpdated,
+        setAdUpdated,
+        announceWasCreated,
+        setAnnounceCreated,
+        sigla,
+        setSigla,
       }}
     >
       {children}
