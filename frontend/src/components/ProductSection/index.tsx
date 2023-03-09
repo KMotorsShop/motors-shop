@@ -1,11 +1,13 @@
-import { List } from "./style";
-import { ProductSectionProps } from "../../interface/interfaces";
+import api from "../../services/api";
 
+import { ErrorOption } from "react-hook-form";
+import { useContext, useEffect, useState } from "react";
+
+import { List } from "./style";
 import { Section } from "./style";
 import { CardProduct } from "../cardProduct";
-import { useContext, useEffect, useState } from "react";
-import api from "../../services/api";
-import { ErrorOption } from "react-hook-form";
+import { ProductSectionProps } from "../../interface/interfaces";
+
 import { AdsAuthContext } from "../../context/AdsContext";
 
 export const ProductSection = ({ type, inDashboard }: ProductSectionProps) => {
