@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AdsAuthContext } from "../../../context/AdsContext";
+import { formatCurrency } from "../../../tools/formatters";
 import { CardSpan, Container, DivInfos, Spans } from "./styles";
 
 const Infos = () => {
@@ -17,7 +18,7 @@ const Infos = () => {
             <span>{detailedVehicle.km}</span>
           </CardSpan>
         </Spans>
-        <p>R$ {detailedVehicle.price}</p>
+        <p>{formatCurrency(`${detailedVehicle.price}`)}</p>
       </DivInfos>
       <button>Comprar</button>
     </Container>
