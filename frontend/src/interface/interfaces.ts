@@ -25,6 +25,8 @@ export interface IValueAdsProps {
   setDetailedVehicle: Dispatch<SetStateAction<any>>;
   vehicles: IVehicles[];
   setVehicles: Dispatch<SetStateAction<IVehicles[]>>;
+  adWasUpdated: boolean;
+  setAdUpdated: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface ProductSectionProps {
