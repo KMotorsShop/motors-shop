@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
 import { CreateAdDto } from './dto/create-ad.dto';
 import { UpdateAdDto } from './dto/update-ad.dto';
@@ -9,12 +10,19 @@ import { AdSerializer } from './serializers/ad.serializer';
 
 @Injectable()
 export class AdsService {
-  constructor(@InjectRepository(Ad) private adRepository: Repository<Ad>) {}
+  constructor(
+    @InjectRepository(Ad) private adRepository: Repository<Ad>,
+    @InjectRepository(User) private userRepository: Repository<User>,
+  ) {}
 
   async create(createAdDto: CreateAdDto, userId: string) {
+    const user = await this.userRepository.findOneBy({ id: userId });
+    if (!user) {
+      throw new NotFoundException();
+    }
     const ad = this.adRepository.create({
       ...createAdDto,
-      seller: { id: userId },
+      seller: user,
     });
     await this.adRepository.save(ad);
     return new AdSerializer(ad);

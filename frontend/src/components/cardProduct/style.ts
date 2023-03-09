@@ -1,6 +1,26 @@
-import { styled } from "@stitches/react";
+import { styled } from "../../styles/stitches.config";
+
+export const BrandSpan = styled("span", {
+  position: "absolute",
+  top: 10,
+  left: 10,
+  background: "$brand1",
+  color: "$whiteFixed",
+  padding: "0.25rem $1",
+  cursor: "default",
+  fontSize: "$small",
+
+  variants: {
+    state: {
+      inactive: {
+        background: "$grey4",
+      },
+    },
+  },
+});
 
 export const Card = styled("div", {
+  position: "relative",
   backgroundColor: "$brand6",
   color: "#212529",
   width: "352px",
@@ -12,9 +32,10 @@ export const Card = styled("div", {
     border: "2px solid #E9ECEF",
     width: "345px",
     height: "152px",
-    padding: "20px 40px",
+    padding: "0 20",
     cursor: "pointer",
     backgroundColor: "#E9ECEF",
+    objectFit: "cover",
     "&:hover": {
       border: "2px solid #4529E6",
     },

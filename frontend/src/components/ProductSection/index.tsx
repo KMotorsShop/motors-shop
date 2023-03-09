@@ -1,19 +1,15 @@
 import { List } from "./style";
-import {
-  ArrayTesteProps,
-  IVehicles,
-  ProductSectionProps,
-} from "../../interface/interfaces";
+import { ProductSectionProps } from "../../interface/interfaces";
 
 import { Section } from "./style";
 import { CardProduct } from "../cardProduct";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../services/api";
 import { ErrorOption } from "react-hook-form";
+import { AdsAuthContext } from "../../context/AdsContext";
 
-export const ProductSection = ({ type }: ProductSectionProps) => {
-  const [vehicles, setVehicles] = useState<IVehicles[]>([]);
-
+export const ProductSection = ({ type, inDashboard }: ProductSectionProps) => {
+  const { vehicles, setVehicles, adWasUpdated } = useContext(AdsAuthContext);
   useEffect(() => {
     api
       .get("ads")
@@ -23,7 +19,7 @@ export const ProductSection = ({ type }: ProductSectionProps) => {
       .catch((err: ErrorOption) => {
         console.log(err);
       });
-  }, []);
+  }, [adWasUpdated]);
 
   return (
     <Section id="carros">
@@ -33,14 +29,10 @@ export const ProductSection = ({ type }: ProductSectionProps) => {
           if (product.type === type) {
             return (
               <CardProduct
-                id={product.id}
                 key={index}
-                name={product.name}
-                description={product.description}
-                km={product.km}
-                price={product.price}
-                year={product.year}
-              ></CardProduct>
+                {...product}
+                viewAsSeller={inDashboard}
+              />
             );
           }
         })}

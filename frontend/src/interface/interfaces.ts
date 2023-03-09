@@ -23,19 +23,28 @@ export interface IValueUserProps {
 export interface IValueAdsProps {
   detailedVehicle: IVehicles;
   setDetailedVehicle: Dispatch<SetStateAction<any>>;
+  vehicles: IVehicles[];
+  setVehicles: Dispatch<SetStateAction<IVehicles[]>>;
+  adWasUpdated: boolean;
+  setAdUpdated: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface ProductSectionProps {
   type: string;
+  inDashboard?: boolean;
 }
 
 export interface CardProductProps {
+  isActive: boolean;
+  seller: IUser;
+  images: string[];
   name: string;
   description: string;
   km: number;
   year: number;
   price: number;
   id: string;
+  viewAsSeller?: boolean;
 }
 
 export interface IProviderProps {
@@ -62,6 +71,8 @@ export interface IVehicles {
   description: string;
   km: number;
   isActive: boolean;
+  images: string[];
+  seller: IUser;
 }
 
 export interface ArrayTesteProps {

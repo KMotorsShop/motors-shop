@@ -17,6 +17,7 @@ import UpdateUser from "../../components/UpdateUser";
 import UpdateUserAddress from "../../components/UpdateUserAddress";
 import { ContainerLeilao, TextTitle } from "../Home/styles";
 import CardLeilaoMobile from "../../components/CardLeilaoMobile";
+import CreateAnnounceModal from "../../components/CreateAnnounceModal";
 import api from "../../services/api";
 import { IUser } from "../../interface/interfaces";
 
@@ -48,7 +49,7 @@ export const AnunciantePersonalPage = () => {
           <p>{dadosUser.description}</p>
           {dadosUser.type === "Anunciante" ? (
             <ButtonDiv>
-              <OutlineButton variant="brand">Criar anuncio</OutlineButton>
+              <CreateAnnounceModal />
             </ButtonDiv>
           ) : (
             <></>
@@ -63,8 +64,8 @@ export const AnunciantePersonalPage = () => {
       </ContainerLeilao>
       <Body>
         <Anuncios>
-          <ProductSection type="Carro"></ProductSection>
-          <ProductSection type="Moto"></ProductSection>
+          <ProductSection type="Carro" inDashboard />
+          <ProductSection type="Moto" inDashboard />
         </Anuncios>
       </Body>
       <Footer />

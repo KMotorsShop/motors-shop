@@ -1,6 +1,14 @@
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContextUser } from "../../context/userContext";
 import { CardProductProps } from "../../interface/interfaces";
-import { Card } from "./style";
+import { OutlineButton } from "../../styles/Buttons";
+import { Flex } from "../../styles/Containers";
+import { Heading7, Text } from "../../styles/Texts";
+import { formatCurrency } from "../../tools/formatters";
+import { UserLogo } from "../Comment/styles";
+import UpdateAnnounceModal from "../UpdateAnnounceModal";
+import { BrandSpan, Card } from "./style";
 
 export const CardProduct = ({
   name,
@@ -9,6 +17,10 @@ export const CardProduct = ({
   year,
   price,
   id,
+  images,
+  isActive,
+  seller,
+  viewAsSeller,
 }: CardProductProps) => {
   const navigate = useNavigate();
 
@@ -18,24 +30,51 @@ export const CardProduct = ({
     navigate(`/${idAds}`, { replace: true });
   };
 
+  const [sellerLogo, setSellerLogo] = useState<string>("");
+
+  useEffect(() => {
+    const isLongUsername = seller.name.includes(" ");
+    let newLogo = "";
+    if (!isLongUsername) {
+      newLogo = seller.name[0] + seller.name[1];
+    } else {
+      const separate = seller.name.split(" ");
+      newLogo = separate[0][0] + separate[1][0];
+    }
+    setSellerLogo(newLogo);
+  }, []);
+
+  const textLimit = 90;
   return (
     <Card>
-      <img
-        onClick={productDetailed}
-        id={id}
-        src="https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=960"
-      ></img>
-      <h1>{name}</h1>
-      <p>{description}</p>
+      {isActive ? (
+        <BrandSpan>Ativo</BrandSpan>
+      ) : (
+        <BrandSpan state="inactive">Inativo</BrandSpan>
+      )}
+      <img onClick={productDetailed} id={id} src={images[0]}></img>
+      <Heading7 css={{ marginTop: "$1" }}>{name}</Heading7>
+      <Text>
+        {description.length > textLimit
+          ? description.slice(0, textLimit) + "..."
+          : description}
+      </Text>
       <Card type="user">
-        <img src="https://lh3.googleusercontent.com/ogw/AAEL6siLE6kvr8NrqoiCED8VSkGgp-qIvJuXEZexpLwj=s32-c-mo"></img>
-        <h3>Usuário</h3>
+        <UserLogo>{sellerLogo}</UserLogo>
       </Card>
       <Card type="infos">
-        <span>{km}</span>
+        <span>{km}km</span>
         <span>{year}</span>
-        <h2>R${price},00</h2>
+        <h2>{formatCurrency(`${price}`)}</h2>
       </Card>
+      {viewAsSeller ? (
+        <Flex>
+          <UpdateAnnounceModal id={id} />
+          <OutlineButton size="medium" variant="grey">
+            Ver como comprador
+          </OutlineButton>
+        </Flex>
+      ) : null}
     </Card>
   );
 };

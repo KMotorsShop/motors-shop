@@ -22,7 +22,7 @@ interface AnnounceFormProps {
 }
 
 type AnnounceTypes = "sell" | "auction";
-type VehicleTypes = "car" | "motorbike";
+type VehicleTypes = "Carro" | "Moto";
 
 const AnnounceForm = ({
   schema,
@@ -38,13 +38,13 @@ const AnnounceForm = ({
   });
 
   const [adType, setAdType] = useState<AnnounceTypes>("sell");
-  const [vehicleType, setVehicleType] = useState<VehicleTypes>("car");
+  const [vehicleType, setVehicleType] = useState<VehicleTypes>("Carro");
 
   const [moreInputs, setMoreInputs] = useState(2);
   const [inputsQtd, setInputsQtd] = useState([1, 2]);
 
   const handleSubmitFunction = (data: any) => {
-    data = { ...data, type: adType };
+    data = { ...data, type: vehicleType };
     onSubmitFunction(data);
   };
 
@@ -132,14 +132,17 @@ const AnnounceForm = ({
       <FieldSet>
         <Legend>Tipo de veículo</Legend>
         <OptionButtons>
-          {vehicleType === "car" ? (
+          {vehicleType === "Carro" ? (
             <>
-              <BrandButton type="button" onClick={() => setVehicleType("car")}>
+              <BrandButton
+                type="button"
+                onClick={() => setVehicleType("Carro")}
+              >
                 Carro
               </BrandButton>
               <OutlineButton
                 type="button"
-                onClick={() => setVehicleType("motorbike")}
+                onClick={() => setVehicleType("Moto")}
                 variant="greyLight"
               >
                 Moto
@@ -149,15 +152,12 @@ const AnnounceForm = ({
             <>
               <OutlineButton
                 type="button"
-                onClick={() => setVehicleType("car")}
+                onClick={() => setVehicleType("Carro")}
                 variant="greyLight"
               >
                 Carro
               </OutlineButton>
-              <BrandButton
-                type="button"
-                onClick={() => setVehicleType("motorbike")}
-              >
+              <BrandButton type="button" onClick={() => setVehicleType("Moto")}>
                 Moto
               </BrandButton>
             </>
