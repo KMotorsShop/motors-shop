@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AdsAuthContext } from "../../context/AdsContext";
 import api from "../../services/api";
 import { BaseButton, FeedBackButton } from "../../styles/Buttons";
 import { Flex, ModalStatusMessage } from "../../styles/Containers";
@@ -12,9 +13,13 @@ interface DeleteAnnounceModalProps {
 
 const DeleteAnnounceModal = ({ id, closeModal }: DeleteAnnounceModalProps) => {
   const [announceWasDeleted, setWasDeleted] = useState<boolean>(false);
+  const { setAdUpdated } = useContext(AdsAuthContext);
 
   const handleDeleteAnnounce = () => {
-    api.delete(`/ads/${id}`).then((res) => setWasDeleted(true));
+    api.delete(`/ads/${id}`).then((res) => {
+      setWasDeleted(true);
+      setAdUpdated(true);
+    });
   };
 
   return (
