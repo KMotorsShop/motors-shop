@@ -15,10 +15,13 @@ import {
   ContainerComments,
   CardOne,
   CardTwo,
+  DetailViewBackgroundTop,
+  CardComments,
 } from "./styles";
 import Comment from "../../components/Comment";
 import CreateComment from "../../components/CreateComment";
-import { AuthContextUser } from "../../context/userContext";
+import NoDataMessage from "../../components/NoDataMessage";
+import { useParams } from "react-router-dom";
 
 interface IUser {
   name: string;
@@ -28,44 +31,37 @@ interface IUser {
 interface ICommentResponse {
   id: string;
   content: string;
-  createdAt: string; 
+  createdAt: string;
   user: IUser;
 }
 
 const ProductDetailed = () => {
-  const { setDetailedVehicle, detailedVehicle } = useContext(AdsAuthContext);
-  const [ comments, setComments ] = useState<Array<any>>([])
+  const { anuncio } = useParams();
 
-  const {
-    user
-  } = useContext(AuthContextUser);
+  const { detailedVehicle } = useContext(AdsAuthContext);
+  const [comments, setComments] = useState<ICommentResponse[]>([]);
 
   useEffect(() => {
-    const idAds = localStorage.getItem("@IdVehicle");
-    const token = localStorage.getItem("@kenzie:token");
-    // api.defaults.headers.common.Authorization = `Bearer ${token}`
-    api
-      .get(`ads/${idAds}`)
-      .then((res) => setDetailedVehicle(res.data))
-      .catch((err) => console.log(err));
-
     async function getComments() {
-      if(comments.length == 0){
+      if (comments.length == 0) {
         await api
-          .get(`comments/${idAds}`)
+          .get(`comments/${anuncio}`)
           .then((res) => {
-            setComments([...comments,res.data])
+            setComments([...comments, ...res.data]);
           })
           .catch((err) => console.log(err));
       }
+
+      return 
     }
-    getComments()
+    getComments();
   }, [detailedVehicle, comments]);
 
   return (
     <>
       <Header />
       <Container>
+        <DetailViewBackgroundTop />
         <ContainerOne>
           <BigPicture />
           <Infos />
@@ -77,22 +73,26 @@ const ProductDetailed = () => {
         </ContainerTwo>
       </Container>
       <ContainerComments>
-        <CardOne>
-          {
-            comments.length != 0 && 
-            comments[0].map((comment: ICommentResponse) => {
-              return <Comment 
-              key={comment.id}
-              id={comment.id}
-              content={comment.content}
-              createdAt={comment.createdAt}
-              userName={comment.user.name}
-              isLoggedOwner={user!.id != comment.user.id ? false : true}/>
+        <CardComments>
+          {comments.length != 0 ? (
+            comments.map((comment: ICommentResponse) => {
+              return (
+                <Comment
+                  key={comment.id}
+                  id={comment.id}
+                  content={comment.content}
+                  createdAt={comment.createdAt}
+                  userName={comment.user.name}
+                  idLoggedOwner={comment.user.id}
+                />
+              );
             })
-          }
-        </CardOne>
+          ) : (
+            <NoDataMessage message="Ainda não há comentários sobre este produto. Seja o primeiro a comentar!" />
+          )}
+        </CardComments>
         <CardTwo>
-          <CreateComment/>
+          <CreateComment />
         </CardTwo>
       </ContainerComments>
       <Footer />

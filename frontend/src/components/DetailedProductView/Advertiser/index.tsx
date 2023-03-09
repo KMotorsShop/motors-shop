@@ -1,20 +1,31 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AdsAuthContext } from "../../../context/AdsContext";
 import { BaseButton } from "../../../styles/Buttons";
 import { Container, DivText, LogoUser } from "./styles";
 
 const Advertiser = () => {
+  const { detailProduct, sigla } = useContext(AdsAuthContext);
+  const navigate = useNavigate();
+
+  const adsDetails = (event: any) => {
+    const idAdsDetail = event.target.id;
+    window.localStorage.setItem("@IdAdsDetail", idAdsDetail);
+    navigate(`/userAds`, { replace: true });
+  };
+
   return (
     <Container>
       <LogoUser>
-        <span>SL</span>
+        <span>{sigla}</span>
       </LogoUser>
-      <h1>Samuel Leão</h1>
+      <h1>{detailProduct.name}</h1>
       <DivText>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's
-        </p>
+        <p>{detailProduct.description}</p>
       </DivText>
-      <BaseButton>Ver todos anuncios</BaseButton>
+      <BaseButton onClick={adsDetails} id={detailProduct.id}>
+        Ver todos anuncios
+      </BaseButton>
     </Container>
   );
 };

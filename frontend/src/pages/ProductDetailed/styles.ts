@@ -1,8 +1,17 @@
 import { styled } from "../../styles/stitches.config";
 
-export const Container = styled("div", {
-  height: "580px",
+export const DetailViewBackgroundTop = styled("div", {
+  position: "absolute",
+  top: 80,
+  zIndex: -1,
   background: "$brand2",
+  width: "100%",
+  height: 580,
+});
+
+export const Container = styled("div", {
+  // height: "580px",
+  // background: "$brand2",
   display: "flex",
   justifyContent: "center",
   gap: "46px",
@@ -29,17 +38,12 @@ export const ContainerComments = styled("div", {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  marginTop: "330px",
-  marginBottom: "73px",
-  "@mobileProductDetailed": {
-    marginTop: "1412px",
-  },
+  margin: "$4 0",
 });
 
 export const CardOne = styled("div", {
   minHeight: "700px",
   width: "751px",
-  // border: "1px solid",
   marginBottom: "33px",
   background: "$grey10",
   "@mobileProductDetailed": {
@@ -55,10 +59,16 @@ export const CardTwo = styled("div", {
   minHeight: "289px",
   height: "351px",
   width: "751px",
-  // border: "1px solid",
   background: "$grey10",
   "@mobileProductDetailed": {
     width: "351px",
     minHeight: "414px",
   },
+});
+
+export const CardComments = styled(CardOne, {
+  justifyContent: "flex-start",
+  maxHeight: 650,
+  alignItems: "flex-start",
+  overflow: "auto",
 });

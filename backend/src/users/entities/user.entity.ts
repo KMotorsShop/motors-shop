@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Ad } from 'src/ads/entities/ad.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum UserRoles {
   ANUNCIANTE = 'Anunciante',
@@ -35,6 +36,7 @@ export class User {
 
   @Column({
     type: 'enum',
+    default: UserRoles.COMPRADOR,
     enum: UserRoles,
   })
   type: UserRoles;
@@ -56,4 +58,7 @@ export class User {
 
   @Column({ nullable: true })
   complement?: string;
+
+  @OneToMany(() => Ad, (ad) => ad.seller)
+  ads: Ad[];
 }

@@ -1,4 +1,5 @@
-import { Exclude, Expose } from 'class-transformer';
+import { Exclude, Expose, Type } from 'class-transformer';
+import { AdSerializer } from 'src/ads/serializers/ad.serializer';
 import { User } from '../entities/user.entity';
 
 export class UserSerializer {
@@ -46,6 +47,10 @@ export class UserSerializer {
 
   @Expose()
   complement?: string;
+
+  @Expose()
+  @Type(() => AdSerializer)
+  ads: AdSerializer[];
 
   constructor(partial: Partial<User>) {
     Object.assign(this, partial);

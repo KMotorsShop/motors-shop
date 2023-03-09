@@ -5,6 +5,7 @@ import { LoginPage } from "../pages/LoginPage";
 import ProductDetailed from "../pages/ProductDetailed";
 import ProtectedRoutes from "../pages/ProtectedRoutes";
 import Register from "../pages/Register";
+import { UserAds } from "../pages/UserAds";
 
 const RoutesMain = () => {
   return (
@@ -13,10 +14,8 @@ const RoutesMain = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/:anuncio" element={<ProductDetailed />} />
       <Route path="/register" element={<Register />} />
-
-      <Route path="/dashboard" element={<ProtectedRoutes />}>
-        <Route path="/dashboard" element={<AnunciantePersonalPage />} />
-      </Route>
+      <Route path="/dashboard" element={<AnunciantePersonalPage />} />
+      <Route path="/userAds" element={<UserAds />}></Route>
     </Routes>
   );
 };

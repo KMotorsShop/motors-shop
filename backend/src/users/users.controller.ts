@@ -41,8 +41,20 @@ export class UsersController {
 //   return this.usersService.findOne(request.user.id);
 // };
 
-  @Get(':id')
-  findOne(@Param('id') id: string,) {
+  // @Get(':id')
+  // findOne(@Param('id') id: string,) {
+  //   return this.usersService.findOne(id);
+  // }
+
+  @IsPublic()
+  @Get('/profile/:id')
+  findOneUserAds(@Param('id') id: string) {
+    return this.usersService.findOne(id);
+  }
+
+  @Get('/:id')
+  @IsPublic()
+  findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 

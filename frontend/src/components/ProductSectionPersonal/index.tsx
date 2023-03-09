@@ -1,32 +1,31 @@
 import api from "../../services/api";
-
-import { ErrorOption } from "react-hook-form";
-import { useContext, useEffect, useState } from "react";
-
 import { List } from "./style";
 import { Section } from "./style";
-import { CardProduct } from "../cardProduct";
-import { ProductSectionProps } from "../../interface/interfaces";
+import { useContext, useEffect, useState } from "react";
+import { IUser, ProductSectionProps } from "../../interface/interfaces";
 
+import { CardProduct } from "../cardProduct";
+import { ErrorOption } from "react-hook-form";
 import { AdsAuthContext } from "../../context/AdsContext";
 import NoDataMessage from "../NoDataMessage";
 
-export const ProductSection = ({ type, inDashboard }: ProductSectionProps) => {
-  const { vehicles, setVehicles, adWasUpdated } = useContext(AdsAuthContext);
+export const ProductSectionPersonal = ({ type }: ProductSectionProps) => {
+  const { adWasUpdated, announceWasCreated } = useContext(AdsAuthContext);
+  const [vehiclesPersonal, setVehiclesPersonal] = useState<IUser[]>([]);
   useEffect(() => {
     api
-      .get("ads")
+      .get("users/profile")
       .then((res) => {
-        setVehicles(res.data);
+        setVehiclesPersonal(res.data.ads);
       })
       .catch((err: ErrorOption) => {
         console.log(err);
       });
-  }, [adWasUpdated]);
+  }, [adWasUpdated, announceWasCreated]);
 
-  const filteredList = vehicles.map((product, index) => {
+  const filteredList = vehiclesPersonal.map((product, index) => {
     if (product.type === type) {
-      return <CardProduct key={index} {...product} />;
+      return <CardProduct key={index} {...product} viewAsSeller={true} />;
     }
   });
   return (

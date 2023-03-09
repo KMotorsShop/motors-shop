@@ -15,6 +15,205 @@ $ npm run start:dev
 
 # Rotas
 
+## Rotas de Usuário
+
+***URL: http://localhost:3000/users***
+
+### Criação de Usuário - POST
+
+**Todos os campos de envio são obrigatórios:**
+
++ name;
++ email;
++ cpf;
++ password;
++ cellphone;
++ description;
++ birthdate;
++ type;
++ zipcode;
++ state;
++ city;
++ street;
++ number;
++ complement;
+
+#### Retorno Esperado:
+
+```json
+{
+	"name": "André soares",
+	"email": "andre@email.com",
+	"cpf": "00000000000000",
+	"cellphone": "(00) 90000-0000",
+	"birthdate": "2001-02-02",
+	"description": "esta é uma descrição genérica",
+	"type": "Anunciante",
+	"zipCode": "12345123",
+	"state": "São Paulo",
+	"city": "São Paulo",
+	"street": "Avenida brigadeiro faria lima",
+	"number": 0,
+	"complement": null,
+	"id": "0dd5cdea-ec64-43bf-a7b3-a9382a82088c"
+}
+```
+
+### Listagem todos os usuários - GET
+
+**Sem campos de envio**
+
+**Esta rota precisa de autenticação**
+
+#### Retorno Esperado:
+
+```json
+[
+	{
+		"id": "61025376-8cb3-40c0-a880-69b97eac4792",
+		"name": "Zé das couves",
+		"email": "Zé@gmail.com",
+		"cpf": "123456789",
+		"cellphone": "99678481",
+		"birthdate": "20/09/1994",
+		"description": "eu",
+		"type": "Comprador",
+		"zipCode": 12345123,
+		"state": "Paraiba",
+		"city": "Gurinhém",
+		"street": "Rua das dores",
+		"number": 19,
+		"complement": "Casa"
+	},
+	{
+		"id": "dfada6da-1283-4874-b93d-99833b2c814c",
+		"name": "maria",
+		"email": "ma@gmail.com",
+		"cpf": "123456789",
+		"cellphone": "99678481",
+		"birthdate": "20/09/1994",
+		"description": "eu",
+		"type": "Anunciante",
+		"zipCode": 58356000,
+		"state": "São paulo",
+		"city": "Paulínia",
+		"street": "Rua das marias",
+		"number": 90,
+		"complement": "Casa"
+	},
+	{
+		"id": "0dd5cdea-ec64-43bf-a7b3-a9382a82088c",
+		"name": "Alexandre",
+		"email": "alex@email.com",
+		"cpf": "00000000000000",
+		"cellphone": "(00) 90000-0000",
+		"birthdate": "2001-02-02",
+		"description": "mocked description",
+		"type": "Anunciante",
+		"zipCode": 12345123,
+		"state": "São Paulo",
+		"city": "São Paulo",
+		"street": "mocked street",
+		"number": 0,
+		"complement": null
+	}
+]
+```
+
+### Listagem de um Usuário - GET
+
+**Sem campos de envio**
+
+**Id do Usuário deve ser passado na URL**
+
+Exemplo: *http://localhost:3000/users/0dd5cdea-ec64-43bf-a7b3-a9382a82088c*
+
+#### Retorno Esperado:
+
+```json
+{
+	"name": "André soares",
+	"email": "andre@email.com",
+	"cpf": "00000000000000",
+	"cellphone": "(00) 90000-0000",
+	"birthdate": "2001-02-02",
+	"description": "esta é uma descrição genérica",
+	"type": "Anunciante",
+	"zipCode": "12345123",
+	"state": "São Paulo",
+	"city": "São Paulo",
+	"street": "Avenida brigadeiro faria lima",
+	"number": 0,
+	"complement": null,
+	"id": "0dd5cdea-ec64-43bf-a7b3-a9382a82088c"
+}
+```
+
+<br/>
+
+### Edição de um usuário - PATCH
+
+**Todos os campos de envio são os mesmos do POST e são opcionais**
+
+**Id do Usuário deve ser passado na URL**
+
+Exemplo: *http://localhost:3000/users/0dd5cdea-ec64-43bf-a7b3-a9382a82088c*
+
+#### Esta rota não tem retorno
+
+<br/>
+
+
+### Deleção de um usuário - DELETE
+
+**Sem campos de envio**
+
+**Id do Usuário deve ser passado na URL**
+
+Exemplo: *http://localhost:3000/users/0dd5cdea-ec64-43bf-a7b3-a9382a82088c*
+
+#### Esta rota não tem retorno
+
+<br/>
+
+## Rotas de Login
+
+***URL: http://localhost:3000/login***
+
+### Fazer Login - POST
+
+**Todos os campos de envio são obrigatórios:**
+
++ Email;
++ Password;
+
+#### Retorno Esperado:
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZGQ1Y2RlYS1lYzY0LTQzYmYtYTdiMy1hOTM4MmE4MjA4OGMiLCJlbWFpbCI6ImFsZXhAZW1haWwuY29tIiwibmFtZSI6IkFsZXhhbmRyZSIsImlhdCI6MTY3ODM2NDQ0NywiZXhwIjoxNjc4NDUwODQ3fQ.JLKUcnQjDW4NN6GqP9OTAHNcolZ8mjiF08OINrFDJTk"
+}
+```
+
+### Listagem do usuário logado - GET
+
+**Sem campos de envio**
+
+**O usuário deve estar logado para ver suas credenciais**
+
+Exemplo: *http://localhost:3000/me*
+
+#### Retorno Esperado:
+
+```json
+{
+  "id": "0dd5cdea-ec64-43bf-a7b3-a9382a82088c",
+  "email": "alex@email.com",
+  "name": "Alexandre"
+}
+```
+
+
 ## Rotas de Anúncio
 
 ***URL: http://localhost:3000/ads***
@@ -46,6 +245,8 @@ $ npm run start:dev
   "updatedAt": "Dom Fev 01 2022 17:30:50 GMT+0000 (GMT)"
 }
 ```
+
+<br/>
 
 ### Listagem todos Anúncios - GET
 
