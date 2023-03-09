@@ -13,10 +13,7 @@ const RoutesMain = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/:anuncio" element={<ProductDetailed />} />
       <Route path="/register" element={<Register />} />
-
-      <Route path="/dashboard" element={<ProtectedRoutes />}>
-        <Route path="/dashboard" element={<AnunciantePersonalPage />} />
-      </Route>
+      <Route path="/dashboard" element={<AnunciantePersonalPage />} />
     </Routes>
   );
 };

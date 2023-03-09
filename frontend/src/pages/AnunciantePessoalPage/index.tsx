@@ -10,7 +10,6 @@ import {
 import Header from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { ProductSection } from "../../components/ProductSection";
-import { OutlineButton } from "../../styles/Buttons";
 import { useContext, useEffect, useState } from "react";
 import { AuthContextUser } from "../../context/userContext";
 import UpdateUser from "../../components/UpdateUser";
@@ -20,6 +19,7 @@ import CardLeilaoMobile from "../../components/CardLeilaoMobile";
 import CreateAnnounceModal from "../../components/CreateAnnounceModal";
 import api from "../../services/api";
 import { IUser } from "../../interface/interfaces";
+import { ProductSectionPersonal } from "../../components/ProductSectionPersonal";
 
 export const AnunciantePersonalPage = () => {
   const { isModalUpdate, isModalUpdateAddress, user, nameLogo } =
@@ -64,8 +64,8 @@ export const AnunciantePersonalPage = () => {
       </ContainerLeilao>
       <Body>
         <Anuncios>
-          <ProductSection type="Carro" inDashboard />
-          <ProductSection type="Moto" inDashboard />
+          <ProductSectionPersonal type="Carro" inDashboard />
+          <ProductSectionPersonal type="Moto" inDashboard />
         </Anuncios>
       </Body>
       <Footer />

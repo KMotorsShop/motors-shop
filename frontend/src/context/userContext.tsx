@@ -36,7 +36,6 @@ const UserContext = ({ children }: IProviderProps) => {
             setUserName(res.data.name);
             setUser(res.data);
           });
-          // setLogged(true);
         } catch (error) {
           console.log(error);
         }
@@ -44,15 +43,6 @@ const UserContext = ({ children }: IProviderProps) => {
       userAutoLogin();
     }
   }, [isModalUpdate]);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("@kenzie:token");
-  //   api.defaults.headers.authorization = `Bearer ${token}`;
-  //   api.get("users/profile").then((res) => {
-  //     setUserName(res.data.name);
-  //     setUser(res.data);
-  //   });
-  // }, [isModalUpdate]);
 
   const onRegister = (data: IUser) => {
     data.type = type;

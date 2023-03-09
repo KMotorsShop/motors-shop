@@ -21,7 +21,7 @@ export const CardProduct = ({
   isActive,
   seller,
   viewAsSeller,
-}: CardProductProps) => {
+}: any) => {
   const navigate = useNavigate();
 
   const productDetailed = (event: any) => {
