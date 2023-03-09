@@ -19,7 +19,7 @@ $ npm run start:dev
 
 ***URL: http://localhost:3000/users***
 
-### Criação de Anúncio - POST
+### Criação de Usuário - POST
 
 **Todos os campos de envio são obrigatórios:**
 
@@ -63,6 +63,7 @@ $ npm run start:dev
 
 **Sem campos de envio**
 
+**Esta rota precisa de autenticação**
 
 #### Retorno Esperado:
 
@@ -77,7 +78,7 @@ $ npm run start:dev
 		"birthdate": "20/09/1994",
 		"description": "eu",
 		"type": "Comprador",
-		"zipCode": 00000000,
+		"zipCode": 12345123,
 		"state": "Paraiba",
 		"city": "Gurinhém",
 		"street": "Rua das dores",
@@ -148,11 +149,69 @@ Exemplo: *http://localhost:3000/users/0dd5cdea-ec64-43bf-a7b3-a9382a82088c*
 }
 ```
 
+<br/>
+
+### Edição de um usuário - PATCH
+
+**Todos os campos de envio são os mesmos do POST e são opcionais**
+
+**Id do Usuário deve ser passado na URL**
+
+Exemplo: *http://localhost:3000/users/0dd5cdea-ec64-43bf-a7b3-a9382a82088c*
+
+#### Esta rota não tem retorno
+
+<br/>
 
 
+### Deleção de um usuário - DELETE
 
+**Sem campos de envio**
 
+**Id do Usuário deve ser passado na URL**
 
+Exemplo: *http://localhost:3000/users/0dd5cdea-ec64-43bf-a7b3-a9382a82088c*
+
+#### Esta rota não tem retorno
+
+<br/>
+
+## Rotas de Login
+
+***URL: http://localhost:3000/login***
+
+### Fazer Login - POST
+
+**Todos os campos de envio são obrigatórios:**
+
++ Email;
++ Password;
+
+#### Retorno Esperado:
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZGQ1Y2RlYS1lYzY0LTQzYmYtYTdiMy1hOTM4MmE4MjA4OGMiLCJlbWFpbCI6ImFsZXhAZW1haWwuY29tIiwibmFtZSI6IkFsZXhhbmRyZSIsImlhdCI6MTY3ODM2NDQ0NywiZXhwIjoxNjc4NDUwODQ3fQ.JLKUcnQjDW4NN6GqP9OTAHNcolZ8mjiF08OINrFDJTk"
+}
+```
+
+### Listagem do usuário logado - GET
+
+**Sem campos de envio**
+
+**O usuário deve estar logado para ver suas credenciais**
+
+Exemplo: *http://localhost:3000/me*
+
+#### Retorno Esperado:
+
+```json
+{
+  "id": "0dd5cdea-ec64-43bf-a7b3-a9382a82088c",
+  "email": "alex@email.com",
+  "name": "Alexandre
+}
+```
 
 
 ## Rotas de Anúncio
@@ -186,6 +245,8 @@ Exemplo: *http://localhost:3000/users/0dd5cdea-ec64-43bf-a7b3-a9382a82088c*
   "updatedAt": "Dom Fev 01 2022 17:30:50 GMT+0000 (GMT)"
 }
 ```
+
+<br/>
 
 ### Listagem todos Anúncios - GET
 
