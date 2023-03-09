@@ -21,7 +21,6 @@ import CreateAnnounceModal from "../../components/CreateAnnounceModal";
 import api from "../../services/api";
 import { IUser } from "../../interface/interfaces";
 
-
 export const AnunciantePersonalPage = () => {
   const { isModalUpdate, isModalUpdateAddress, user, nameLogo } =
     useContext(AuthContextUser);
@@ -65,8 +64,8 @@ export const AnunciantePersonalPage = () => {
       </ContainerLeilao>
       <Body>
         <Anuncios>
-          <ProductSection type="Carro"></ProductSection>
-          <ProductSection type="Moto"></ProductSection>
+          <ProductSection type="Carro" inDashboard />
+          <ProductSection type="Moto" inDashboard />
         </Anuncios>
       </Body>
       <Footer />

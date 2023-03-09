@@ -1,9 +1,5 @@
 import { List } from "./style";
-import {
-  ArrayTesteProps,
-  IVehicles,
-  ProductSectionProps,
-} from "../../interface/interfaces";
+import { ProductSectionProps } from "../../interface/interfaces";
 
 import { Section } from "./style";
 import { CardProduct } from "../cardProduct";
@@ -12,9 +8,8 @@ import api from "../../services/api";
 import { ErrorOption } from "react-hook-form";
 import { AdsAuthContext } from "../../context/AdsContext";
 
-export const ProductSection = ({ type }: ProductSectionProps) => {
-  const { vehicles, setVehicles } = useContext(AdsAuthContext);
-
+export const ProductSection = ({ type, inDashboard }: ProductSectionProps) => {
+  const { vehicles, setVehicles, adWasUpdated } = useContext(AdsAuthContext);
   useEffect(() => {
     api
       .get("ads")
@@ -24,7 +19,7 @@ export const ProductSection = ({ type }: ProductSectionProps) => {
       .catch((err: ErrorOption) => {
         console.log(err);
       });
-  }, []);
+  }, [adWasUpdated]);
 
   return (
     <Section id="carros">
@@ -32,7 +27,13 @@ export const ProductSection = ({ type }: ProductSectionProps) => {
       <List>
         {vehicles.map((product, index) => {
           if (product.type === type) {
-            return <CardProduct key={index} {...product}></CardProduct>;
+            return (
+              <CardProduct
+                key={index}
+                {...product}
+                viewAsSeller={inDashboard}
+              />
+            );
           }
         })}
       </List>

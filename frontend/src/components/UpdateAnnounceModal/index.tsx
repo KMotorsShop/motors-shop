@@ -19,7 +19,8 @@ interface UpdateAnnounceModalProps {
 }
 
 const UpdateAnnounceModal = ({ id }: UpdateAnnounceModalProps) => {
-  const { vehicles, setVehicles } = useContext(AdsAuthContext);
+  const { vehicles, setVehicles, adWasUpdated, setAdUpdated } =
+    useContext(AdsAuthContext);
   const today = new Date(Date.now());
 
   const updateAnnounceSchema = yup.object().shape({
@@ -80,30 +81,28 @@ const UpdateAnnounceModal = ({ id }: UpdateAnnounceModalProps) => {
     };
 
     api.patch(`/ads/${id}`, sendData).then((res) => {
-      setAnnounceUpdated(true);
-      setVehicles([sendData, ...vehicles]);
+      res.status === 200 ? setAdUpdated(true) : null;
     });
   };
 
   const [modalIsOpen, setModalOpen] = useState<boolean>(false);
-  const [announceWasUpdated, setAnnounceUpdated] = useState(false);
   const [isDeletingAnnounce, setDeleting] = useState(false);
   const [title, setTitle] = useState<string>("");
 
   useEffect(() => {
-    if (announceWasUpdated) {
+    if (adWasUpdated) {
       setTitle("Sucesso!");
     } else if (isDeletingAnnounce) {
       setTitle("Excluir anúncio");
     } else {
       setTitle("Editar anúncio");
     }
-  }, [announceWasUpdated]);
+  }, [adWasUpdated]);
 
   const openModal = () => setModalOpen(true);
   const closeModal = () => {
     setModalOpen(false);
-    setAnnounceUpdated(false);
+    setAdUpdated(false);
     setDeleting(false);
   };
 
@@ -124,7 +123,7 @@ const UpdateAnnounceModal = ({ id }: UpdateAnnounceModalProps) => {
       >
         {!isDeletingAnnounce ? (
           <>
-            {announceWasUpdated ? (
+            {adWasUpdated ? (
               <ModalStatusMessage>
                 <Heading7>Seu anúncio foi atualizado com sucesso!</Heading7>
                 <Text color="grey2">
