@@ -1,18 +1,19 @@
+import { useContext } from "react";
+import { AdsAuthContext } from "../../../context/AdsContext";
 import { BaseButton } from "../../../styles/Buttons";
 import { Container, DivText, LogoUser } from "./styles";
 
 const Advertiser = () => {
+  const { detailedVehicle, detailProduct } = useContext(AdsAuthContext);
+
   return (
     <Container>
       <LogoUser>
         <span>SL</span>
       </LogoUser>
-      <h1>Samuel Leão</h1>
+      <h1>{detailProduct.name}</h1>
       <DivText>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's
-        </p>
+        <p>{detailProduct.description}</p>
       </DivText>
       <BaseButton>Ver todos anuncios</BaseButton>
     </Container>

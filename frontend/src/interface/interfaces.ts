@@ -22,9 +22,15 @@ export interface IValueUserProps {
 
 export interface IValueAdsProps {
   detailedVehicle: IVehicles;
-  setDetailedVehicle: Dispatch<SetStateAction<any>>;
+  setDetailedVehicle: Dispatch<SetStateAction<IVehicles>>;
   vehicles: IVehicles[];
   setVehicles: Dispatch<SetStateAction<IVehicles[]>>;
+  comments: any;
+  setComments: Dispatch<SetStateAction<any>>;
+  detailProduct: IUserProduct;
+  setDetailProduct: Dispatch<SetStateAction<IUserProduct>>;
+  detailProductImg: string[];
+  setDetailProductImg: Dispatch<SetStateAction<string[]>>;
 }
 
 export interface ProductSectionProps {
@@ -83,6 +89,8 @@ export interface ArrayTesteProps {
 // Register
 
 export interface IUser {
+  images: any;
+  image: any;
   name: string;
   email: string;
   cpf: number;
@@ -99,4 +107,26 @@ export interface IUser {
   number: number;
   complement: string;
   id?: string;
+  ads: IVehicles;
+}
+
+export interface IUserProduct {
+  images: any;
+  image: any;
+  name: string;
+  email: string;
+  cpf: number;
+  cellphone: string;
+  birthdate: string;
+  description: string;
+  password: string;
+  ConfirmedPassword: string;
+  type: string;
+  zipCode: number;
+  state: string;
+  city: string;
+  street: string;
+  number: number;
+  complement: string;
+  id: string;
 }
