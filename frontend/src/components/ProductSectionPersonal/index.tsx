@@ -7,6 +7,7 @@ import { IUser, ProductSectionProps } from "../../interface/interfaces";
 import { CardProduct } from "../cardProduct";
 import { ErrorOption } from "react-hook-form";
 import { AdsAuthContext } from "../../context/AdsContext";
+import NoDataMessage from "../NoDataMessage";
 
 export const ProductSectionPersonal = ({ type }: ProductSectionProps) => {
   const { adWasUpdated, announceWasCreated } = useContext(AdsAuthContext);
@@ -22,15 +23,20 @@ export const ProductSectionPersonal = ({ type }: ProductSectionProps) => {
       });
   }, [adWasUpdated, announceWasCreated]);
 
+  const filteredList = vehiclesPersonal.map((product, index) => {
+    if (product.type === type) {
+      return <CardProduct key={index} {...product} viewAsSeller={true} />;
+    }
+  });
   return (
     <Section id="carros">
       <h1 id="motos">{type}</h1>
       <List>
-        {vehiclesPersonal.map((product, index) => {
-          if (product.type === type) {
-            return <CardProduct key={index} {...product} viewAsSeller={true} />;
-          }
-        })}
+        {filteredList.length > 0 ? (
+          filteredList
+        ) : (
+          <NoDataMessage message="Parece que não há produtos disponíveis no momento" />
+        )}
       </List>
     </Section>
   );
