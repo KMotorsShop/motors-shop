@@ -1,6 +1,7 @@
 import { List } from "./style";
 import {
   ArrayTesteProps,
+  IUser,
   IVehicles,
   ProductSectionProps,
 } from "../../interface/interfaces";
@@ -12,14 +13,15 @@ import api from "../../services/api";
 import { ErrorOption } from "react-hook-form";
 import { AdsAuthContext } from "../../context/AdsContext";
 
-export const ProductSection = ({ type }: ProductSectionProps) => {
+export const ProductSectionPersonal = ({ type }: ProductSectionProps) => {
   const { vehicles, setVehicles } = useContext(AdsAuthContext);
+  const [vehiclesPersonal, setVehiclesPersonal] = useState<IUser[]>([]);
 
   useEffect(() => {
     api
-      .get("ads")
+      .get("users/profile")
       .then((res) => {
-        setVehicles(res.data);
+        setVehiclesPersonal(res.data.ads);
       })
       .catch((err: ErrorOption) => {
         console.log(err);
@@ -30,7 +32,7 @@ export const ProductSection = ({ type }: ProductSectionProps) => {
     <Section id="carros">
       <h1 id="motos">{type}</h1>
       <List>
-        {vehicles.map((product, index) => {
+        {vehiclesPersonal.map((product, index) => {
           if (product.type === type) {
             return <CardProduct key={index} {...product}></CardProduct>;
           }

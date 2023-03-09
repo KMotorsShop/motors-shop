@@ -23,6 +23,10 @@ export interface IValueUserProps {
 export interface IValueAdsProps {
   detailedVehicle: IVehicles;
   setDetailedVehicle: Dispatch<SetStateAction<any>>;
+  vehicles: IVehicles[];
+  setVehicles: Dispatch<SetStateAction<IVehicles[]>>;
+  comments: any;
+  setComments: Dispatch<SetStateAction<any>>;
 }
 
 export interface ProductSectionProps {
@@ -30,6 +34,9 @@ export interface ProductSectionProps {
 }
 
 export interface CardProductProps {
+  isActive: boolean;
+  seller: IUser;
+  images: string[];
   name: string;
   description: string;
   km: number;
@@ -62,6 +69,7 @@ export interface IVehicles {
   description: string;
   km: number;
   isActive: boolean;
+  images: string[];
   seller: IUser;
 }
 
@@ -77,6 +85,8 @@ export interface ArrayTesteProps {
 // Register
 
 export interface IUser {
+  images: any;
+  image: any;
   name: string;
   email: string;
   cpf: number;
@@ -93,4 +103,5 @@ export interface IUser {
   number: number;
   complement: string;
   id?: string;
+  ads: IVehicles;
 }

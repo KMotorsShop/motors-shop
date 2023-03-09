@@ -1,10 +1,14 @@
 import { Container } from "./styles";
 import car from "../../../assets/carro.png";
+import { useContext } from "react";
+import { AdsAuthContext } from "../../../context/AdsContext";
 
 const BigPicture = () => {
+  const { detailedVehicle } = useContext(AdsAuthContext);
+
   return (
     <Container>
-      <img src={car} alt="imagem de carro" />
+      <img src={detailedVehicle.images[0]} alt="imagem de carro" />
     </Container>
   );
 };

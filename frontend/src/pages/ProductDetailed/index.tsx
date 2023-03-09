@@ -18,6 +18,9 @@ import {
 } from "./styles";
 import Comment from "../../components/Comment";
 import CreateComment from "../../components/CreateComment";
+import { AuthContextUser } from "../../context/userContext";
+import UpdateUser from "../../components/UpdateUser";
+import UpdateUserAddress from "../../components/UpdateUserAddress";
 
 interface IUser {
   name: string;
@@ -31,18 +34,14 @@ interface ICommentResponse {
 }
 
 const ProductDetailed = () => {
-  const { setDetailedVehicle, detailedVehicle } = useContext(AdsAuthContext);
-  const [comments, setComments] = useState<Array<any>>([]);
+  const { setDetailedVehicle, detailedVehicle, comments, setComments } =
+    useContext(AdsAuthContext);
+  const { isModalUpdate, isModalUpdateAddress } = useContext(AuthContextUser);
+  console.log(comments);
 
   useEffect(() => {
     const idAds = localStorage.getItem("@IdVehicle");
     const token = localStorage.getItem("@kenzie:token");
-    // api.defaults.headers.common.Authorization = `Bearer ${token}`
-
-    api
-      .get(`ads/${idAds}`)
-      .then((res) => setDetailedVehicle(res.data))
-      .catch((err) => console.log(err));
 
     async function getComments() {
       if (comments.length == 0) {
@@ -56,6 +55,24 @@ const ProductDetailed = () => {
     }
     getComments();
   }, [detailedVehicle, comments]);
+
+  useEffect(() => {
+    const idAds = localStorage.getItem("@IdVehicle");
+
+    if (idAds) {
+      const autoLoginAds = async () => {
+        try {
+          const idAds = localStorage.getItem("@IdVehicle");
+          await api
+            .get(`ads/${idAds}`)
+            .then((res) => setDetailedVehicle(res.data));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      autoLoginAds();
+    }
+  }, []);
 
   return (
     <>
@@ -91,6 +108,8 @@ const ProductDetailed = () => {
         </CardTwo>
       </ContainerComments>
       <Footer />
+      {isModalUpdate && <UpdateUser />}
+      {isModalUpdateAddress && <UpdateUserAddress />}
     </>
   );
 };
