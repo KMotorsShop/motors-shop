@@ -36,10 +36,15 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get('/profile')
-  findProfile(@Req() request: AuthRequest) {
-    return this.usersService.findOne(request.user.id);
-  }
+// @Get('/profile')
+// findOne(@Req() request: AuthRequest) {
+//   return this.usersService.findOne(request.user.id);
+// };
+
+  // @Get(':id')
+  // findOne(@Param('id') id: string,) {
+  //   return this.usersService.findOne(id);
+  // }
 
   @IsPublic()
   @Get('/profile/:id')

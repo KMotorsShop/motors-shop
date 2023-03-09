@@ -14,6 +14,7 @@ import {
 import { UserInfos, UserInfosCreate, UserLogo } from "../Comment/styles";
 
 import api from "../../services/api";
+import { toast } from "react-toastify";
 
 const CreateComment = () => {
   const [commentValue, setCommentValue] = useState("");
@@ -60,7 +61,8 @@ const CreateComment = () => {
     api
       .post(`comments/${idAds}`, data)
       .then((res) => {
-        console.log(res.data);
+        toast.success("Comentário criado com sucesso!")
+
         window.location.reload();
         window.location.reload();
       })

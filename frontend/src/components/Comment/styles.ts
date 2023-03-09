@@ -40,7 +40,7 @@ export const UserInfos = styled("div", {
 
 export const UserInfosCreate = styled(UserInfos, {
     justifyContent: "flex-start",
-
+    gap: "10px",
 });
 
 export const LoggedInfos = styled("div", {

@@ -92,6 +92,7 @@ export const TextArea = styled("textarea", {
     border: "1.5px solid $brand1",
     boxShadow: "0 0 0 0",
   },
+
 });
 
 export const InputWrapper = styled("div", {
