@@ -9,6 +9,7 @@ import { CardProduct } from "../cardProduct";
 import { ProductSectionProps } from "../../interface/interfaces";
 
 import { AdsAuthContext } from "../../context/AdsContext";
+import NoDataMessage from "../NoDataMessage";
 
 export const ProductSection = ({ type, inDashboard }: ProductSectionProps) => {
   const { vehicles, setVehicles, adWasUpdated } = useContext(AdsAuthContext);
@@ -23,21 +24,20 @@ export const ProductSection = ({ type, inDashboard }: ProductSectionProps) => {
       });
   }, [adWasUpdated]);
 
+  const filteredList = vehicles.map((product, index) => {
+    if (product.type === type) {
+      return <CardProduct key={index} {...product} />;
+    }
+  });
   return (
     <Section id="carros">
       <h1 id="motos">{type}</h1>
       <List>
-        {vehicles.map((product, index) => {
-          if (product.type === type) {
-            return (
-              <CardProduct
-                key={index}
-                {...product}
-                viewAsSeller={inDashboard}
-              />
-            );
-          }
-        })}
+        {filteredList.length > 0 ? (
+          filteredList
+        ) : (
+          <NoDataMessage message="Parece que não há produtos disponíveis no momento" />
+        )}
       </List>
     </Section>
   );
