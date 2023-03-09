@@ -1,3 +1,10 @@
+import api from "../../services/api";
+import UpdateUser from "../../components/UpdateUser";
+import UpdateUserAddress from "../../components/UpdateUserAddress";
+import CardLeilaoMobile from "../../components/CardLeilaoMobile";
+import CreateAnnounceModal from "../../components/CreateAnnounceModal";
+import Header from "../../components/Header";
+
 import {
   BodyHeader,
   Body,
@@ -7,22 +14,19 @@ import {
   ButtonDiv,
   LogoUser,
 } from "./style";
-import Header from "../../components/Header";
-import { Footer } from "../../components/Footer";
-import { ProductSection } from "../../components/ProductSection";
+
 import { useContext, useEffect, useState } from "react";
-import { AuthContextUser } from "../../context/userContext";
-import UpdateUser from "../../components/UpdateUser";
-import UpdateUserAddress from "../../components/UpdateUserAddress";
+
+import { Footer } from "../../components/Footer";
 import { ContainerLeilao, TextTitle } from "../Home/styles";
-import CardLeilaoMobile from "../../components/CardLeilaoMobile";
-import CreateAnnounceModal from "../../components/CreateAnnounceModal";
-import api from "../../services/api";
-import { IUser } from "../../interface/interfaces";
 import { ProductSectionPersonal } from "../../components/ProductSectionPersonal";
 
+import { IUser } from "../../interface/interfaces";
+
+import { AuthContextUser } from "../../context/userContext";
+
 export const AnunciantePersonalPage = () => {
-  const { isModalUpdate, isModalUpdateAddress, user, nameLogo } =
+  const { isModalUpdate, isModalUpdateAddress, nameLogo } =
     useContext(AuthContextUser);
   const [dadosUser, setDadosUser] = useState({} as IUser);
 
@@ -64,8 +68,8 @@ export const AnunciantePersonalPage = () => {
       </ContainerLeilao>
       <Body>
         <Anuncios>
-          <ProductSectionPersonal type="Carro" inDashboard />
-          <ProductSectionPersonal type="Moto" inDashboard />
+          <ProductSectionPersonal type="Carro" />
+          <ProductSectionPersonal type="Moto" />
         </Anuncios>
       </Body>
       <Footer />

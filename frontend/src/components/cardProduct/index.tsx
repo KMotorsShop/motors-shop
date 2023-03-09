@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContextUser } from "../../context/userContext";
-import { CardProductProps } from "../../interface/interfaces";
-import { OutlineButton } from "../../styles/Buttons";
-import { Flex } from "../../styles/Containers";
-import { Heading7, Text } from "../../styles/Texts";
-import { formatCurrency } from "../../tools/formatters";
-import { UserLogo } from "../Comment/styles";
 import UpdateAnnounceModal from "../UpdateAnnounceModal";
+
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { BrandSpan, Card } from "./style";
+import { UserLogo } from "../Comment/styles";
+import { OutlineButton } from "../../styles/Buttons";
+import { Heading7, Text } from "../../styles/Texts";
+import { Flex } from "../../styles/Containers";
+import { formatCurrency } from "../../tools/formatters";
 
 export const CardProduct = ({
   name,

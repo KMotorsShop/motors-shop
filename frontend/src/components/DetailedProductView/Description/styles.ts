@@ -1,14 +1,14 @@
 import { styled } from "../../../styles/stitches.config";
 
 export const Container = styled("div", {
-  width: "752px",
-  height: "213px",
+  width: "100%",
+  padding: "0 44px",
+  maxWidth: 752,
   background: "$grey10",
   borderRadius: "4px",
   marginBottom: "39px",
   "@mobileProductDetailed": {
-    width: "351px",
-    height: "355px",
+    padding: "0px",
     marginBottom: "15px",
   },
 
@@ -19,7 +19,6 @@ export const Container = styled("div", {
     lineHeight: "25px",
     paddingTop: "36px",
     marginBottom: "32px",
-    marginLeft: "44px",
     "@mobileProductDetailed": {
       marginLeft: "28px",
     },
@@ -27,7 +26,6 @@ export const Container = styled("div", {
 });
 
 export const DivText = styled("div", {
-  marginLeft: "44px",
   marginBottom: "36px",
   "@mobileProductDetailed": {
     marginLeft: "28px",
