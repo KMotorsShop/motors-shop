@@ -8,6 +8,9 @@ import {
   Param,
   Delete,
   Req,
+  UseInterceptors,
+  ClassSerializerInterceptor,
+  SerializeOptions,
 } from '@nestjs/common';
 
 import { UsersService } from './users.service';
@@ -17,8 +20,8 @@ import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 import { AuthRequest } from 'src/auth/models/AuthRequest';
 
 @Controller('users')
-// @UseInterceptors(ClassSerializerInterceptor)
-// @SerializeOptions({ excludeExtraneousValues: true })
+@UseInterceptors(ClassSerializerInterceptor)
+@SerializeOptions({ excludeExtraneousValues: true })
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -33,9 +36,14 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get('/profile')
-  findOne(@Req() request: AuthRequest) {
-    return this.usersService.findOne(request.user.id);
+// @Get('/profile')
+// findOne(@Req() request: AuthRequest) {
+//   return this.usersService.findOne(request.user.id);
+// };
+
+  @Get(':id')
+  findOne(@Param('id') id: string,) {
+    return this.usersService.findOne(id);
   }
 
   @Patch(':id')
