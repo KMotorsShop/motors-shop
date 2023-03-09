@@ -31,6 +31,7 @@ export interface IValueAdsProps {
 
 export interface ProductSectionProps {
   type: string;
+  inDashboard?: boolean;
 }
 
 export interface CardProductProps {
@@ -43,6 +44,7 @@ export interface CardProductProps {
   year: number;
   price: number;
   id: string;
+  viewAsSeller?: boolean;
 }
 
 export interface IProviderProps {
