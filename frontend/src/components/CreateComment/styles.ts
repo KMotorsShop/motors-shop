@@ -48,6 +48,49 @@ export const MakeAComment = styled(BrandButton, {
     }
 });
 
+export const SendUpdateComment = styled(MakeAComment, {
+  width: "80px",
+  height: "28px",
+  "@createComment": {
+    marginLeft: "610px",
+    marginTop: "-100px",
+  }
+});
+
+export const UpdateComment = styled("textarea", {
+  fontFamily: "Lexend",
+  padding: "16px",
+  minHeight: "20px",
+  resize: "none",
+  borderRadius: 4,
+  border: "1.5px solid $grey7",
+  transition: "0.5s",
+  width: "100%",
+  overflow: "none",
+  display: "block",
+
+  "@createComment": {
+    marginBottom: "50px",
+  },
+
+  "&::placeholder": {
+    color: "$grey3",
+    fontFamily: "inter",
+  },
+
+  "&:hover": {
+    background: "$grey8",
+    border: "1.5px solid $grey8",
+  },
+
+  "&:focus": {
+    outline: "none",
+    border: "1.5px solid $brand1",
+    boxShadow: "0 0 0 0",
+  },
+
+})
+
 export const GoLogin = styled(MakeAComment, {
     color: "white",
     background: "#CED4DA",

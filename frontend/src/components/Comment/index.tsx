@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react";
 
 import { Flex } from "../../styles/Containers";
 import { Text } from "../../styles/Texts";
+import { TextArea } from "../../styles/Form";
+import { MakeAComment, SendUpdateComment, UpdateComment } from "../CreateComment/styles";
 
 import { AuthContextUser } from "../../context/userContext";
 import {
@@ -35,9 +37,21 @@ const Comment = ({
   idLoggedOwner,
 }: IContentProps) => {
   const [logo, setLogo] = useState("");
+
+  // const [ time, setTime ] = useState(null);
+  // const [ adId, setAdId ] = useState("");
+  // const [ update, setUpdate ] = useState(false)
+  const [ updateValue, setUpdateValue ] = useState("")
+
+  // const {
+  //   user
+  // } = useContext(AuthContextUser);
+
+
   const [time, setTime] = useState(null);
   const [adId, setAdId] = useState("");
   const [idUser, setIdUser] = useState("");
+
 
   useEffect(() => {
     const idAds = localStorage.getItem("@IdVehicle");
@@ -78,7 +92,19 @@ const Comment = ({
         window.location.reload();
       })
       .catch((err) => toast.error("Não foi possível excluir o comentário"));
-  }
+  };
+
+  async function updateComment(id: string) {
+    await api
+      .patch(`comments/${id}`, {content: updateValue})
+      .then((res) => {
+        toast.success("Comentário editado com sucesso");
+        window.location.reload();
+        window.location.reload();
+      })
+      .catch((err) => toast.error("Não foi possível editar o comentário"));
+  };
+}
 
   return (
     <Flex id={id}>
@@ -91,7 +117,11 @@ const Comment = ({
           </LoggedInfos>
           {idUser === idLoggedOwner && (
             <CommentButtons>
-              <TiEdit style={{ color: "#4529E6" }} />
+              <TiEdit style={{"color": "#4529E6"}}
+              onClick={() => setUpdate(!update)}/>
+              {/* <RiDeleteBack2Line style={{"color": "#CD2B31"}}
+              onClick={() => deleteComment(id)}/> */}
+              {/* <TiEdit style={{ color: "#4529E6" }} /> */}
               <RiDeleteBack2Line
                 style={{ color: "#CD2B31" }}
                 onClick={() => deleteComment(id)}
@@ -99,7 +129,21 @@ const Comment = ({
             </CommentButtons>
           )}
         </UserInfos>
-        <Text>{content}</Text>
+        {
+          !update ? 
+          <Text>{content}</Text> 
+          :
+          <>
+            <UpdateComment
+            onChange={(e) => {
+              setUpdateValue(e.target.value)
+            }}/>
+            <SendUpdateComment
+            onClick={() => updateComment(id)}>
+              Editar 
+            </SendUpdateComment>
+          </>
+        }
       </Container>
     </Flex>
   );
