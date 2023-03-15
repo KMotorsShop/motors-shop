@@ -42,7 +42,7 @@ export const ContainerComments = styled("div", {
 });
 
 export const CardOne = styled("div", {
-  minHeight: "557px",
+  minHeight: "700px",
   width: "751px",
   marginBottom: "33px",
   background: "$grey10",
